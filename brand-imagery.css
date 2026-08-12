@@ -66,6 +66,16 @@
   border-color: var(--color-blue) !important;
 }
 
+/* Hero Start your design stays on the canonical white button variant. */
+.hero .button.light,
+.hero .button.light:hover,
+.hero .button.light:focus-visible,
+.hero .button.light:active {
+  background: var(--color-cream) !important;
+  border-color: var(--color-ink) !important;
+  color: var(--color-ink) !important;
+}
+
 @media (max-width: 760px) {
   .brand-photo--hero .brand-photo__image {
     object-position: 68% center;
