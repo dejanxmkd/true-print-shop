@@ -133,8 +133,30 @@ html body .product-rail article{
 
 @media(max-width:600px){
   :root{--card-gap:12px}
+
   html body .product-rail article{
     flex-basis:82vw!important;
+  }
+
+  /* Mobile tab pills stay inside the section instead of using the old
+     100vw/negative-margin mask. Horizontal swipe remains, but pills snap
+     cleanly so the first/last option is never visually chopped. */
+  html body .tabs{
+    width:100%!important;
+    max-width:100%!important;
+    margin-left:0!important;
+    margin-right:0!important;
+    padding:6px 6px 12px!important;
+    overflow-x:auto!important;
+    overflow-y:visible!important;
+    scroll-padding-inline:6px!important;
+    scroll-snap-type:x proximity!important;
+    overscroll-behavior-inline:contain;
+  }
+
+  html body .tabs button{
+    flex:0 0 auto!important;
+    scroll-snap-align:start;
   }
 }
 
