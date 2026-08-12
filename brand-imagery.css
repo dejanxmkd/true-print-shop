@@ -182,7 +182,7 @@
     width: 100% !important;
     height: clamp(370px, 54svh, 500px) !important;
     flex: 0 0 auto;
-    margin: -100px 0 0 !important;
+    margin: 0 !important;
     border-radius: 0 !important;
   }
 
@@ -207,6 +207,7 @@
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
-    object-position: 78% 24% !important;
+    object-position: 90% 24% !important;
+    margin-top: -80px;
   }
 }
