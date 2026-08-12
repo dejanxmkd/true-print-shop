@@ -1,3 +1,19 @@
+(function installSpaceGroteskTest(){
+  if(!document.getElementById('space-grotesk-font')){
+    const link=document.createElement('link');
+    link.id='space-grotesk-font';
+    link.rel='stylesheet';
+    link.href='https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap';
+    document.head.appendChild(link);
+  }
+  if(!document.getElementById('space-grotesk-test-style')){
+    const style=document.createElement('style');
+    style.id='space-grotesk-test-style';
+    style.textContent=`body,button,input,textarea,select{font-family:"Space Grotesk",Arial,sans-serif!important;letter-spacing:-0.02em}.material-icons{letter-spacing:normal!important}`;
+    document.head.appendChild(style);
+  }
+})();
+
 const one = (selector, parent = document) => parent.querySelector(selector);
 const all = (selector, parent = document) => [...parent.querySelectorAll(selector)];
 
