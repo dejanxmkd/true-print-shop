@@ -1,3 +1,19 @@
+(function installSpaceGroteskTest(){
+  if(!document.getElementById('space-grotesk-font')){
+    const link=document.createElement('link');
+    link.id='space-grotesk-font';
+    link.rel='stylesheet';
+    link.href='https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap';
+    document.head.appendChild(link);
+  }
+  if(!document.getElementById('space-grotesk-test-style')){
+    const style=document.createElement('style');
+    style.id='space-grotesk-test-style';
+    style.textContent=`body,button,input,textarea,select{font-family:"Space Grotesk",Arial,sans-serif!important;letter-spacing:-0.02em}.material-icons{letter-spacing:normal!important}`;
+    document.head.appendChild(style);
+  }
+})();
+
 const pages={
 contact:['Contact us','Talk with a real person','Our support team is available Monday–Friday, 8am–6pm.','Phone: 1 800 555 0126|Email: hello@trueprint.shop|Address: 124 Thread Street, Madeville, NY 10001'],
 faq:['Frequently asked questions','Ordering and customisation','Choose a product, select your options and send us your artwork. Our team will confirm the details before production.','Production normally begins after payment and artwork approval.|Colour and placement proofs are provided when required.|Custom products are made specifically for your order.'],
