@@ -32,8 +32,13 @@ const checkColour = hex => {
   const luminance = (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000;
   return luminance > 155 ? '#111111' : '#F5F1E8';
 };
+const swatchColour = (name, hex) => {
+  const normalized = hex.toLowerCase();
+  const isBlack = /black/i.test(name) || normalized === '#111111' || normalized === '#000000';
+  return isBlack ? '#2A2A2A' : hex;
+};
 colourOptions.innerHTML = palette.map(([name, hex], index) =>
-  `<button type="button" ${index === 0 ? 'class="active"' : ''} style="--swatch:${hex};--check-colour:${checkColour(hex)}" data-colour="${name}" title="${name}" aria-label="${name}" aria-pressed="${index === 0}"><i class="material-icons" aria-hidden="true">check</i></button>`
+  `<button type="button" ${index === 0 ? 'class="active"' : ''} style="--swatch:${swatchColour(name, hex)};--check-colour:${checkColour(hex)}" data-colour="${name}" title="${name}" aria-label="${name}" aria-pressed="${index === 0}"><i class="material-icons" aria-hidden="true">check</i></button>`
 ).join('');
 find('#selected-colour').textContent = palette[0][0];
 
