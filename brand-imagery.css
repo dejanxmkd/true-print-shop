@@ -76,6 +76,11 @@
   color: var(--color-ink) !important;
 }
 
+/* Homepage hero: roughly 20% taller than the previous 720px baseline. */
+.hero {
+  min-height: 864px;
+}
+
 @media (max-width: 760px) {
   .brand-photo--hero .brand-photo__image {
     object-position: 68% center;
@@ -93,5 +98,9 @@
     height: 100%;
     aspect-ratio: auto;
     border-radius: 0;
+  }
+
+  .hero {
+    min-height: calc((100svh - 114px) * 1.2);
   }
 }
