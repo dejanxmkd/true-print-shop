@@ -81,6 +81,16 @@
   color: var(--color-ink) !important;
 }
 
+/* Homepage CTA buttons are text-only: remove arrow/chevron icons, keep buttons intact. */
+.embroidery .button .material-icons,
+#bundles .heading-row > a .material-icons,
+#bundles .section-button .material-icons,
+#responders .heading-row > a .material-icons,
+#responders .section-button .material-icons,
+.mobile-primary .material-icons {
+  display: none !important;
+}
+
 /* Homepage hero: 10% shorter than the previous 864px height. */
 .hero {
   min-height: 778px;
