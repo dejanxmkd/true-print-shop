@@ -486,3 +486,6 @@
   color: var(--cream) !important;
   border-color: var(--ink) !important;
 }
+
+/* Global footer white text */
+.site-footer, .site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6, .site-footer p, .site-footer a, .site-footer span, .site-footer strong, .site-footer small, .site-footer li, .site-footer i { color: var(--cream) !important; }
