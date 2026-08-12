@@ -17,6 +17,8 @@ const productName = find('#product-name');
 productName.textContent = details.displayName;
 productName.classList.toggle('title-short', details.displayName.length <= 20);
 productName.classList.toggle('title-long', details.displayName.length >= 34);
+productName.style.fontWeight = '600';
+productName.style.color = '#111111';
 find('#product-price').textContent = details.price;
 find('#product-brand').textContent = details.brand;
 
