@@ -115,3 +115,13 @@
 .sort-menu{left:0!important;right:auto!important;width:100%!important;box-sizing:border-box!important;padding:8px!important}
 .sort-menu button,.sort-menu button:hover,.sort-menu button:focus,.sort-menu button:focus-visible,.sort-menu button.active{width:100%!important;box-sizing:border-box!important;border:0!important;outline:0!important;box-shadow:none!important;margin:0!important}
 @media(max-width:980px){.sort-control{width:min(100%,470px)}.sort-dropdown{width:100%;min-width:0}.sort-dropdown>button{width:100%}}
+
+/* Mobile catalog display typography */
+@media(max-width:600px){
+  html body .catalog-page .catalog-hero h1{
+    font-size:46px!important;
+    line-height:1.02!important;
+    font-weight:900!important;
+    text-transform:uppercase!important;
+  }
+}
