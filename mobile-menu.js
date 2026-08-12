@@ -155,7 +155,7 @@
       @media(max-width:600px){
         .tp-mobile-panel-inner{padding:28px 16px 34px}
         .tp-mobile-parent-row{grid-template-columns:minmax(0,1fr) 44px}
-        .tp-mobile-link{min-height:62px;padding:13px 0;font-size:clamp(28px,9vw,40px)!important}
+        .tp-mobile-link{min-height:62px;padding:13px 0;font-size:24px!important}
         .tp-mobile-next{width:44px;height:44px}
       }
       @media(prefers-reduced-motion:reduce){.tp-mobile-panel{transition:none!important}}
