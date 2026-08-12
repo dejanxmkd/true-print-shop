@@ -1,3 +1,4 @@
+@import url('typography-font.css');
 :root{--ink:#111111;--blue:#2457FF;--cream:#F5F1E8;--black:#000000;--radius:28px;--pad:clamp(20px,4vw,64px)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font:500 16px/1.5 Inter,Arial,sans-serif;overflow-x:hidden}body.menu-open{overflow:hidden}a{color:inherit;text-decoration:none}button,input{font:inherit}button{color:inherit}.material-icons{font-size:21px;line-height:1}.placeholder{background:var(--blue)}
 .announce{min-height:40px;padding:8px var(--pad);position:relative;background:var(--blue);color:var(--cream);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700}.announce-track{display:flex;align-items:center;gap:30px}.announce-track i{font-size:16px}.announce>button{position:absolute;right:var(--pad);border:0;background:none;color:inherit;cursor:pointer}
