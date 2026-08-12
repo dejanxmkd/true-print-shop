@@ -58,3 +58,7 @@
 ## Blue section text rule
 
 Секоја секција со Electric Cobalt (`#2457FF`) background користи Near Black (`#111111`) како основна боја за текст. Исклучок се dark title tags/eyebrows: тие остануваат Near Black background со Warm White текст.
+
+## Dark title tags on colored/image sections
+
+Секој title tag над наслов — вклучувајќи `eyebrow`, `section-tag`, `kicker` и `product-brand` — мора да биде Near Black (`#111111`) со Warm White (`#F5F1E8`) текст кога се наоѓа во секција со Electric Cobalt background, Near Black background или background image. Ова правило важи глобално низ сите pages.

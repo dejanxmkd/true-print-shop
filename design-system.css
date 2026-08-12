@@ -585,3 +585,38 @@ body.cart-open{overflow:hidden}
   color:var(--color-cream)!important;
   border-color:var(--color-ink)!important;
 }
+
+/* Global dark title-tag rule.
+   Any title tag placed on blue, dark, or image-led sections is Near Black with Warm White text. */
+:is(
+  .hero,
+  .custom,
+  .embroidery,
+  .embroidery-card,
+  .catalog-hero,
+  .site-footer,
+  .brand-photo,
+  .blue-section,
+  .dark-section,
+  .image-section,
+  [data-section-bg="blue"],
+  [data-section-bg="dark"],
+  [data-section-bg="image"],
+  [class*="hero"],
+  [class*="banner"],
+  [class*="masthead"]
+) :is(.eyebrow,.section-tag,.kicker,.product-brand){
+  background:var(--color-ink)!important;
+  color:var(--color-cream)!important;
+  border-color:var(--color-ink)!important;
+}
+
+/* Explicitly cover homepage image-backed sections regardless of image implementation. */
+.hero :is(.eyebrow,.section-tag,.kicker,.product-brand),
+.custom :is(.eyebrow,.section-tag,.kicker,.product-brand),
+.embroidery :is(.eyebrow,.section-tag,.kicker,.product-brand),
+.catalog-hero :is(.eyebrow,.section-tag,.kicker,.product-brand){
+  background:var(--color-ink)!important;
+  color:var(--color-cream)!important;
+  border-color:var(--color-ink)!important;
+}
