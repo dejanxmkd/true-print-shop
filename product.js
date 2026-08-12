@@ -164,7 +164,7 @@ productGridStyle.textContent = `
 @media(min-width:1481px){
   .product-page .product-layout{position:relative!important}
   .product-page .product-info{position:static!important}
-  .product-page .title-line button[aria-label="Share product"]{right:51px!important}
+  .product-page .title-line button[aria-label="Share product"]{right:0!important}
 }
 @media(max-width:980px){
   .product-page{
