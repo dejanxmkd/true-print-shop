@@ -1,22 +1,15 @@
 .page-transition{
   position:fixed;
-  z-index:9999;
+  z-index:99999;
   inset:0;
   background:#2457FF;
   pointer-events:none;
-  transform:translateY(0);
+  transform:translate3d(0,100%,0);
   will-change:transform;
-  transition:transform 460ms cubic-bezier(.76,0,.24,1);
-}
-
-html.page-transition-ready .page-transition{
-  transform:translateY(-100%);
-}
-
-html.page-transition-leaving .page-transition{
-  transform:translateY(0);
+  backface-visibility:hidden;
+  contain:paint;
 }
 
 @media(prefers-reduced-motion:reduce){
-  .page-transition{display:none!important;transition:none!important}
+  .page-transition{display:none!important;transform:none!important}
 }
