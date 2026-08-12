@@ -87,6 +87,16 @@
   padding-top:0;
 }
 
+/* Desktop share control aligns with the Account button's right edge in the header. */
+@media(min-width:1481px){
+  .product-layout{position:relative}
+  .product-info{position:static}
+  .title-line button[aria-label="Share product"]{
+    top:8px;
+    right:calc(clamp(20px,4vw,64px) + 51px - max(4vw,calc((100vw - 1500px)/2)));
+  }
+}
+
 .main-image{
   border:2px solid var(--ink);
   box-shadow:6px 6px 0 var(--ink);
