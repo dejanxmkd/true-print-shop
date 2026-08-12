@@ -34,9 +34,9 @@ p,span,strong,small,li,label{
 }
 
 /* Canonical text-link micro interaction.
-   Text links use one motion language everywhere: no horizontal movement,
-   a 1px lift and cobalt colour on hover/focus. Button/card links keep their
-   own component interactions. */
+   Text links use one motion language everywhere: a subtle 3px move to the
+   right plus cobalt colour on hover/focus. Button/card links keep their own
+   component interactions. */
 html body .desktop-nav a,
 html body .desktop-nav .dropdown-menu a,
 html body .desktop-nav .sub-dropdown-menu a,
@@ -66,7 +66,7 @@ html body .info-content a:focus-visible,
 html body .description a:hover,
 html body .description a:focus-visible{
   color:var(--color-blue,var(--blue,#2457FF))!important;
-  transform:translateY(-1px)!important;
+  transform:translateX(3px)!important;
 }
 
 @media(prefers-reduced-motion:reduce){
