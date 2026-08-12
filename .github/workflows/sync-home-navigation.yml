@@ -1,0 +1,54 @@
+name: Sync home navigation across pages
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  sync-navigation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Use homepage navigation on every page
+        shell: python
+        run: |
+          from pathlib import Path
+
+          home_path = Path("index.html")
+          home = home_path.read_text(encoding="utf-8")
+
+          header_start = home.index('<header class="site-header">')
+          main_start = home.index('<main', header_start)
+          canonical = home[header_start:main_start]
+
+          # The logo should always take users home when they are on an inner page.
+          inner_canonical = canonical.replace('href="#top" aria-label="True Print Shop home"', 'href="index.html" aria-label="True Print Shop home"', 1)
+
+          for filename in ("collection.html", "product.html", "info.html"):
+              path = Path(filename)
+              text = path.read_text(encoding="utf-8")
+              start = text.index('<header class="site-header">')
+              end = text.index('<main', start)
+              updated = text[:start] + inner_canonical + text[end:]
+              path.write_text(updated, encoding="utf-8")
+
+          Path(".github/workflows/sync-home-navigation.yml").unlink(missing_ok=True)
+
+      - name: Commit synced navigation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add collection.html product.html info.html .github/workflows/sync-home-navigation.yml
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "Use homepage navigation across all pages"
+          git push origin HEAD:main
