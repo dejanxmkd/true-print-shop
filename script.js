@@ -215,3 +215,50 @@ all('.products').forEach(section => {
   one('.heading-row>a', section)?.setAttribute('href', `collection.html?category=${category}`);
   one('.section-button', section)?.setAttribute('href', `collection.html?category=${category}`);
 });
+
+/* Canonical storefront fixes requested across all pages using script.js. */
+(function installCanonicalStorefrontFixes(){
+  const mega=document.querySelector('.desktop-nav .nav-item.has-mega-dropdown');
+  if(mega){
+    mega.className='nav-item has-dropdown apparel-dropdown';
+    mega.innerHTML=`<a href="collection.html?category=t-shirts">Custom Apparel</a><div class="dropdown-menu apparel-menu">
+      <div class="nav-subitem"><a href="collection.html?category=t-shirts">T-Shirts</a><div class="sub-dropdown-menu"><a href="collection.html?category=short-sleeve">Short Sleeve</a><a href="collection.html?category=long-sleeve">Long Sleeve</a><a href="collection.html?category=polos">Polos</a></div></div>
+      <div class="nav-subitem"><a href="collection.html?category=sweatshirts">Sweatshirts</a><div class="sub-dropdown-menu"><a href="collection.html?category=hoodies">Hoodies</a><a href="collection.html?category=crewnecks">Crewnecks</a><a href="collection.html?category=zip-hoodies">Zip Up Hoodies</a><a href="collection.html?category=quarter-zips">Quarter Zip Ups</a></div></div>
+      <div class="nav-subitem"><a href="collection.html?category=sweatpants">Sweatpants</a><div class="sub-dropdown-menu"><a href="collection.html?category=joggers">Joggers</a></div></div>
+      <div class="nav-subitem"><a href="collection.html?category=hats">Hats</a><div class="sub-dropdown-menu"><a href="collection.html?category=athletic-hats">Athletic Hats</a><a href="collection.html?category=beanies">Beanies</a><a href="collection.html?category=fitted-hats">Fitted Hats</a><a href="collection.html?category=hats">Lifetime Hats</a><a href="collection.html?category=mesh-hats">Mesh</a><a href="collection.html?category=snapbacks">Snapback</a><a href="collection.html?category=trucker-hats">Trucker Hats</a></div></div>
+      <div class="nav-subitem"><a href="collection.html?category=jackets">Jackets</a><div class="sub-dropdown-menu"><a href="collection.html?category=jackets&q=jacket">Jackets</a><a href="collection.html?category=jackets&q=vest">Vests</a></div></div>
+    </div>`;
+  }
+
+  if(document.getElementById('canonical-storefront-fixes'))return;
+  const style=document.createElement('style');
+  style.id='canonical-storefront-fixes';
+  style.textContent=`
+    h1{font-size:clamp(64px,6.6vw,84px)!important;line-height:1.02!important;font-weight:900!important;text-transform:uppercase!important}
+    h2{font-size:clamp(36px,5.5vw,64px)!important;line-height:1.05!important;font-weight:900!important;text-transform:uppercase!important;letter-spacing:-3px!important}
+    #product-name{font-weight:600!important;text-transform:none!important;color:var(--color-ink,#111111)!important}
+    .site-footer{background:#111111!important;color:#F5F1E8!important}
+    .site-footer :is(h1,h2,h3,h4,h5,h6,p,a,span,strong,small,li){color:#F5F1E8!important}
+    .site-footer .footer-intro,.site-footer .footer-bottom{border-color:rgba(245,241,232,.3)!important}
+    .site-footer .footer-bottom a{background:#2457FF!important;border-color:#2457FF!important;color:#F5F1E8!important}
+    .site-footer .footer-bottom a i{color:#F5F1E8!important}
+    .site-footer .footer-bottom a:hover{background:#2457FF!important;border-color:#2457FF!important;color:#F5F1E8!important}
+    .filter-scroll h2{font-size:22px!important;line-height:1.2!important;letter-spacing:0!important;text-transform:none!important;border:0!important;text-decoration:none!important;padding-bottom:0!important}
+    .filter-scroll h2::before,.filter-scroll h2::after{display:none!important;content:none!important}
+    @media(min-width:1481px){
+      .desktop-nav a,.desktop-nav a:hover{transition:none!important;transform:none!important}
+      .desktop-nav .apparel-dropdown{position:relative!important}
+      .desktop-nav .apparel-dropdown>.apparel-menu{top:calc(100% - 2px)!important;left:0!important;min-width:290px!important;width:auto!important;padding:18px!important;display:flex!important;flex-direction:column!important;gap:4px!important;background:var(--color-cream,#F5F1E8)!important;color:var(--color-ink,#111111)!important;border:2px solid var(--color-ink,#111111)!important;border-radius:20px!important;box-shadow:5px 5px 0 var(--color-ink,#111111)!important;opacity:0!important;visibility:hidden!important;pointer-events:none!important;transform:none!important;transition:none!important}
+      .desktop-nav .apparel-dropdown:hover>.apparel-menu,.desktop-nav .apparel-dropdown:focus-within>.apparel-menu{opacity:1!important;visibility:visible!important;pointer-events:auto!important;transform:none!important}
+      .desktop-nav .nav-subitem{position:relative}
+      .desktop-nav .nav-subitem::before{content:"";position:absolute;top:0;left:100%;width:18px;height:100%}
+      .desktop-nav .nav-subitem>a{min-height:46px;padding:9px 12px!important;display:flex!important;align-items:center;justify-content:space-between;gap:22px;font-size:16px!important;font-weight:700!important;color:var(--color-ink,#111111)!important;white-space:nowrap!important;transition:none!important;transform:none!important}
+      .desktop-nav .nav-subitem>a::after{content:"chevron_right";font-family:"Material Icons";font-size:19px;color:var(--color-blue,#2457FF)}
+      .desktop-nav .sub-dropdown-menu{position:absolute;top:-18px;left:calc(100% + 12px);min-width:270px;padding:18px;display:flex;flex-direction:column;gap:4px;background:var(--color-cream,#F5F1E8);border:2px solid var(--color-ink,#111111);border-radius:20px;box-shadow:5px 5px 0 var(--color-ink,#111111);opacity:0;visibility:hidden;pointer-events:none;z-index:130;transition:none}
+      .desktop-nav .nav-subitem:hover>.sub-dropdown-menu,.desktop-nav .nav-subitem:focus-within>.sub-dropdown-menu{opacity:1;visibility:visible;pointer-events:auto}
+      .desktop-nav .sub-dropdown-menu a{min-height:44px;padding:9px 12px!important;font-size:16px!important;font-weight:700!important;color:var(--color-ink,#111111)!important;white-space:nowrap!important;transition:none!important;transform:none!important}
+      .desktop-nav .nav-subitem>a:hover,.desktop-nav .sub-dropdown-menu a:hover{color:var(--color-blue,#2457FF)!important;transform:none!important}
+    }
+  `;
+  document.head.appendChild(style);
+})();
