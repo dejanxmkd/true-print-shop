@@ -621,254 +621,73 @@ body.cart-open{overflow:hidden}
   border-color:var(--color-ink)!important;
 }
 
-/* Canonical desktop dropdowns: Custom Apparel matches the standard dropdown language. */
+/* Custom Apparel mega dropdown — compact, anchored, and visually matched to standard dropdowns. */
 @media (min-width: 1481px) {
-  .desktop-nav > .nav-item > a { font-size:16px; }
-  .desktop-nav .dropdown-menu,
-  .desktop-nav .dropdown-menu.mega-menu {
-    background:var(--color-cream)!important;
-    color:var(--color-ink)!important;
-    border:2px solid var(--color-ink)!important;
-    border-radius:20px!important;
-    box-shadow:5px 5px 0 var(--color-ink)!important;
-    opacity:0;
+  .desktop-nav .nav-item.has-mega-dropdown {
+    position: relative !important;
   }
-  .desktop-nav .nav-item:hover .dropdown-menu,
-  .desktop-nav .nav-item:hover .dropdown-menu.mega-menu { opacity:1; }
-  .desktop-nav .dropdown-menu a,
-  .desktop-nav .mega-column a {
-    font-size:16px!important;
-    line-height:1.35!important;
-    font-weight:700!important;
-    color:var(--color-ink)!important;
-    padding:4px 0!important;
-  }
-  .desktop-nav .dropdown-menu a:hover,
-  .desktop-nav .mega-column a:hover { color:var(--color-blue)!important; }
-  .desktop-nav .dropdown-menu.mega-menu {
-    top:calc(100% - 2px)!important;
-    width:min(calc(100vw - 80px),1040px)!important;
-    grid-template-columns:repeat(5,minmax(0,1fr))!important;
-    gap:28px!important;
-    padding:28px 30px!important;
-  }
-  .desktop-nav .mega-column { gap:8px!important; }
-  .desktop-nav .mega-column h3 {
-    margin:0 0 10px!important;
-    padding:0!important;
-    font-size:16px!important;
-    line-height:1.25!important;
-    font-weight:800!important;
-    color:var(--color-blue)!important;
-  }
-}
 
-/* Canonical desktop dropdowns: Custom Apparel matches the standard dropdown language. */
-@media (min-width: 1481px) {
-  .desktop-nav > .nav-item > a { font-size:16px; }
-  .desktop-nav .dropdown-menu,
-  .desktop-nav .dropdown-menu.mega-menu {
-    background:var(--color-cream)!important;
-    color:var(--color-ink)!important;
-    border:2px solid var(--color-ink)!important;
-    border-radius:20px!important;
-    box-shadow:5px 5px 0 var(--color-ink)!important;
-    opacity:0;
+  .desktop-nav .nav-item.has-mega-dropdown > .mega-menu {
+    position: absolute !important;
+    top: calc(100% + 10px) !important;
+    left: 0 !important;
+    right: auto !important;
+    width: min(760px, calc(100vw - 80px)) !important;
+    max-height: none !important;
+    padding: 20px 22px !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(150px, 1fr)) !important;
+    gap: 18px 28px !important;
+    background: var(--color-cream) !important;
+    color: var(--color-ink) !important;
+    border: 2px solid var(--color-ink) !important;
+    border-radius: 18px !important;
+    box-shadow: 6px 6px 0 var(--color-ink) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translateY(6px) !important;
+    transition: opacity var(--motion-fast), transform var(--motion-fast), visibility var(--motion-fast) !important;
+    z-index: 60 !important;
   }
-  .desktop-nav .nav-item:hover .dropdown-menu,
-  .desktop-nav .nav-item:hover .dropdown-menu.mega-menu { opacity:1; }
-  .desktop-nav .dropdown-menu a,
-  .desktop-nav .mega-column a {
-    font-size:16px!important;
-    line-height:1.35!important;
-    font-weight:700!important;
-    color:var(--color-ink)!important;
-    padding:4px 0!important;
-  }
-  .desktop-nav .dropdown-menu a:hover,
-  .desktop-nav .mega-column a:hover { color:var(--color-blue)!important; }
-  .desktop-nav .dropdown-menu.mega-menu {
-    top:calc(100% - 2px)!important;
-    width:min(calc(100vw - 80px),1040px)!important;
-    grid-template-columns:repeat(5,minmax(0,1fr))!important;
-    gap:28px!important;
-    padding:28px 30px!important;
-  }
-  .desktop-nav .mega-column { gap:8px!important; }
-  .desktop-nav .mega-column h3 {
-    margin:0 0 10px!important;
-    padding:0!important;
-    font-size:16px!important;
-    line-height:1.25!important;
-    font-weight:800!important;
-    color:var(--color-blue)!important;
-  }
-}
 
-/* Canonical desktop dropdowns: Custom Apparel matches the standard dropdown language. */
-@media (min-width: 1481px) {
-  .desktop-nav > .nav-item > a { font-size:16px; }
-  .desktop-nav .dropdown-menu,
-  .desktop-nav .dropdown-menu.mega-menu {
-    background:var(--color-cream)!important;
-    color:var(--color-ink)!important;
-    border:2px solid var(--color-ink)!important;
-    border-radius:20px!important;
-    box-shadow:5px 5px 0 var(--color-ink)!important;
-    opacity:0;
+  .desktop-nav .nav-item.has-mega-dropdown:hover > .mega-menu,
+  .desktop-nav .nav-item.has-mega-dropdown:focus-within > .mega-menu {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
   }
-  .desktop-nav .nav-item:hover .dropdown-menu,
-  .desktop-nav .nav-item:hover .dropdown-menu.mega-menu { opacity:1; }
-  .desktop-nav .dropdown-menu a,
-  .desktop-nav .mega-column a {
-    font-size:16px!important;
-    line-height:1.35!important;
-    font-weight:700!important;
-    color:var(--color-ink)!important;
-    padding:4px 0!important;
-  }
-  .desktop-nav .dropdown-menu a:hover,
-  .desktop-nav .mega-column a:hover { color:var(--color-blue)!important; }
-  .desktop-nav .dropdown-menu.mega-menu {
-    top:calc(100% - 2px)!important;
-    width:min(calc(100vw - 80px),1040px)!important;
-    grid-template-columns:repeat(5,minmax(0,1fr))!important;
-    gap:28px!important;
-    padding:28px 30px!important;
-  }
-  .desktop-nav .mega-column { gap:8px!important; }
-  .desktop-nav .mega-column h3 {
-    margin:0 0 10px!important;
-    padding:0!important;
-    font-size:16px!important;
-    line-height:1.25!important;
-    font-weight:800!important;
-    color:var(--color-blue)!important;
-  }
-}
 
-/* Canonical desktop dropdowns: Custom Apparel matches the standard dropdown language. */
-@media (min-width: 1481px) {
-  .desktop-nav > .nav-item > a { font-size:16px; }
-  .desktop-nav .dropdown-menu,
-  .desktop-nav .dropdown-menu.mega-menu {
-    background:var(--color-cream)!important;
-    color:var(--color-ink)!important;
-    border:2px solid var(--color-ink)!important;
-    border-radius:20px!important;
-    box-shadow:5px 5px 0 var(--color-ink)!important;
-    opacity:0;
+  .desktop-nav .mega-column {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 7px !important;
+    min-width: 0 !important;
   }
-  .desktop-nav .nav-item:hover .dropdown-menu,
-  .desktop-nav .nav-item:hover .dropdown-menu.mega-menu { opacity:1; }
-  .desktop-nav .dropdown-menu a,
-  .desktop-nav .mega-column a {
-    font-size:16px!important;
-    line-height:1.35!important;
-    font-weight:700!important;
-    color:var(--color-ink)!important;
-    padding:4px 0!important;
-  }
-  .desktop-nav .dropdown-menu a:hover,
-  .desktop-nav .mega-column a:hover { color:var(--color-blue)!important; }
-  .desktop-nav .dropdown-menu.mega-menu {
-    top:calc(100% - 2px)!important;
-    width:min(calc(100vw - 80px),1040px)!important;
-    grid-template-columns:repeat(5,minmax(0,1fr))!important;
-    gap:28px!important;
-    padding:28px 30px!important;
-  }
-  .desktop-nav .mega-column { gap:8px!important; }
-  .desktop-nav .mega-column h3 {
-    margin:0 0 10px!important;
-    padding:0!important;
-    font-size:16px!important;
-    line-height:1.25!important;
-    font-weight:800!important;
-    color:var(--color-blue)!important;
-  }
-}
 
-/* Canonical desktop dropdowns: Custom Apparel matches the standard dropdown language. */
-@media (min-width: 1481px) {
-  .desktop-nav > .nav-item > a { font-size:16px; }
-  .desktop-nav .dropdown-menu,
-  .desktop-nav .dropdown-menu.mega-menu {
-    background:var(--color-cream)!important;
-    color:var(--color-ink)!important;
-    border:2px solid var(--color-ink)!important;
-    border-radius:20px!important;
-    box-shadow:5px 5px 0 var(--color-ink)!important;
-    opacity:0;
-  }
-  .desktop-nav .nav-item:hover .dropdown-menu,
-  .desktop-nav .nav-item:hover .dropdown-menu.mega-menu { opacity:1; }
-  .desktop-nav .dropdown-menu a,
-  .desktop-nav .mega-column a {
-    font-size:16px!important;
-    line-height:1.35!important;
-    font-weight:700!important;
-    color:var(--color-ink)!important;
-    padding:4px 0!important;
-  }
-  .desktop-nav .dropdown-menu a:hover,
-  .desktop-nav .mega-column a:hover { color:var(--color-blue)!important; }
-  .desktop-nav .dropdown-menu.mega-menu {
-    top:calc(100% - 2px)!important;
-    width:min(calc(100vw - 80px),1040px)!important;
-    grid-template-columns:repeat(5,minmax(0,1fr))!important;
-    gap:28px!important;
-    padding:28px 30px!important;
-  }
-  .desktop-nav .mega-column { gap:8px!important; }
   .desktop-nav .mega-column h3 {
-    margin:0 0 10px!important;
-    padding:0!important;
-    font-size:16px!important;
-    line-height:1.25!important;
-    font-weight:800!important;
-    color:var(--color-blue)!important;
+    margin: 0 0 4px !important;
+    padding: 0 !important;
+    font-size: 16px !important;
+    line-height: 1.25 !important;
+    font-weight: 800 !important;
+    color: var(--color-blue) !important;
   }
-}
 
-/* Canonical desktop dropdowns: Custom Apparel matches the standard dropdown language. */
-@media (min-width: 1481px) {
-  .desktop-nav > .nav-item > a { font-size:16px; }
-  .desktop-nav .dropdown-menu,
-  .desktop-nav .dropdown-menu.mega-menu {
-    background:var(--color-cream)!important;
-    color:var(--color-ink)!important;
-    border:2px solid var(--color-ink)!important;
-    border-radius:20px!important;
-    box-shadow:5px 5px 0 var(--color-ink)!important;
-    opacity:0;
-  }
-  .desktop-nav .nav-item:hover .dropdown-menu,
-  .desktop-nav .nav-item:hover .dropdown-menu.mega-menu { opacity:1; }
-  .desktop-nav .dropdown-menu a,
   .desktop-nav .mega-column a {
-    font-size:16px!important;
-    line-height:1.35!important;
-    font-weight:700!important;
-    color:var(--color-ink)!important;
-    padding:4px 0!important;
+    display: block !important;
+    padding: 2px 0 !important;
+    font-size: 16px !important;
+    line-height: 1.35 !important;
+    font-weight: 700 !important;
+    color: var(--color-ink) !important;
+    white-space: normal !important;
+    transform: none !important;
   }
-  .desktop-nav .dropdown-menu a:hover,
-  .desktop-nav .mega-column a:hover { color:var(--color-blue)!important; }
-  .desktop-nav .dropdown-menu.mega-menu {
-    top:calc(100% - 2px)!important;
-    width:min(calc(100vw - 80px),1040px)!important;
-    grid-template-columns:repeat(5,minmax(0,1fr))!important;
-    gap:28px!important;
-    padding:28px 30px!important;
-  }
-  .desktop-nav .mega-column { gap:8px!important; }
-  .desktop-nav .mega-column h3 {
-    margin:0 0 10px!important;
-    padding:0!important;
-    font-size:16px!important;
-    line-height:1.25!important;
-    font-weight:800!important;
-    color:var(--color-blue)!important;
+
+  .desktop-nav .mega-column a:hover {
+    color: var(--color-blue) !important;
+    transform: none !important;
   }
 }
