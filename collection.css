@@ -81,10 +81,11 @@
  .filter-scroll>h2{margin-bottom:14px}.filter-scroll>h2:not(:first-child){margin-top:34px}.catalog-filters a{width:auto;background:var(--cream)}
 }
 
-/* Filter close follows the canonical brutalist icon-button behavior */
-.filter-close{background:var(--cream)!important;border:2px solid var(--ink)!important;color:var(--ink)!important;box-shadow:none!important;transform:none!important;transition:background-color .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease,transform .16s ease!important}
-.filter-close:hover{background:var(--blue)!important;border-color:var(--ink)!important;color:var(--cream)!important;box-shadow:3px 3px 0 var(--ink)!important;transform:translate(-1px,-1px)!important}
-.filter-close:active{background:var(--blue)!important;border-color:var(--ink)!important;color:var(--cream)!important;box-shadow:none!important;transform:translate(1px,1px)!important}
+/* Filter close matches the cart close icon-button exactly. */
+.filter-close{display:grid!important;place-items:center!important;width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;padding:0!important;border:2px solid var(--ink)!important;border-radius:50%!important;background:var(--blue)!important;color:var(--cream)!important;box-shadow:6px 6px 0 var(--ink)!important;transform:none!important;transition:background-color .2s ease,color .2s ease,border-color .2s ease,box-shadow .2s ease,transform .2s ease!important}
+.filter-close:hover{background:var(--blue)!important;border-color:var(--ink)!important;color:var(--cream)!important;box-shadow:3px 3px 0 var(--ink)!important;transform:translate(3px,3px)!important}
+.filter-close:active{background:var(--blue)!important;border-color:var(--ink)!important;color:var(--cream)!important;box-shadow:none!important;transform:translate(6px,6px)!important}
+.filter-close .material-icons{display:block!important;margin:0!important;line-height:1!important}
 
 /* Keep the sort label inside its control */
 .sort-control>span{display:none}
