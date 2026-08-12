@@ -81,9 +81,9 @@
   color: var(--color-ink) !important;
 }
 
-/* Homepage hero: roughly 20% taller than the previous 720px baseline. */
+/* Homepage hero: 10% shorter than the previous 864px height. */
 .hero {
-  min-height: 864px;
+  min-height: 778px;
 }
 
 @media (max-width: 760px) {
@@ -110,6 +110,6 @@
   }
 
   .hero {
-    min-height: calc((100svh - 114px) * 1.2);
+    min-height: calc((100svh - 114px) * 1.08);
   }
 }
