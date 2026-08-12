@@ -205,7 +205,7 @@
 
   .brand-photo--hero .brand-photo__image {
     width: 100% !important;
-    height: 100% !important;
+    height: calc(100% + 80px) !important;
     object-fit: cover !important;
     object-position: 90% 24% !important;
     margin-top: -80px;
