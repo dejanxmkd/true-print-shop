@@ -123,3 +123,54 @@
     min-height: calc((100svh - 114px) * 1.08);
   }
 }
+
+/* Mobile homepage hero: image-led top zone with a larger clean blue content area below. */
+@media (max-width: 600px) {
+  .hero {
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    background: var(--color-blue, #2457FF) !important;
+  }
+
+  .hero > .brand-photo--hero {
+    position: relative !important;
+    inset: auto !important;
+    order: 1;
+    width: 100% !important;
+    height: clamp(250px, 36svh, 330px) !important;
+    flex: 0 0 auto;
+  }
+
+  .brand-photo--hero .brand-photo__image {
+    object-position: 68% 38% !important;
+  }
+
+  .hero-copy {
+    order: 2;
+    width: 100% !important;
+    padding: 30px 16px 38px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background: var(--color-blue, #2457FF);
+  }
+
+  .hero-copy h1 {
+    margin: 0 0 26px !important;
+  }
+
+  .hero .button-row {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    width: 100%;
+  }
+
+  .hero .button-row .button {
+    width: 100%;
+    min-height: 56px;
+  }
+}
