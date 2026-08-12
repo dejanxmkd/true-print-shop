@@ -44,3 +44,17 @@
 - Pressed state го намалува shadow-от на `1px` и го поместува control-от надолу/надесно.
 - Tabs никогаш не стануваат црни на hover. Hover и active состојбите се Electric Cobalt со Warm White текст.
 - Не се користат gradients, blur shadows, случајни outlines или бои надвор од brand palette.
+
+## Canonical button system
+
+`Shop bundles` CTA на homepage е визуелниот и интерактивниот pattern за сите action buttons низ целиот сајт.
+
+- Сите action buttons користат ист `2px` Near Black border, pill radius, висина, padding, typography, hard-shadow hover и pressed animation.
+- Постојат две главни варијанти: **white** = Warm White background + Near Black border/text; **blue** = Electric Cobalt background + Near Black border + Warm White text.
+- Боите на копчето не се менуваат на hover/active; интеракцијата се покажува преку hard shadow и позиционирање.
+- Старите `dark`/black CTA варијанти се нормализираат во blue варијантата.
+- Нов action button не смее да добива сопствен page-specific CSS ако може да ја користи canonical button варијантата од `design-system.css`.
+
+## Blue section text rule
+
+Секоја секција со Electric Cobalt (`#2457FF`) background користи Near Black (`#111111`) како основна боја за текст. Исклучок се dark title tags/eyebrows: тие остануваат Near Black background со Warm White текст.

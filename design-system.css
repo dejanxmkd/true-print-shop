@@ -460,3 +460,128 @@ body.cart-open{overflow:hidden}
   background:transparent!important;
   color:var(--color-ink)!important;
 }
+
+/* Canonical Shop Bundles button system */
+:where(
+  .button,
+  .heading-row > a,
+  .section-button,
+  .mobile-primary,
+  .filter-toggle,
+  .sort-dropdown > button,
+  .share-copy,
+  .share-action,
+  .tabs button,
+  .size-options button
+){
+  min-height:var(--control-height)!important;
+  padding:0 22px!important;
+  border:2px solid var(--color-ink)!important;
+  border-radius:var(--radius-control)!important;
+  background:var(--color-cream)!important;
+  color:var(--color-ink)!important;
+  box-shadow:none!important;
+  transform:none!important;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  font-weight:700;
+  cursor:pointer;
+  transition:transform var(--motion-fast),background-color var(--motion-fast),color var(--motion-fast),border-color var(--motion-fast),box-shadow var(--motion-fast)!important;
+}
+:where(
+  .button,
+  .heading-row > a,
+  .section-button,
+  .mobile-primary,
+  .filter-toggle,
+  .sort-dropdown > button,
+  .share-copy,
+  .share-action,
+  .tabs button,
+  .size-options button
+):hover{
+  box-shadow:4px 4px 0 var(--color-ink)!important;
+  transform:translate(-2px,-2px)!important;
+}
+:where(
+  .button,
+  .heading-row > a,
+  .section-button,
+  .mobile-primary,
+  .filter-toggle,
+  .sort-dropdown > button,
+  .share-copy,
+  .share-action,
+  .tabs button,
+  .size-options button
+):active{
+  box-shadow:1px 1px 0 var(--color-ink)!important;
+  transform:translate(1px,1px)!important;
+}
+.button.light,
+.button.white,
+.button.secondary,
+.share-action,
+.tabs button:not(.active),
+.size-options button:not(.active),
+.sort-dropdown > button{
+  background:var(--color-cream)!important;
+  border-color:var(--color-ink)!important;
+  color:var(--color-ink)!important;
+}
+.button.primary,
+.button.dark,
+.button.blue,
+.heading-row > a,
+.section-button,
+.mobile-primary,
+.filter-toggle,
+.share-copy,
+.tabs button.active,
+.size-options button.active{
+  background:var(--color-blue)!important;
+  border-color:var(--color-ink)!important;
+  color:var(--color-cream)!important;
+}
+.button.light:hover,.button.light:focus-visible,.button.light:active,
+.button.white:hover,.button.white:focus-visible,.button.white:active,
+.button.secondary:hover,.button.secondary:focus-visible,.button.secondary:active,
+.share-action:hover,.share-action:focus-visible,.share-action:active,
+.tabs button:not(.active):hover,.tabs button:not(.active):focus-visible,.tabs button:not(.active):active,
+.size-options button:not(.active):hover,.size-options button:not(.active):focus-visible,.size-options button:not(.active):active,
+.sort-dropdown > button:hover,.sort-dropdown > button:focus-visible,.sort-dropdown > button:active{
+  background:var(--color-cream)!important;
+  border-color:var(--color-ink)!important;
+  color:var(--color-ink)!important;
+}
+.button.primary:hover,.button.primary:focus-visible,.button.primary:active,
+.button.dark:hover,.button.dark:focus-visible,.button.dark:active,
+.button.blue:hover,.button.blue:focus-visible,.button.blue:active,
+.heading-row > a:hover,.heading-row > a:focus-visible,.heading-row > a:active,
+.section-button:hover,.section-button:focus-visible,.section-button:active,
+.mobile-primary:hover,.mobile-primary:focus-visible,.mobile-primary:active,
+.filter-toggle:hover,.filter-toggle:focus-visible,.filter-toggle:active,
+.share-copy:hover,.share-copy:focus-visible,.share-copy:active,
+.tabs button.active:hover,.tabs button.active:focus-visible,.tabs button.active:active,
+.size-options button.active:hover,.size-options button.active:focus-visible,.size-options button.active:active{
+  background:var(--color-blue)!important;
+  border-color:var(--color-ink)!important;
+  color:var(--color-cream)!important;
+}
+
+/* Blue section text rule.
+   Blue section backgrounds use Near Black text.
+   Dark title tags remain black with Warm White text. */
+:is(.catalog-hero,.site-footer,.blue-section,[data-section-bg="blue"]){
+  color:var(--color-ink)!important;
+}
+:is(.catalog-hero,.site-footer,.blue-section,[data-section-bg="blue"]) :is(h1,h2,h3,h4,h5,h6,p,a,span,strong,small,li){
+  color:inherit;
+}
+:is(.catalog-hero,.site-footer,.blue-section,[data-section-bg="blue"]) :is(.eyebrow,.section-tag,.kicker){
+  background:var(--color-ink)!important;
+  color:var(--color-cream)!important;
+  border-color:var(--color-ink)!important;
+}
