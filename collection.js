@@ -10,6 +10,7 @@ byId('category-list').innerHTML=catalog.categories.map(([id,label])=>`<a class="
 byId('brand-list').innerHTML=catalog.brands.map(label=>`<a class="${label===brand?'active':''}" href="collection.html?brand=${encodeURIComponent(label)}">${label}</a>`).join('');
 // Mobile categories are hardcoded statically in collection.html to match homepage navbar
 const sortTrigger=byId('sort-trigger'),sortMenu=document.querySelector('.sort-menu');sortTrigger.addEventListener('click',()=>{const open=sortMenu.classList.toggle('open');sortTrigger.setAttribute('aria-expanded',String(open))});sortMenu.addEventListener('click',event=>{const option=event.target.closest('button');if(!option)return;sort=option.dataset.value;sortTrigger.querySelector('span').textContent=option.textContent;sortMenu.querySelectorAll('button').forEach(button=>button.classList.toggle('active',button===option));sortMenu.classList.remove('open');sortTrigger.setAttribute('aria-expanded','false');render()});document.addEventListener('click',event=>{if(!event.target.closest('.sort-dropdown')){sortMenu.classList.remove('open');sortTrigger.setAttribute('aria-expanded','false')}});
+sortMenu.querySelector(`[data-value="${sort}"]`)?.classList.add('active');
 const filterToggle=document.querySelector('.filter-toggle'),filterSheet=document.querySelector('.catalog-filters'),filterBackdrop=document.querySelector('.filter-backdrop'),filterClose=document.querySelector('.filter-close');filterToggle.querySelector('span').textContent='Categories & brands';
 function setFilters(open){filterSheet.classList.toggle('open',open);filterBackdrop.classList.toggle('open',open);filterToggle.setAttribute('aria-expanded',String(open));document.body.classList.toggle('filters-open',open);filterSheet.style.removeProperty('--sheet-drag')}
 filterToggle.addEventListener('click',()=>setFilters(true));filterClose.addEventListener('click',()=>setFilters(false));filterBackdrop.addEventListener('click',()=>setFilters(false));document.addEventListener('keydown',event=>{if(event.key==='Escape'&&filterSheet.classList.contains('open'))setFilters(false)});
@@ -29,6 +30,7 @@ classicSortStyle.textContent=`
 }
 .sort-menu button{
   min-height:0!important;
+  width:100%!important;
   padding:5px 0!important;
   border:0!important;
   border-radius:0!important;
@@ -36,11 +38,28 @@ classicSortStyle.textContent=`
   color:var(--ink)!important;
   box-shadow:none!important;
   transform:none!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:24px!important;
   text-align:left!important;
   font-size:16px!important;
   line-height:1.35!important;
   font-weight:700!important;
   transition:none!important;
+}
+.sort-menu button::after{
+  content:"";
+  width:18px;
+  height:18px;
+  flex:0 0 18px;
+}
+.sort-menu button.active::after{
+  content:"check";
+  font-family:"Material Icons"!important;
+  font-size:18px;
+  line-height:1;
+  color:var(--blue,#2457FF);
 }
 .sort-menu button:hover,
 .sort-menu button:focus-visible,
