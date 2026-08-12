@@ -1,30 +1,44 @@
 (function installPageTransition(){
   const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+  const root=document.documentElement;
   const storageKey='trueprint:page-transition';
-  const duration=520;
-  const easing='cubic-bezier(.65,0,.35,1)';
+  const coverDuration=500;
+  const revealDuration=560;
+  const minimumHold=160;
   let leaving=false;
-  let activeAnimation=null;
+  let revealStarted=false;
 
-  const overlay=document.createElement('div');
-  overlay.className='page-transition';
-  overlay.setAttribute('aria-hidden','true');
+  const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+  const nextFrame=()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
 
-  const setPosition=value=>{
-    overlay.style.transform=`translate3d(0,${value},0)`;
+  const waitForLoad=()=>document.readyState==='complete'
+    ? Promise.resolve()
+    : new Promise(resolve=>window.addEventListener('load',resolve,{once:true}));
+
+  const waitForFonts=()=>{
+    if(!document.fonts?.ready)return Promise.resolve();
+    return Promise.race([document.fonts.ready,sleep(1400)]).catch(()=>{});
   };
 
-  const animate=(from,to)=>{
-    activeAnimation?.cancel?.();
-    setPosition(from);
-    activeAnimation=overlay.animate(
-      [
-        {transform:`translate3d(0,${from},0)`},
-        {transform:`translate3d(0,${to},0)`}
-      ],
-      {duration,easing,fill:'forwards'}
-    );
-    return activeAnimation.finished.catch(()=>{});
+  const waitForPseudoTransition=duration=>new Promise(resolve=>{
+    let done=false;
+    const finish=()=>{
+      if(done)return;
+      done=true;
+      root.removeEventListener('transitionend',onEnd);
+      clearTimeout(timer);
+      resolve();
+    };
+    const onEnd=event=>{
+      if(event.pseudoElement==='::before'&&event.propertyName==='transform')finish();
+    };
+    const timer=setTimeout(finish,duration+120);
+    root.addEventListener('transitionend',onEnd);
+  });
+
+  const setState=state=>{
+    root.classList.remove('tp-idle','tp-reset-bottom','tp-cover','tp-arriving','tp-reveal');
+    if(state)root.classList.add(state);
   };
 
   let arriving=false;
@@ -33,18 +47,40 @@
     if(arriving)sessionStorage.removeItem(storageKey);
   }catch{}
 
-  setPosition(arriving&&!reduceMotion.matches?'0%':'100%');
-  document.body.appendChild(overlay);
+  if(reduceMotion.matches)setState('tp-idle');
+  else setState('tp-arriving');
 
-  if(arriving&&!reduceMotion.matches){
-    requestAnimationFrame(()=>requestAnimationFrame(()=>animate('0%','-100%')));
+  async function revealWhenReady({bfcache=false}={}){
+    if(reduceMotion.matches||revealStarted)return;
+    revealStarted=true;
+    const started=performance.now();
+
+    if(!bfcache){
+      await waitForLoad();
+      await waitForFonts();
+    }
+
+    const elapsed=performance.now()-started;
+    if(elapsed<minimumHold)await sleep(minimumHold-elapsed);
+    await nextFrame();
+
+    setState('tp-reveal');
+    await waitForPseudoTransition(revealDuration);
+    setState('tp-idle');
   }
+
+  revealWhenReady();
 
   window.addEventListener('pageshow',event=>{
     if(!event.persisted)return;
     leaving=false;
-    activeAnimation?.cancel?.();
-    setPosition('100%');
+    revealStarted=false;
+    if(reduceMotion.matches){
+      setState('tp-idle');
+      return;
+    }
+    setState('tp-arriving');
+    revealWhenReady({bfcache:true});
   });
 
   const navigate=async href=>{
@@ -56,10 +92,32 @@
       return;
     }
 
+    setState('tp-reset-bottom');
+    void root.offsetHeight;
+    setState('tp-cover');
+    await waitForPseudoTransition(coverDuration);
+
     try{sessionStorage.setItem(storageKey,'1');}catch{}
-    await animate('100%','0%');
     location.assign(href);
   };
+
+  const prefetch=link=>{
+    if(!link||link.dataset.tpPrefetched==='1')return;
+    const href=link.getAttribute('href');
+    if(!href||href.startsWith('#')||href.startsWith('mailto:')||href.startsWith('tel:')||href.startsWith('javascript:'))return;
+    const next=new URL(link.href,location.href);
+    if(next.origin!==location.origin)return;
+    if(next.pathname===location.pathname&&next.search===location.search)return;
+    const hint=document.createElement('link');
+    hint.rel='prefetch';
+    hint.href=next.href;
+    hint.as='document';
+    document.head.appendChild(hint);
+    link.dataset.tpPrefetched='1';
+  };
+
+  document.addEventListener('pointerover',event=>prefetch(event.target.closest('a[href]')),{passive:true});
+  document.addEventListener('focusin',event=>prefetch(event.target.closest('a[href]')));
 
   document.addEventListener('click',event=>{
     const link=event.target.closest('a[href]');
