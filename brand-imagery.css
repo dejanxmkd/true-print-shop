@@ -44,6 +44,21 @@
   border-radius: 0;
 }
 
+/* Match the existing bottom brutalist edge with a top edge on image-led sections. */
+.custom::before,
+.embroidery::before {
+  content: "";
+  position: absolute;
+  z-index: 5;
+  left: 0;
+  right: 0;
+  top: -1px;
+  height: 10px;
+  background: #111111;
+  clip-path: polygon(0 0, 100% 0, 100% 28%, 0 100%);
+  pointer-events: none;
+}
+
 /* Ready when it matters uses the same tag styling as More for your money. */
 .responders .eyebrow {
   background: var(--color-blue) !important;
