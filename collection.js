@@ -23,3 +23,23 @@ classicSortStyle.textContent=`
 .sort-menu button:hover,.sort-menu button:focus-visible,.sort-menu button.active{background:var(--blue)!important;color:var(--cream)!important;box-shadow:none!important;transform:none!important}
 `;
 document.head.appendChild(classicSortStyle);
+
+// Collection product cards use the same compact title typography as homepage product cards.
+const catalogCardStyle=document.createElement('style');
+catalogCardStyle.textContent=`
+.catalog-card h2{
+  margin:6px 0!important;
+  font-size:19px!important;
+  line-height:1.3!important;
+  font-weight:800!important;
+  text-transform:none!important;
+  letter-spacing:0!important;
+}
+.catalog-card small{font-size:14px!important;line-height:1.3!important}
+.catalog-card strong{font-size:18px!important;line-height:1.2!important;font-weight:800!important}
+@media(max-width:600px){
+  .catalog-card h2{font-size:18px!important}
+  .catalog-card strong{font-size:17px!important}
+}
+`;
+document.head.appendChild(catalogCardStyle);
