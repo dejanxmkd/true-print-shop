@@ -6,6 +6,7 @@
   --font-family:'Archivo',Arial,sans-serif;
   --link-motion-duration:160ms;
   --link-motion-ease:cubic-bezier(.2,.8,.2,1);
+  --card-gap:16px;
 }
 
 html,
@@ -75,6 +76,32 @@ html body .description a:hover,
 html body .description a:focus-visible{
   color:var(--color-blue,var(--blue,#2457FF))!important;
   transform:translateX(3px)!important;
+}
+
+/* Shop-by-category spacing is the canonical card-to-card gap everywhere. */
+html body .category-grid,
+html body .product-rail,
+html body .catalog-grid,
+html body .recommend-grid,
+html body .love-rail{
+  gap:var(--card-gap)!important;
+}
+
+html body .product-rail article{
+  flex-basis:calc((100% - (var(--card-gap) * 3))/4)!important;
+}
+
+@media(max-width:1480px) and (min-width:601px){
+  html body .product-rail article{
+    flex-basis:calc((100% - var(--card-gap))/2)!important;
+  }
+}
+
+@media(max-width:600px){
+  :root{--card-gap:12px}
+  html body .product-rail article{
+    flex-basis:82vw!important;
+  }
 }
 
 @media(prefers-reduced-motion:reduce){
