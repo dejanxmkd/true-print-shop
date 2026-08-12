@@ -1,0 +1,42 @@
+name: Apply global H1 H2 typography
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: write
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Append canonical heading rules
+        shell: bash
+        run: |
+          cat >> design-system.css <<'EOF'
+
+/* Canonical global H1/H2 typography */
+h1 {
+  font-size: clamp(64px, 6.6vw, 84px) !important;
+  line-height: 1.02 !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+}
+
+h2 {
+  font-size: clamp(36px, 5.5vw, 64px) !important;
+  line-height: 1.05 !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  letter-spacing: -3px !important;
+}
+EOF
+      - name: Commit typography
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add design-system.css
+          git commit -m "Apply global H1 and H2 typography"
+          git push
