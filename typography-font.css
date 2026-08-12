@@ -138,25 +138,29 @@ html body .product-rail article{
     flex-basis:82vw!important;
   }
 
-  /* Mobile tab pills stay inside the section instead of using the old
-     100vw/negative-margin mask. Horizontal swipe remains, but pills snap
-     cleanly so the first/last option is never visually chopped. */
+  /* Phone tabs never sit inside a clipping/scroll mask. They wrap so every
+     pill and its hard shadow remain fully visible. */
   html body .tabs{
     width:100%!important;
     max-width:100%!important;
     margin-left:0!important;
     margin-right:0!important;
-    padding:6px 6px 12px!important;
-    overflow-x:auto!important;
-    overflow-y:visible!important;
-    scroll-padding-inline:6px!important;
-    scroll-snap-type:x proximity!important;
-    overscroll-behavior-inline:contain;
+    padding:6px 0 12px!important;
+    display:flex!important;
+    flex-wrap:wrap!important;
+    align-items:flex-start!important;
+    gap:12px!important;
+    overflow:visible!important;
+    scroll-snap-type:none!important;
+    -webkit-mask-image:none!important;
+    mask-image:none!important;
+    clip-path:none!important;
   }
 
   html body .tabs button{
     flex:0 0 auto!important;
-    scroll-snap-align:start;
+    max-width:100%!important;
+    scroll-snap-align:none!important;
   }
 }
 
