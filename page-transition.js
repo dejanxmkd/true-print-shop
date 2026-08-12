@@ -1,3 +1,11 @@
+(function loadSharedMobileMenu(){
+  if(document.querySelector('script[data-mobile-menu]'))return;
+  const script=document.createElement('script');
+  script.src='mobile-menu.js';
+  script.dataset.mobileMenu='';
+  document.head.appendChild(script);
+})();
+
 (function installPageTransition(){
   const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
   const root=document.documentElement;
