@@ -157,6 +157,10 @@ productGridStyle.textContent = `
   margin-left:0!important;
   margin-right:0!important;
 }
+.product-page .product-info{
+  width:100%!important;
+  max-width:none!important;
+}
 @media(min-width:1481px){
   .product-page .product-layout{position:relative!important}
   .product-page .product-info{position:static!important}
