@@ -153,29 +153,41 @@ html body .product-rail article{
     filter:none!important;
   }
 
-  /* Phone tabs never sit inside a clipping/scroll mask. They wrap so every
-     pill and its hard shadow remain fully visible. */
+  /* Mobile tabs stay in one horizontal swipe row. No visual mask/clip is used;
+     extra inner breathing room keeps the pill borders and hard shadows intact. */
   html body .tabs{
     width:100%!important;
     max-width:100%!important;
     margin-left:0!important;
     margin-right:0!important;
-    padding:6px 0 12px!important;
+    padding:6px 10px 18px 4px!important;
     display:flex!important;
-    flex-wrap:wrap!important;
-    align-items:flex-start!important;
+    flex-wrap:nowrap!important;
+    align-items:center!important;
     gap:12px!important;
-    overflow:visible!important;
-    scroll-snap-type:none!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    scrollbar-width:none!important;
+    -ms-overflow-style:none!important;
+    scroll-padding-inline:4px 14px!important;
+    scroll-snap-type:x proximity!important;
+    overscroll-behavior-inline:contain!important;
+    -webkit-overflow-scrolling:touch;
     -webkit-mask-image:none!important;
     mask-image:none!important;
     clip-path:none!important;
   }
 
+  html body .tabs::-webkit-scrollbar{
+    display:none!important;
+  }
+
   html body .tabs button{
     flex:0 0 auto!important;
-    max-width:100%!important;
-    scroll-snap-align:none!important;
+    width:auto!important;
+    max-width:none!important;
+    white-space:nowrap!important;
+    scroll-snap-align:start!important;
   }
 }
 
