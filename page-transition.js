@@ -1,18 +1,65 @@
 (function installPageTransition(){
   const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+  const storageKey='trueprint:page-transition';
+  const duration=520;
+  const easing='cubic-bezier(.65,0,.35,1)';
+  let leaving=false;
+  let activeAnimation=null;
+
   const overlay=document.createElement('div');
   overlay.className='page-transition';
   overlay.setAttribute('aria-hidden','true');
+
+  const setPosition=value=>{
+    overlay.style.transform=`translate3d(0,${value},0)`;
+  };
+
+  const animate=(from,to)=>{
+    activeAnimation?.cancel?.();
+    setPosition(from);
+    activeAnimation=overlay.animate(
+      [
+        {transform:`translate3d(0,${from},0)`},
+        {transform:`translate3d(0,${to},0)`}
+      ],
+      {duration,easing,fill:'forwards'}
+    );
+    return activeAnimation.finished.catch(()=>{});
+  };
+
+  let arriving=false;
+  try{
+    arriving=sessionStorage.getItem(storageKey)==='1';
+    if(arriving)sessionStorage.removeItem(storageKey);
+  }catch{}
+
+  setPosition(arriving&&!reduceMotion.matches?'0%':'100%');
   document.body.appendChild(overlay);
 
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{
-    document.documentElement.classList.add('page-transition-ready');
-  }));
+  if(arriving&&!reduceMotion.matches){
+    requestAnimationFrame(()=>requestAnimationFrame(()=>animate('0%','-100%')));
+  }
 
-  window.addEventListener('pageshow',()=>{
-    document.documentElement.classList.remove('page-transition-leaving');
-    document.documentElement.classList.add('page-transition-ready');
+  window.addEventListener('pageshow',event=>{
+    if(!event.persisted)return;
+    leaving=false;
+    activeAnimation?.cancel?.();
+    setPosition('100%');
   });
+
+  const navigate=async href=>{
+    if(leaving)return;
+    leaving=true;
+
+    if(reduceMotion.matches){
+      location.assign(href);
+      return;
+    }
+
+    try{sessionStorage.setItem(storageKey,'1');}catch{}
+    await animate('100%','0%');
+    location.assign(href);
+  };
 
   document.addEventListener('click',event=>{
     const link=event.target.closest('a[href]');
@@ -25,11 +72,10 @@
     const next=new URL(link.href,location.href);
     if(next.origin!==location.origin)return;
     if(next.pathname===location.pathname&&next.search===location.search&&next.hash)return;
-    if(reduceMotion.matches)return;
 
     event.preventDefault();
-    document.documentElement.classList.remove('page-transition-ready');
-    document.documentElement.classList.add('page-transition-leaving');
-    window.setTimeout(()=>{ location.href=next.href; },430);
+    navigate(next.href);
   });
+
+  window.TruePrintPageTransition={navigate};
 })();
