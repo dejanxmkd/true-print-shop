@@ -10,12 +10,13 @@
 }
 
 /* Global viewport containment. Internal rails/drawers may scroll or animate,
-   but no component is allowed to make the document itself wider than the viewport. */
+   but no component is allowed to make the document itself wider than the viewport.
+   Use clip rather than hidden so sticky descendants keep the page as their scroll container. */
 html,
 body{
   width:100%;
   max-width:100%;
-  overflow-x:hidden!important;
+  overflow-x:clip!important;
 }
 
 body{
