@@ -1,0 +1,62 @@
+name: Fix mega dropdown anchor
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: write
+jobs:
+  fix:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Append dropdown positioning fix
+        run: |
+          cat >> design-system.css <<'EOF'
+
+/* Custom Apparel mega dropdown: anchor directly below nav item and keep hover path connected. */
+@media (min-width: 1481px) {
+  .desktop-nav .nav-item.has-mega-dropdown {
+    position: relative !important;
+    padding-bottom: 14px;
+    margin-bottom: -14px;
+  }
+
+  .desktop-nav .nav-item.has-mega-dropdown > .mega-menu {
+    top: 100% !important;
+    left: 0 !important;
+    right: auto !important;
+    margin-top: 0 !important;
+    transform: translateY(0) !important;
+  }
+
+  .desktop-nav .nav-item.has-mega-dropdown::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    height: 14px;
+    background: transparent;
+    pointer-events: auto;
+  }
+
+  .desktop-nav .nav-item.has-mega-dropdown:hover > .mega-menu,
+  .desktop-nav .nav-item.has-mega-dropdown:focus-within > .mega-menu,
+  .desktop-nav .nav-item.has-mega-dropdown > .mega-menu:hover {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+  }
+}
+EOF
+      - name: Commit fix and remove workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/fix-mega-dropdown-anchor.yml
+          git add design-system.css
+          git commit -m "Fix mega dropdown anchoring and hover path"
+          git push
