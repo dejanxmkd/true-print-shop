@@ -33,19 +33,13 @@ p,span,strong,small,li,label{
   letter-spacing:normal!important;
 }
 
-/* Canonical text-link micro interaction.
-   Text links use one motion language everywhere: a subtle 3px move to the
-   right plus cobalt colour on hover/focus. Button/card links keep their own
-   component interactions. */
+/* Navigation links stay completely static. Hover colour may change, but there
+   is no movement or transition in desktop, dropdown, sub-dropdown or mobile nav. */
 html body .desktop-nav a,
 html body .desktop-nav .dropdown-menu a,
 html body .desktop-nav .sub-dropdown-menu a,
-html body .mobile-menu .mobile-links a,
-html body .site-footer .footer-grid a,
-html body .breadcrumbs a,
-html body .info-content a,
-html body .description a{
-  transition:color var(--link-motion-duration) var(--link-motion-ease),opacity var(--link-motion-duration) var(--link-motion-ease),transform var(--link-motion-duration) var(--link-motion-ease)!important;
+html body .mobile-menu .mobile-links a{
+  transition:none!important;
   transform:none!important;
 }
 
@@ -56,7 +50,20 @@ html body .desktop-nav .dropdown-menu a:focus-visible,
 html body .desktop-nav .sub-dropdown-menu a:hover,
 html body .desktop-nav .sub-dropdown-menu a:focus-visible,
 html body .mobile-menu .mobile-links a:hover,
-html body .mobile-menu .mobile-links a:focus-visible,
+html body .mobile-menu .mobile-links a:focus-visible{
+  color:var(--color-blue,var(--blue,#2457FF))!important;
+  transform:none!important;
+}
+
+/* Canonical micro interaction remains for non-navigation text links. */
+html body .site-footer .footer-grid a,
+html body .breadcrumbs a,
+html body .info-content a,
+html body .description a{
+  transition:color var(--link-motion-duration) var(--link-motion-ease),opacity var(--link-motion-duration) var(--link-motion-ease),transform var(--link-motion-duration) var(--link-motion-ease)!important;
+  transform:none!important;
+}
+
 html body .site-footer .footer-grid a:hover,
 html body .site-footer .footer-grid a:focus-visible,
 html body .breadcrumbs a:hover,
@@ -70,10 +77,6 @@ html body .description a:focus-visible{
 }
 
 @media(prefers-reduced-motion:reduce){
-  html body .desktop-nav a,
-  html body .desktop-nav .dropdown-menu a,
-  html body .desktop-nav .sub-dropdown-menu a,
-  html body .mobile-menu .mobile-links a,
   html body .site-footer .footer-grid a,
   html body .breadcrumbs a,
   html body .info-content a,
