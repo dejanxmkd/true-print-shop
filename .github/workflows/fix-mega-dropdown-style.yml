@@ -12,76 +12,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Append canonical mega dropdown overrides
-        run: |
-          cat >> design-system.css <<'EOF'
-
-/* Canonical desktop dropdowns: Custom Apparel matches the standard dropdown language. */
-@media (min-width: 1481px) {
-  .desktop-nav > .nav-item > a {
-    font-size: 16px;
-  }
-
-  .desktop-nav .dropdown-menu,
-  .desktop-nav .dropdown-menu.mega-menu {
-    background: var(--color-cream) !important;
-    color: var(--color-ink) !important;
-    border: 2px solid var(--color-ink) !important;
-    border-radius: 20px !important;
-    box-shadow: 5px 5px 0 var(--color-ink) !important;
-    opacity: 0;
-  }
-
-  .desktop-nav .nav-item:hover .dropdown-menu,
-  .desktop-nav .nav-item:hover .dropdown-menu.mega-menu {
-    opacity: 1;
-  }
-
-  .desktop-nav .dropdown-menu a,
-  .desktop-nav .mega-column a {
-    font-size: 16px !important;
-    line-height: 1.35 !important;
-    font-weight: 700 !important;
-    color: var(--color-ink) !important;
-    padding: 4px 0 !important;
-  }
-
-  .desktop-nav .dropdown-menu a:hover,
-  .desktop-nav .mega-column a:hover {
-    color: var(--color-blue) !important;
-  }
-
-  .desktop-nav .dropdown-menu.mega-menu {
-    top: calc(100% - 2px) !important;
-    width: min(calc(100vw - 80px), 1040px) !important;
-    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-    gap: 28px !important;
-    padding: 28px 30px !important;
-  }
-
-  .desktop-nav .mega-column {
-    gap: 8px !important;
-  }
-
-  .desktop-nav .mega-column h3 {
-    margin: 0 0 10px !important;
-    padding: 0 !important;
-    font-size: 16px !important;
-    line-height: 1.25 !important;
-    font-weight: 800 !important;
-    color: var(--color-blue) !important;
-  }
-}
-EOF
+        run: echo 'Ci8qIENhbm9uaWNhbCBkZXNrdG9wIGRyb3Bkb3duczogQ3VzdG9tIEFwcGFyZWwgbWF0Y2hlcyB0aGUgc3RhbmRhcmQgZHJvcGRvd24gbGFuZ3VhZ2UuICovCkBtZWRpYSAobWluLXdpZHRoOiAxNDgxcHgpIHsKICAuZGVza3RvcC1uYXYgPiAubmF2LWl0ZW0gPiBhIHsgZm9udC1zaXplOjE2cHg7IH0KICAuZGVza3RvcC1uYXYgLmRyb3Bkb3duLW1lbnUsCiAgLmRlc2t0b3AtbmF2IC5kcm9wZG93bi1tZW51Lm1lZ2EtbWVudSB7CiAgICBiYWNrZ3JvdW5kOnZhcigtLWNvbG9yLWNyZWFtKSFpbXBvcnRhbnQ7CiAgICBjb2xvcjp2YXIoLS1jb2xvci1pbmspIWltcG9ydGFudDsKICAgIGJvcmRlcjoycHggc29saWQgdmFyKC0tY29sb3ItaW5rKSFpbXBvcnRhbnQ7CiAgICBib3JkZXItcmFkaXVzOjIwcHghaW1wb3J0YW50OwogICAgYm94LXNoYWRvdzo1cHggNXB4IDAgdmFyKC0tY29sb3ItaW5rKSFpbXBvcnRhbnQ7CiAgICBvcGFjaXR5OjA7CiAgfQogIC5kZXNrdG9wLW5hdiAubmF2LWl0ZW06aG92ZXIgLmRyb3Bkb3duLW1lbnUsCiAgLmRlc2t0b3AtbmF2IC5uYXYtaXRlbTpob3ZlciAuZHJvcGRvd24tbWVudS5tZWdhLW1lbnUgeyBvcGFjaXR5OjE7IH0KICAuZGVza3RvcC1uYXYgLmRyb3Bkb3duLW1lbnUgYSwKICAuZGVza3RvcC1uYXYgLm1lZ2EtY29sdW1uIGEgewogICAgZm9udC1zaXplOjE2cHghaW1wb3J0YW50OwogICAgbGluZS1oZWlnaHQ6MS4zNSFpbXBvcnRhbnQ7CiAgICBmb250LXdlaWdodDo3MDAhaW1wb3J0YW50OwogICAgY29sb3I6dmFyKC0tY29sb3ItaW5rKSFpbXBvcnRhbnQ7CiAgICBwYWRkaW5nOjRweCAwIWltcG9ydGFudDsKICB9CiAgLmRlc2t0b3AtbmF2IC5kcm9wZG93bi1tZW51IGE6aG92ZXIsCiAgLmRlc2t0b3AtbmF2IC5tZWdhLWNvbHVtbiBhOmhvdmVyIHsgY29sb3I6dmFyKC0tY29sb3ItYmx1ZSkhaW1wb3J0YW50OyB9CiAgLmRlc2t0b3AtbmF2IC5kcm9wZG93bi1tZW51Lm1lZ2EtbWVudSB7CiAgICB0b3A6Y2FsYygxMDAlIC0gMnB4KSFpbXBvcnRhbnQ7CiAgICB3aWR0aDptaW4oY2FsYygxMDB2dyAtIDgwcHgpLDEwNDBweCkhaW1wb3J0YW50OwogICAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOnJlcGVhdCg1LG1pbm1heCgwLDFmcikpIWltcG9ydGFudDsKICAgIGdhcDoyOHB4IWltcG9ydGFudDsKICAgIHBhZGRpbmc6MjhweCAzMHB4IWltcG9ydGFudDsKICB9CiAgLmRlc2t0b3AtbmF2IC5tZWdhLWNvbHVtbiB7IGdhcDo4cHghaW1wb3J0YW50OyB9CiAgLmRlc2t0b3AtbmF2IC5tZWdhLWNvbHVtbiBoMyB7CiAgICBtYXJnaW46MCAwIDEwcHghaW1wb3J0YW50OwogICAgcGFkZGluZzowIWltcG9ydGFudDsKICAgIGZvbnQtc2l6ZToxNnB4IWltcG9ydGFudDsKICAgIGxpbmUtaGVpZ2h0OjEuMjUhaW1wb3J0YW50OwogICAgZm9udC13ZWlnaHQ6ODAwIWltcG9ydGFudDsKICAgIGNvbG9yOnZhcigtLWNvbG9yLWJsdWUpIWltcG9ydGFudDsKICB9Cn0K' | base64 -d >> design-system.css
       - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add design-system.css
           git commit -m "Match Custom Apparel dropdown to navigation style" || exit 0
-          git push
-      - name: Remove one-time workflow
-        run: |
-          git pull --rebase
-          git rm .github/workflows/fix-mega-dropdown-style.yml
-          git commit -m "Remove mega dropdown style workflow"
           git push
