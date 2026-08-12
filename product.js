@@ -141,3 +141,38 @@ copyButton?.addEventListener('click', async () => {
     label.textContent = 'Copy link';
   }, 1800);
 });
+
+// Match the product page's horizontal grid to the shared home/category gutters.
+const productGridStyle = document.createElement('style');
+productGridStyle.textContent = `
+.product-page{
+  padding-left:var(--pad)!important;
+  padding-right:var(--pad)!important;
+}
+.product-page>.breadcrumbs,
+.product-page .product-layout,
+.product-page .also-loved{
+  width:100%!important;
+  max-width:none!important;
+  margin-left:0!important;
+  margin-right:0!important;
+}
+@media(min-width:1481px){
+  .product-page .product-layout{position:relative!important}
+  .product-page .product-info{position:static!important}
+  .product-page .title-line button[aria-label="Share product"]{right:51px!important}
+}
+@media(max-width:980px){
+  .product-page{
+    padding-left:var(--pad)!important;
+    padding-right:var(--pad)!important;
+  }
+}
+@media(max-width:600px){
+  .product-page{
+    padding-left:16px!important;
+    padding-right:16px!important;
+  }
+}
+`;
+document.head.appendChild(productGridStyle);
