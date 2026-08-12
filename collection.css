@@ -109,3 +109,9 @@
 .catalog-toolbar .sort-control{margin-left:auto}
 .catalog-filters a,.catalog-filters a:hover,.catalog-filters a.active,.catalog-filters a.active:hover{border:0!important}
 @media(max-width:600px){.catalog-toolbar .sort-control{align-self:flex-end;margin-left:auto}}
+
+/* Final sort dropdown geometry: menu matches trigger width; options are borderless. */
+.sort-control,.sort-dropdown{box-sizing:border-box}
+.sort-menu{left:0!important;right:auto!important;width:100%!important;box-sizing:border-box!important;padding:8px!important}
+.sort-menu button,.sort-menu button:hover,.sort-menu button:focus,.sort-menu button:focus-visible,.sort-menu button.active{width:100%!important;box-sizing:border-box!important;border:0!important;outline:0!important;box-shadow:none!important;margin:0!important}
+@media(max-width:980px){.sort-control{width:min(100%,470px)}.sort-dropdown{width:100%;min-width:0}.sort-dropdown>button{width:100%}}
