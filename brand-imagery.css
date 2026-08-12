@@ -35,6 +35,11 @@
   z-index: 3;
 }
 
+.custom .custom-copy p:not(.eyebrow) {
+  max-width: 520px;
+  text-wrap: balance;
+}
+
 .custom > .brand-photo--custom {
   position: absolute;
   inset: 0;
@@ -98,6 +103,10 @@
     height: 100%;
     aspect-ratio: auto;
     border-radius: 0;
+  }
+
+  .custom .custom-copy p:not(.eyebrow) {
+    max-width: 100%;
   }
 
   .hero {
