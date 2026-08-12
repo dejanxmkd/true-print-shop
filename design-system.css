@@ -1066,3 +1066,45 @@ body.cart-open{overflow:hidden}
     color:var(--color-blue)!important;
   }
 }
+
+/* Canonical desktop dropdowns: Custom Apparel matches the standard dropdown language. */
+@media (min-width: 1481px) {
+  .desktop-nav > .nav-item > a { font-size:16px; }
+  .desktop-nav .dropdown-menu,
+  .desktop-nav .dropdown-menu.mega-menu {
+    background:var(--color-cream)!important;
+    color:var(--color-ink)!important;
+    border:2px solid var(--color-ink)!important;
+    border-radius:20px!important;
+    box-shadow:5px 5px 0 var(--color-ink)!important;
+    opacity:0;
+  }
+  .desktop-nav .nav-item:hover .dropdown-menu,
+  .desktop-nav .nav-item:hover .dropdown-menu.mega-menu { opacity:1; }
+  .desktop-nav .dropdown-menu a,
+  .desktop-nav .mega-column a {
+    font-size:16px!important;
+    line-height:1.35!important;
+    font-weight:700!important;
+    color:var(--color-ink)!important;
+    padding:4px 0!important;
+  }
+  .desktop-nav .dropdown-menu a:hover,
+  .desktop-nav .mega-column a:hover { color:var(--color-blue)!important; }
+  .desktop-nav .dropdown-menu.mega-menu {
+    top:calc(100% - 2px)!important;
+    width:min(calc(100vw - 80px),1040px)!important;
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    gap:28px!important;
+    padding:28px 30px!important;
+  }
+  .desktop-nav .mega-column { gap:8px!important; }
+  .desktop-nav .mega-column h3 {
+    margin:0 0 10px!important;
+    padding:0!important;
+    font-size:16px!important;
+    line-height:1.25!important;
+    font-weight:800!important;
+    color:var(--color-blue)!important;
+  }
+}
