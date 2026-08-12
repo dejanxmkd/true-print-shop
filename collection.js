@@ -14,3 +14,12 @@ function setFilters(open){filterSheet.classList.toggle('open',open);filterBackdr
 filterToggle.addEventListener('click',()=>setFilters(true));filterClose.addEventListener('click',()=>setFilters(false));filterBackdrop.addEventListener('click',()=>setFilters(false));document.addEventListener('keydown',event=>{if(event.key==='Escape'&&filterSheet.classList.contains('open'))setFilters(false)});
 const sheetHead=document.querySelector('.filter-sheet-head');let dragStart=null,dragDistance=0;sheetHead.addEventListener('touchstart',event=>{if(innerWidth>980)return;dragStart=event.touches[0].clientY;dragDistance=0},{passive:true});sheetHead.addEventListener('touchmove',event=>{if(dragStart===null)return;dragDistance=Math.max(0,event.touches[0].clientY-dragStart);filterSheet.style.setProperty('--sheet-drag',`${dragDistance}px`)},{passive:true});sheetHead.addEventListener('touchend',()=>{if(dragDistance>90)setFilters(false);else filterSheet.style.removeProperty('--sheet-drag');dragStart=null;dragDistance=0});
 const searchInput=document.querySelector('.search-panel input');if(searchInput){if(query)searchInput.value=query;searchInput.addEventListener('input',event=>{query=event.target.value.trim().toLowerCase();render()})}render();
+
+// Classic sort dropdown: one clean menu panel, no boxed option cards.
+const classicSortStyle=document.createElement('style');
+classicSortStyle.textContent=`
+.sort-menu{padding:6px 0!important;border:2px solid var(--ink)!important;border-radius:14px!important;background:var(--cream)!important;box-shadow:4px 4px 0 var(--ink)!important;overflow:hidden}
+.sort-menu button{min-height:44px!important;padding:10px 16px!important;border:0!important;border-radius:0!important;background:transparent!important;color:var(--ink)!important;box-shadow:none!important;transform:none!important;text-align:left;font-weight:700}
+.sort-menu button:hover,.sort-menu button:focus-visible,.sort-menu button.active{background:var(--blue)!important;color:var(--cream)!important;box-shadow:none!important;transform:none!important}
+`;
+document.head.appendChild(classicSortStyle);
