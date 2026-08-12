@@ -124,7 +124,7 @@
   }
 }
 
-/* Mobile homepage hero: image-led top zone with a larger clean blue content area below. */
+/* Mobile homepage hero: compact blue content first, full-width image below. */
 @media (max-width: 600px) {
   .hero {
     min-height: 0 !important;
@@ -135,23 +135,10 @@
     background: var(--color-blue, #2457FF) !important;
   }
 
-  .hero > .brand-photo--hero {
-    position: relative !important;
-    inset: auto !important;
+  .hero-copy {
     order: 1;
     width: 100% !important;
-    height: clamp(250px, 36svh, 330px) !important;
-    flex: 0 0 auto;
-  }
-
-  .brand-photo--hero .brand-photo__image {
-    object-position: 68% 38% !important;
-  }
-
-  .hero-copy {
-    order: 2;
-    width: 100% !important;
-    padding: 30px 16px 38px !important;
+    padding: 34px 16px 28px !important;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -159,7 +146,11 @@
   }
 
   .hero-copy h1 {
-    margin: 0 0 26px !important;
+    max-width: 360px;
+    margin: 0 0 24px !important;
+    font-size: clamp(38px, 10.5vw, 48px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.04em !important;
   }
 
   .hero .button-row {
@@ -172,5 +163,23 @@
   .hero .button-row .button {
     width: 100%;
     min-height: 56px;
+  }
+
+  .hero > .brand-photo--hero {
+    position: relative !important;
+    inset: auto !important;
+    order: 2;
+    width: 100% !important;
+    height: clamp(300px, 44svh, 430px) !important;
+    flex: 0 0 auto;
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .brand-photo--hero .brand-photo__image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: 68% 38% !important;
   }
 }
