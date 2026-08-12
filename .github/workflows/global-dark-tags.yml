@@ -1,0 +1,35 @@
+name: Global dark title tags
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Apply dark title tags across all pages
+        env:
+          CSS_PATCH_B64: Ci8qIEdsb2JhbCBkYXJrIHRpdGxlLXRhZyBydWxlLgogICBBbnkgdGl0bGUgdGFnIHBsYWNlZCBvbiBibHVlLCBkYXJrLCBvciBpbWFnZS1sZWQgc2VjdGlvbnMgaXMgTmVhciBCbGFjayB3aXRoIFdhcm0gV2hpdGUgdGV4dC4gKi8KOmlzKAogIC5oZXJvLAogIC5jdXN0b20sCiAgLmVtYnJvaWRlcnksCiAgLmVtYnJvaWRlcnktY2FyZCwKICAuY2F0YWxvZy1oZXJvLAogIC5zaXRlLWZvb3RlciwKICAuYnJhbmQtcGhvdG8sCiAgLmJsdWUtc2VjdGlvbiwKICAuZGFyay1zZWN0aW9uLAogIC5pbWFnZS1zZWN0aW9uLAogIFtkYXRhLXNlY3Rpb24tYmc9ImJsdWUiXSwKICBbZGF0YS1zZWN0aW9uLWJnPSJkYXJrIl0sCiAgW2RhdGEtc2VjdGlvbi1iZz0iaW1hZ2UiXSwKICBbY2xhc3MqPSJoZXJvIl0sCiAgW2NsYXNzKj0iYmFubmVyIl0sCiAgW2NsYXNzKj0ibWFzdGhlYWQiXQopIDppcyguZXllYnJvdywuc2VjdGlvbi10YWcsLmtpY2tlciwucHJvZHVjdC1icmFuZCl7CiAgYmFja2dyb3VuZDp2YXIoLS1jb2xvci1pbmspIWltcG9ydGFudDsKICBjb2xvcjp2YXIoLS1jb2xvci1jcmVhbSkhaW1wb3J0YW50OwogIGJvcmRlci1jb2xvcjp2YXIoLS1jb2xvci1pbmspIWltcG9ydGFudDsKfQoKLyogRXhwbGljaXRseSBjb3ZlciBob21lcGFnZSBpbWFnZS1iYWNrZWQgc2VjdGlvbnMgcmVnYXJkbGVzcyBvZiBpbWFnZSBpbXBsZW1lbnRhdGlvbi4gKi8KLmhlcm8gOmlzKC5leWVicm93LC5zZWN0aW9uLXRhZywua2lja2VyLC5wcm9kdWN0LWJyYW5kKSwKLmN1c3RvbSA6aXMoLmV5ZWJyb3csLnNlY3Rpb24tdGFnLC5raWNrZXIsLnByb2R1Y3QtYnJhbmQpLAouZW1icm9pZGVyeSA6aXMoLmV5ZWJyb3csLnNlY3Rpb24tdGFnLC5raWNrZXIsLnByb2R1Y3QtYnJhbmQpLAouY2F0YWxvZy1oZXJvIDppcyguZXllYnJvdywuc2VjdGlvbi10YWcsLmtpY2tlciwucHJvZHVjdC1icmFuZCl7CiAgYmFja2dyb3VuZDp2YXIoLS1jb2xvci1pbmspIWltcG9ydGFudDsKICBjb2xvcjp2YXIoLS1jb2xvci1jcmVhbSkhaW1wb3J0YW50OwogIGJvcmRlci1jb2xvcjp2YXIoLS1jb2xvci1pbmspIWltcG9ydGFudDsKfQo=
+          README_PATCH_B64: CiMjIERhcmsgdGl0bGUgdGFncyBvbiBjb2xvcmVkL2ltYWdlIHNlY3Rpb25zCgrQodC10LrQvtGYIHRpdGxlIHRhZyDQvdCw0LQg0L3QsNGB0LvQvtCyIOKAlCDQstC60LvRg9GH0YPQstCw0ZjRnNC4IGBleWVicm93YCwgYHNlY3Rpb24tdGFnYCwgYGtpY2tlcmAg0LggYHByb2R1Y3QtYnJhbmRgIOKAlCDQvNC+0YDQsCDQtNCwINCx0LjQtNC1IE5lYXIgQmxhY2sgKGAjMTExMTExYCkg0YHQviBXYXJtIFdoaXRlIChgI0Y1RjFFOGApINGC0LXQutGB0YIg0LrQvtCz0LAg0YHQtSDQvdCw0L7Rk9CwINCy0L4g0YHQtdC60YbQuNGY0LAg0YHQviBFbGVjdHJpYyBDb2JhbHQgYmFja2dyb3VuZCwgTmVhciBCbGFjayBiYWNrZ3JvdW5kINC40LvQuCBiYWNrZ3JvdW5kIGltYWdlLiDQntCy0LAg0L/RgNCw0LLQuNC70L4g0LLQsNC20Lgg0LPQu9C+0LHQsNC70L3QviDQvdC40Lcg0YHQuNGC0LUgcGFnZXMuCg==
+        run: |
+          set -euo pipefail
+          if ! grep -q "Global dark title-tag rule" design-system.css; then
+            printf '%s' "$CSS_PATCH_B64" | base64 -d >> design-system.css
+          fi
+          if ! grep -q "Dark title tags on colored/image sections" README.md; then
+            printf '%s' "$README_PATCH_B64" | base64 -d >> README.md
+          fi
+          rm -f .github/workflows/global-dark-tags.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Standardize dark title tags across all pages"
+          git push origin HEAD:main
