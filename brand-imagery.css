@@ -178,10 +178,11 @@
     position: relative !important;
     inset: auto !important;
     order: 2;
+    z-index: 1;
     width: 100% !important;
     height: clamp(370px, 54svh, 500px) !important;
     flex: 0 0 auto;
-    margin: 0 !important;
+    margin: -100px 0 0 !important;
     border-radius: 0 !important;
   }
 
