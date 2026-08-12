@@ -9,6 +9,40 @@
   --card-gap:16px;
 }
 
+/* Global viewport containment. Internal rails/drawers may scroll or animate,
+   but no component is allowed to make the document itself wider than the viewport. */
+html,
+body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden!important;
+}
+
+body{
+  position:relative;
+}
+
+main,
+.site-header,
+.site-footer{
+  width:100%;
+  max-width:100%;
+  min-width:0;
+}
+
+main > *,
+.site-header > *,
+.site-footer > *{
+  min-width:0;
+}
+
+img,
+svg,
+video,
+canvas{
+  max-width:100%;
+}
+
 html,
 body,
 body *:not(.material-icons),
