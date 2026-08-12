@@ -3,6 +3,8 @@
 /* Global True Print typography — brutalist grotesk */
 :root{
   --font-family:'Archivo',Arial,sans-serif;
+  --link-motion-duration:160ms;
+  --link-motion-ease:cubic-bezier(.2,.8,.2,1);
 }
 
 html,
@@ -29,4 +31,54 @@ p,span,strong,small,li,label{
 .material-icons{
   font-family:'Material Icons'!important;
   letter-spacing:normal!important;
+}
+
+/* Canonical text-link micro interaction.
+   Text links use one motion language everywhere: no horizontal movement,
+   a 1px lift and cobalt colour on hover/focus. Button/card links keep their
+   own component interactions. */
+html body .desktop-nav a,
+html body .desktop-nav .dropdown-menu a,
+html body .desktop-nav .sub-dropdown-menu a,
+html body .mobile-menu .mobile-links a,
+html body .site-footer .footer-grid a,
+html body .breadcrumbs a,
+html body .info-content a,
+html body .description a{
+  transition:color var(--link-motion-duration) var(--link-motion-ease),opacity var(--link-motion-duration) var(--link-motion-ease),transform var(--link-motion-duration) var(--link-motion-ease)!important;
+  transform:none!important;
+}
+
+html body .desktop-nav a:hover,
+html body .desktop-nav a:focus-visible,
+html body .desktop-nav .dropdown-menu a:hover,
+html body .desktop-nav .dropdown-menu a:focus-visible,
+html body .desktop-nav .sub-dropdown-menu a:hover,
+html body .desktop-nav .sub-dropdown-menu a:focus-visible,
+html body .mobile-menu .mobile-links a:hover,
+html body .mobile-menu .mobile-links a:focus-visible,
+html body .site-footer .footer-grid a:hover,
+html body .site-footer .footer-grid a:focus-visible,
+html body .breadcrumbs a:hover,
+html body .breadcrumbs a:focus-visible,
+html body .info-content a:hover,
+html body .info-content a:focus-visible,
+html body .description a:hover,
+html body .description a:focus-visible{
+  color:var(--color-blue,var(--blue,#2457FF))!important;
+  transform:translateY(-1px)!important;
+}
+
+@media(prefers-reduced-motion:reduce){
+  html body .desktop-nav a,
+  html body .desktop-nav .dropdown-menu a,
+  html body .desktop-nav .sub-dropdown-menu a,
+  html body .mobile-menu .mobile-links a,
+  html body .site-footer .footer-grid a,
+  html body .breadcrumbs a,
+  html body .info-content a,
+  html body .description a{
+    transition:none!important;
+    transform:none!important;
+  }
 }
