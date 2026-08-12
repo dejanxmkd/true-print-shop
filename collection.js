@@ -15,12 +15,40 @@ filterToggle.addEventListener('click',()=>setFilters(true));filterClose.addEvent
 const sheetHead=document.querySelector('.filter-sheet-head');let dragStart=null,dragDistance=0;sheetHead.addEventListener('touchstart',event=>{if(innerWidth>980)return;dragStart=event.touches[0].clientY;dragDistance=0},{passive:true});sheetHead.addEventListener('touchmove',event=>{if(dragStart===null)return;dragDistance=Math.max(0,event.touches[0].clientY-dragStart);filterSheet.style.setProperty('--sheet-drag',`${dragDistance}px`)},{passive:true});sheetHead.addEventListener('touchend',()=>{if(dragDistance>90)setFilters(false);else filterSheet.style.removeProperty('--sheet-drag');dragStart=null;dragDistance=0});
 const searchInput=document.querySelector('.search-panel input');if(searchInput){if(query)searchInput.value=query;searchInput.addEventListener('input',event=>{query=event.target.value.trim().toLowerCase();render()})}render();
 
-// Classic sort dropdown: one clean menu panel, no boxed option cards.
+// Sort dropdown matches the primary navigation dropdown styling.
 const classicSortStyle=document.createElement('style');
 classicSortStyle.textContent=`
-.sort-menu{padding:6px 0!important;border:2px solid var(--ink)!important;border-radius:14px!important;background:var(--cream)!important;box-shadow:4px 4px 0 var(--ink)!important;overflow:hidden}
-.sort-menu button{min-height:44px!important;padding:10px 16px!important;border:0!important;border-radius:0!important;background:transparent!important;color:var(--ink)!important;box-shadow:none!important;transform:none!important;text-align:left;font-weight:700}
-.sort-menu button:hover,.sort-menu button:focus-visible,.sort-menu button.active{background:var(--blue)!important;color:var(--cream)!important;box-shadow:none!important;transform:none!important}
+.sort-menu{
+  padding:18px!important;
+  border:2px solid var(--ink)!important;
+  border-radius:20px!important;
+  background:var(--cream)!important;
+  box-shadow:5px 5px 0 var(--ink)!important;
+  overflow:visible!important;
+}
+.sort-menu button{
+  min-height:0!important;
+  padding:5px 0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:var(--ink)!important;
+  box-shadow:none!important;
+  transform:none!important;
+  text-align:left!important;
+  font-size:16px!important;
+  line-height:1.35!important;
+  font-weight:700!important;
+  transition:none!important;
+}
+.sort-menu button:hover,
+.sort-menu button:focus-visible,
+.sort-menu button.active{
+  background:transparent!important;
+  color:var(--blue)!important;
+  box-shadow:none!important;
+  transform:none!important;
+}
 `;
 document.head.appendChild(classicSortStyle);
 
