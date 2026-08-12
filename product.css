@@ -159,3 +159,68 @@ body.share-open{overflow:hidden}
   .share-actions{grid-template-columns:1fr}
   .share-action{min-height:58px}
 }
+
+/* Component typography isolation: product/UI headings must not inherit display H1/H2 sizing. */
+.product-info #product-name{
+  max-width:100%!important;
+  padding-right:72px!important;
+  font-size:clamp(34px,3vw,48px)!important;
+  line-height:1.06!important;
+  font-weight:800!important;
+  text-transform:none!important;
+  letter-spacing:-.03em!important;
+  white-space:normal!important;
+  text-wrap:balance!important;
+  overflow-wrap:anywhere;
+}
+.product-info #product-name.title-short,
+.product-info #product-name.title-long{
+  max-width:100%!important;
+  padding-right:72px!important;
+  font-size:clamp(34px,3vw,48px)!important;
+  white-space:normal!important;
+  text-wrap:balance!important;
+}
+.product-info .description h2,
+.product-info .frequently h2{
+  margin:0 0 17px!important;
+  font-size:28px!important;
+  line-height:1.15!important;
+  font-weight:800!important;
+  text-transform:none!important;
+  letter-spacing:0!important;
+}
+.cart-drawer .cart-head h2{
+  margin:0!important;
+  font-size:28px!important;
+  line-height:1.1!important;
+  font-weight:800!important;
+  text-transform:none!important;
+  letter-spacing:0!important;
+}
+.share-modal .share-modal-head h2{
+  font-size:clamp(34px,5vw,52px)!important;
+  line-height:.98!important;
+  text-transform:none!important;
+  letter-spacing:-.045em!important;
+}
+.product-page .also-loved h2{
+  font-size:clamp(42px,5vw,70px)!important;
+  line-height:1.05!important;
+  font-weight:900!important;
+  text-transform:uppercase!important;
+  letter-spacing:-.04em!important;
+}
+@media(max-width:600px){
+  .product-info #product-name,
+  .product-info #product-name.title-short,
+  .product-info #product-name.title-long{
+    padding-right:56px!important;
+    font-size:clamp(32px,8.8vw,40px)!important;
+  }
+  .product-info .description h2,
+  .product-info .frequently h2,
+  .cart-drawer .cart-head h2{
+    font-size:26px!important;
+  }
+}
