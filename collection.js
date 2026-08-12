@@ -17,7 +17,7 @@ filterToggle.addEventListener('click',()=>setFilters(true));filterClose.addEvent
 const sheetHead=document.querySelector('.filter-sheet-head');let dragStart=null,dragDistance=0;sheetHead.addEventListener('touchstart',event=>{if(innerWidth>980)return;dragStart=event.touches[0].clientY;dragDistance=0},{passive:true});sheetHead.addEventListener('touchmove',event=>{if(dragStart===null)return;dragDistance=Math.max(0,event.touches[0].clientY-dragStart);filterSheet.style.setProperty('--sheet-drag',`${dragDistance}px`)},{passive:true});sheetHead.addEventListener('touchend',()=>{if(dragDistance>90)setFilters(false);else filterSheet.style.removeProperty('--sheet-drag');dragStart=null;dragDistance=0});
 const searchInput=document.querySelector('.search-panel input');if(searchInput){if(query)searchInput.value=query;searchInput.addEventListener('input',event=>{query=event.target.value.trim().toLowerCase();render()})}render();
 
-// Sort dropdown matches the primary navigation dropdown styling.
+// Sort dropdown options use the same clean text-link language as navigation dropdown links.
 const classicSortStyle=document.createElement('style');
 classicSortStyle.textContent=`
 .sort-menu{
@@ -29,24 +29,23 @@ classicSortStyle.textContent=`
   overflow:visible!important;
 }
 .sort-menu button{
-  min-height:0!important;
+  all:unset!important;
+  box-sizing:border-box!important;
   width:100%!important;
-  padding:5px 0!important;
-  border:0!important;
-  border-radius:0!important;
-  background:transparent!important;
-  color:var(--ink)!important;
-  box-shadow:none!important;
-  transform:none!important;
+  padding:4px 0!important;
   display:flex!important;
   align-items:center!important;
   justify-content:space-between!important;
-  gap:24px!important;
+  gap:18px!important;
+  cursor:pointer!important;
+  color:var(--ink)!important;
   text-align:left!important;
+  font-family:inherit!important;
   font-size:16px!important;
   line-height:1.35!important;
   font-weight:700!important;
   transition:none!important;
+  transform:none!important;
 }
 .sort-menu button::after{
   content:"";
@@ -66,6 +65,9 @@ classicSortStyle.textContent=`
 .sort-menu button.active{
   background:transparent!important;
   color:var(--blue)!important;
+  border:0!important;
+  border-radius:0!important;
+  outline:0!important;
   box-shadow:none!important;
   transform:none!important;
 }
