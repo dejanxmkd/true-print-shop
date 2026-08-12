@@ -150,7 +150,7 @@
   }
 
   /* Dedicated mobile hero type. */
-  .hero-copy h1 {
+  .hero .hero-copy h1 {
     width: 100%;
     max-width: 360px;
     margin: 0 auto 30px !important;
