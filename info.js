@@ -37,7 +37,7 @@ const key=new URLSearchParams(location.search).get('page')||'contact',data=pages
     .site-footer :is(h1,h2,h3,h4,h5,h6,p,a,span,strong,small,li){color:#F5F1E8!important}
     .site-footer .footer-grid h3{color:#2457FF!important}
     .site-footer .footer-logo{background:#2457FF!important}
-    .site-footer .footer-intro,.site-footer .footer-bottom{border-color:rgba(245,241,232,.3)!important}
+    .site-footer .footer-intro,.site-footer .footer-bottom{border-color:rgba(245,241,232,.8)!important}
     .site-footer .footer-bottom a{background:#2457FF!important;border-color:#2457FF!important;color:#F5F1E8!important}
     .site-footer .footer-bottom a i{color:#F5F1E8!important}
     .site-footer .footer-bottom a:hover{background:#2457FF!important;border-color:#2457FF!important;color:#F5F1E8!important}
