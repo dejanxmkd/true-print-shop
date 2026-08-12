@@ -153,14 +153,15 @@ html body .product-rail article{
     filter:none!important;
   }
 
-  /* Mobile tabs stay in one horizontal swipe row. No visual mask/clip is used;
-     extra inner breathing room keeps the pill borders and hard shadows intact. */
+  /* Keep the tab rail aligned with the content gutter on the left, but let its
+     scroll viewport reach the actual phone edge on the right. The extra end
+     padding gives the 6px hard shadows room to become fully visible. */
   html body .tabs{
-    width:100%!important;
-    max-width:100%!important;
+    width:calc(100% + 16px)!important;
+    max-width:none!important;
     margin-left:0!important;
-    margin-right:0!important;
-    padding:6px 10px 18px 4px!important;
+    margin-right:-16px!important;
+    padding:6px 24px 18px 4px!important;
     display:flex!important;
     flex-wrap:nowrap!important;
     align-items:center!important;
@@ -169,7 +170,7 @@ html body .product-rail article{
     overflow-y:hidden!important;
     scrollbar-width:none!important;
     -ms-overflow-style:none!important;
-    scroll-padding-inline:4px 14px!important;
+    scroll-padding-inline:4px 24px!important;
     scroll-snap-type:x proximity!important;
     overscroll-behavior-inline:contain!important;
     -webkit-overflow-scrolling:touch;
