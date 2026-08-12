@@ -1,0 +1,200 @@
+name: Custom Apparel nested dropdown
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  update-nav:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replace Custom Apparel mega menu
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          files = ['index.html', 'collection.html', 'product.html', 'info.html']
+          new = '''      <div class="nav-item has-dropdown apparel-dropdown">
+        <a href="collection.html?category=t-shirts">Custom Apparel</a>
+        <div class="dropdown-menu apparel-menu">
+          <div class="nav-subitem has-sub-dropdown">
+            <a href="collection.html?category=t-shirts">T-Shirts</a>
+            <div class="sub-dropdown-menu">
+              <a href="collection.html?category=short-sleeve">Short Sleeve</a>
+              <a href="collection.html?category=long-sleeve">Long Sleeve</a>
+              <a href="collection.html?category=polos">Polos</a>
+            </div>
+          </div>
+          <div class="nav-subitem has-sub-dropdown">
+            <a href="collection.html?category=sweatshirts">Sweatshirts</a>
+            <div class="sub-dropdown-menu">
+              <a href="collection.html?category=hoodies">Hoodies</a>
+              <a href="collection.html?category=crewnecks">Crewnecks</a>
+              <a href="collection.html?category=zip-hoodies">Zip Up Hoodies</a>
+              <a href="collection.html?category=quarter-zips">Quarter Zip Ups</a>
+            </div>
+          </div>
+          <div class="nav-subitem has-sub-dropdown">
+            <a href="collection.html?category=sweatpants">Sweatpants</a>
+            <div class="sub-dropdown-menu">
+              <a href="collection.html?category=joggers">Joggers</a>
+            </div>
+          </div>
+          <div class="nav-subitem has-sub-dropdown">
+            <a href="collection.html?category=hats">Hats</a>
+            <div class="sub-dropdown-menu">
+              <a href="collection.html?category=athletic-hats">Athletic Hats</a>
+              <a href="collection.html?category=beanies">Beanies</a>
+              <a href="collection.html?category=fitted-hats">Fitted Hats</a>
+              <a href="collection.html?category=hats">Lifetime Hats</a>
+              <a href="collection.html?category=mesh-hats">Mesh</a>
+              <a href="collection.html?category=snapbacks">Snapback</a>
+              <a href="collection.html?category=trucker-hats">Trucker Hats</a>
+            </div>
+          </div>
+          <div class="nav-subitem has-sub-dropdown">
+            <a href="collection.html?category=jackets">Jackets</a>
+            <div class="sub-dropdown-menu">
+              <a href="collection.html?category=jackets&q=jacket">Jackets</a>
+              <a href="collection.html?category=jackets&q=vest">Vests</a>
+            </div>
+          </div>
+        </div>
+      </div>
+'''
+
+          pattern = re.compile(
+              r'      <div class="nav-item has-mega-dropdown">.*?(?=      <div class="nav-item has-dropdown">\s*<a href="collection\.html\?category=first-responders">)',
+              re.S,
+          )
+
+          for name in files:
+              p = Path(name)
+              s = p.read_text()
+              s2, count = pattern.subn(new, s, count=1)
+              if count != 1:
+                  raise SystemExit(f'Custom Apparel block not replaced in {name}: {count}')
+              p.write_text(s2)
+
+          css = Path('design-system.css')
+          s = css.read_text()
+          marker = '/* Nested Custom Apparel dropdown */'
+          if marker not in s:
+              s += r'''
+
+/* Nested Custom Apparel dropdown */
+@media (min-width:1481px){
+  .desktop-nav .apparel-dropdown{position:relative!important}
+  .desktop-nav .apparel-dropdown>.apparel-menu{
+    top:calc(100% - 2px)!important;
+    left:0!important;
+    min-width:260px!important;
+    width:auto!important;
+    padding:14px!important;
+    display:flex!important;
+    flex-direction:column!important;
+    gap:3px!important;
+    transform:none!important;
+  }
+  .desktop-nav .apparel-dropdown:hover>.apparel-menu,
+  .desktop-nav .apparel-dropdown:focus-within>.apparel-menu{
+    opacity:1!important;
+    visibility:visible!important;
+    pointer-events:auto!important;
+    transform:none!important;
+  }
+  .desktop-nav .apparel-menu .nav-subitem{
+    position:relative;
+  }
+  .desktop-nav .apparel-menu .nav-subitem::after{
+    content:"";
+    position:absolute;
+    top:0;
+    right:-14px;
+    width:16px;
+    height:100%;
+  }
+  .desktop-nav .apparel-menu .nav-subitem>a{
+    min-height:38px;
+    padding:7px 10px!important;
+    display:flex!important;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
+    font-size:16px!important;
+    font-weight:700!important;
+    color:var(--color-ink)!important;
+    white-space:nowrap!important;
+    transform:none!important;
+    transition:none!important;
+  }
+  .desktop-nav .apparel-menu .has-sub-dropdown>a::after{
+    content:"chevron_right";
+    font-family:'Material Icons';
+    font-size:18px;
+    color:var(--color-blue);
+  }
+  .desktop-nav .apparel-menu .nav-subitem>a:hover{
+    color:var(--color-blue)!important;
+    transform:none!important;
+  }
+  .desktop-nav .sub-dropdown-menu{
+    position:absolute;
+    top:-14px;
+    left:calc(100% + 12px);
+    min-width:240px;
+    padding:14px;
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+    background:var(--color-cream);
+    border:2px solid var(--color-ink);
+    border-radius:20px;
+    box-shadow:5px 5px 0 var(--color-ink);
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    z-index:120;
+  }
+  .desktop-nav .nav-subitem:hover>.sub-dropdown-menu,
+  .desktop-nav .nav-subitem:focus-within>.sub-dropdown-menu{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+  }
+  .desktop-nav .sub-dropdown-menu a{
+    padding:7px 10px!important;
+    font-size:16px!important;
+    font-weight:700!important;
+    color:var(--color-ink)!important;
+    white-space:nowrap!important;
+    transform:none!important;
+    transition:none!important;
+  }
+  .desktop-nav .sub-dropdown-menu a:hover{
+    color:var(--color-blue)!important;
+    transform:none!important;
+  }
+  .desktop-nav>.nav-item>a,
+  .desktop-nav .dropdown-menu a{
+    transform:none!important;
+    transition:none!important;
+  }
+  .desktop-nav>.nav-item>a:hover,
+  .desktop-nav .dropdown-menu a:hover{
+    transform:none!important;
+  }
+}
+'''
+              css.write_text(s)
+          PY
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html collection.html product.html info.html design-system.css
+          git commit -m "Replace Custom Apparel mega menu with nested dropdown"
+          git push
