@@ -56,7 +56,7 @@ const escapeHTML = value => String(value).replace(/[&<>'"]/g, character => ({ '&
 document.body.insertAdjacentHTML('beforeend', `
   <div class="cart-backdrop" aria-hidden="true"></div>
   <aside class="cart-drawer" aria-hidden="true" aria-label="Shopping cart">
-    <div class="cart-head"><h2>Shopping cart</h2><button class="cart-close" type="button" aria-label="Close cart"><i class="material-icons">close</i></button></div>
+    <div class="cart-head"><h2 class="ui-title">Shopping cart</h2><button class="cart-close" type="button" aria-label="Close cart"><i class="material-icons">close</i></button></div>
     <div class="cart-items"></div>
     <div class="cart-empty"><i class="material-icons">shopping_bag</i><h3>Your cart is empty</h3><p>Add a product and it will appear here.</p></div>
     <div class="cart-summary"><div><span>Subtotal</span><strong class="cart-subtotal">$0.00</strong></div><button class="button primary cart-checkout" type="button">Checkout <i class="material-icons">arrow_forward</i></button><small>Shipping and taxes calculated at checkout.</small></div>
@@ -234,34 +234,109 @@ all('.products').forEach(section => {
   const style=document.createElement('style');
   style.id='canonical-storefront-fixes';
   style.textContent=`
-    h1{font-size:clamp(64px,6.6vw,84px)!important;line-height:1.02!important;font-weight:900!important;text-transform:uppercase!important}
-    h2{font-size:clamp(36px,5.5vw,64px)!important;line-height:1.05!important;font-weight:900!important;text-transform:uppercase!important;letter-spacing:-3px!important}
-    #product-name{font-weight:600!important;text-transform:none!important;color:var(--color-ink,#111111)!important}
+    /* Display typography is scoped to display components instead of every h1/h2. */
+    .hero h1,.catalog-hero h1,.info-hero h1{font-size:clamp(64px,6.6vw,84px)!important;line-height:1.02!important;font-weight:900!important;text-transform:uppercase!important}
+    .heading-row h2,.embroidery h2,.custom h2,.also-loved h2{font-size:clamp(36px,5.5vw,64px)!important;line-height:1.05!important;font-weight:900!important;text-transform:uppercase!important;letter-spacing:-3px!important}
+    .ui-title,.cart-head h2{font-size:34px!important;line-height:1!important;font-weight:800!important;text-transform:none!important;letter-spacing:0!important}
+    #product-name{font-weight:800!important;text-transform:none!important;color:var(--color-ink,#111111)!important}
+    .description h2,.frequently h2{font-size:28px!important;line-height:1.15!important;font-weight:800!important;text-transform:none!important;letter-spacing:0!important}
+
     .site-footer{background:#111111!important;color:#F5F1E8!important}
     .site-footer :is(h1,h2,h3,h4,h5,h6,p,a,span,strong,small,li){color:#F5F1E8!important}
     .site-footer .footer-grid h3{color:#2457FF!important}
-    .site-footer .footer-logo{background:#2457FF!important}
     .site-footer .footer-intro,.site-footer .footer-bottom{border-color:rgba(245,241,232,.3)!important}
     .site-footer .footer-bottom a{background:#2457FF!important;border-color:#2457FF!important;color:#F5F1E8!important}
     .site-footer .footer-bottom a i{color:#F5F1E8!important}
     .site-footer .footer-bottom a:hover{background:#2457FF!important;border-color:#2457FF!important;color:#F5F1E8!important}
+
     .filter-scroll h2{font-size:22px!important;line-height:1.2!important;letter-spacing:0!important;text-transform:none!important;border:0!important;text-decoration:none!important;padding-bottom:0!important}
     .filter-scroll h2::before,.filter-scroll h2::after{display:none!important;content:none!important}
+
     @media(min-width:1481px){
-      .desktop-nav a,.desktop-nav a:hover{transition:none!important;transform:none!important}
-      .desktop-nav .dropdown-menu,.desktop-nav .dropdown-menu:hover{transition:none!important;transform:none!important}
+      /* Keep top-level nav link hover behavior; only dropdown links are static. */
+      .desktop-nav .dropdown-menu a,
+      .desktop-nav .sub-dropdown-menu a{transition:none!important;transform:none!important}
+      .desktop-nav .dropdown-menu a:hover,
+      .desktop-nav .sub-dropdown-menu a:hover{transform:none!important}
+      .desktop-nav .dropdown-menu{transition:none!important;transform:none!important}
+
       .desktop-nav .apparel-dropdown{position:relative!important}
-      .desktop-nav .apparel-dropdown>.apparel-menu{top:calc(100% - 2px)!important;left:0!important;min-width:290px!important;width:auto!important;padding:18px!important;display:flex!important;flex-direction:column!important;gap:4px!important;background:var(--color-cream,#F5F1E8)!important;color:var(--color-ink,#111111)!important;border:2px solid var(--color-ink,#111111)!important;border-radius:20px!important;box-shadow:5px 5px 0 var(--color-ink,#111111)!important;opacity:0!important;visibility:hidden!important;pointer-events:none!important;transform:none!important;transition:none!important}
-      .desktop-nav .apparel-dropdown:hover>.apparel-menu,.desktop-nav .apparel-dropdown:focus-within>.apparel-menu{opacity:1!important;visibility:visible!important;pointer-events:auto!important;transform:none!important}
-      .desktop-nav .nav-subitem{position:relative}
-      .desktop-nav .nav-subitem::before{content:"";position:absolute;top:0;left:100%;width:18px;height:100%}
-      .desktop-nav .nav-subitem>a{min-height:46px;padding:9px 12px!important;display:flex!important;align-items:center;justify-content:space-between;gap:22px;font-size:16px!important;font-weight:700!important;color:var(--color-ink,#111111)!important;white-space:nowrap!important;transition:none!important;transform:none!important}
-      .desktop-nav .nav-subitem>a::after{content:"chevron_right";font-family:"Material Icons";font-size:19px;color:var(--color-blue,#2457FF)}
-      .desktop-nav .sub-dropdown-menu{position:absolute;top:-18px;left:calc(100% + 12px);min-width:270px;padding:18px;display:flex;flex-direction:column;gap:4px;background:var(--color-cream,#F5F1E8);border:2px solid var(--color-ink,#111111);border-radius:20px;box-shadow:5px 5px 0 var(--color-ink,#111111);opacity:0;visibility:hidden;pointer-events:none;z-index:130;transition:none}
-      .desktop-nav .nav-subitem:hover>.sub-dropdown-menu,.desktop-nav .nav-subitem:focus-within>.sub-dropdown-menu{opacity:1;visibility:visible;pointer-events:auto}
-      .desktop-nav .sub-dropdown-menu a{min-height:44px;padding:9px 12px!important;font-size:16px!important;font-weight:700!important;color:var(--color-ink,#111111)!important;white-space:nowrap!important;transition:none!important;transform:none!important}
-      .desktop-nav .nav-subitem>a:hover,.desktop-nav .sub-dropdown-menu a:hover{color:var(--color-blue,#2457FF)!important;transform:none!important}
+      .desktop-nav .apparel-dropdown>.apparel-menu{
+        top:calc(100% - 2px)!important;
+        left:0!important;
+        min-width:260px!important;
+        width:auto!important;
+        padding:18px!important;
+        display:flex!important;
+        flex-direction:column!important;
+        gap:0!important;
+        background:var(--color-cream,#F5F1E8)!important;
+        color:var(--color-ink,#111111)!important;
+        border:2px solid var(--color-ink,#111111)!important;
+        border-radius:20px!important;
+        box-shadow:5px 5px 0 var(--color-ink,#111111)!important;
+        opacity:0!important;
+        visibility:hidden!important;
+        pointer-events:none!important;
+        transform:none!important;
+        transition:none!important;
+      }
+      .desktop-nav .apparel-dropdown:hover>.apparel-menu,
+      .desktop-nav .apparel-dropdown:focus-within>.apparel-menu{opacity:1!important;visibility:visible!important;pointer-events:auto!important;transform:none!important}
+
+      .desktop-nav .nav-subitem{position:relative!important;margin:0!important;padding:0!important}
+      .desktop-nav .nav-subitem::before{content:"";position:absolute;top:0;left:100%;width:14px;height:100%}
+      .desktop-nav .nav-subitem>a{
+        min-height:0!important;
+        margin:0!important;
+        padding:4px 0!important;
+        display:flex!important;
+        align-items:center!important;
+        justify-content:space-between!important;
+        gap:18px!important;
+        font-size:16px!important;
+        line-height:1.35!important;
+        font-weight:700!important;
+        color:var(--color-ink,#111111)!important;
+        white-space:nowrap!important;
+      }
+      .desktop-nav .nav-subitem>a::after{content:"chevron_right";font-family:"Material Icons";font-size:18px;line-height:1;color:var(--color-blue,#2457FF)}
+      .desktop-nav .nav-subitem>a:hover{color:var(--color-blue,#2457FF)!important}
+
+      .desktop-nav .sub-dropdown-menu{
+        position:absolute;
+        top:-18px;
+        left:calc(100% + 12px);
+        min-width:240px;
+        padding:18px;
+        display:flex;
+        flex-direction:column;
+        gap:0;
+        background:var(--color-cream,#F5F1E8);
+        border:2px solid var(--color-ink,#111111);
+        border-radius:20px;
+        box-shadow:5px 5px 0 var(--color-ink,#111111);
+        opacity:0;
+        visibility:hidden;
+        pointer-events:none;
+        z-index:130;
+        transition:none;
+      }
+      .desktop-nav .nav-subitem:hover>.sub-dropdown-menu,
+      .desktop-nav .nav-subitem:focus-within>.sub-dropdown-menu{opacity:1;visibility:visible;pointer-events:auto}
+      .desktop-nav .sub-dropdown-menu a{
+        min-height:0!important;
+        margin:0!important;
+        padding:4px 0!important;
+        font-size:16px!important;
+        line-height:1.35!important;
+        font-weight:700!important;
+        color:var(--color-ink,#111111)!important;
+        white-space:nowrap!important;
+      }
+      .desktop-nav .sub-dropdown-menu a:hover{color:var(--color-blue,#2457FF)!important}
     }
+    @media(max-width:600px){.ui-title,.cart-head h2{font-size:30px!important}}
   `;
   document.head.appendChild(style);
 })();
