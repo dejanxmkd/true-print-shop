@@ -138,6 +138,21 @@ html body .product-rail article{
     flex-basis:82vw!important;
   }
 
+  /* Use the SVG only as a shape on phones so the header logo renders as the
+     exact storefront cobalt instead of a browser-dependent filtered purple. */
+  html body .site-header .brand-logo{
+    position:relative!important;
+    background:#2457FF!important;
+    -webkit-mask:url('assets/true-print-shop-logo.svg') center/contain no-repeat!important;
+    mask:url('assets/true-print-shop-logo.svg') center/contain no-repeat!important;
+    aspect-ratio:1299/503!important;
+  }
+
+  html body .site-header .brand-logo img{
+    opacity:0!important;
+    filter:none!important;
+  }
+
   /* Phone tabs never sit inside a clipping/scroll mask. They wrap so every
      pill and its hard shadow remain fully visible. */
   html body .tabs{
