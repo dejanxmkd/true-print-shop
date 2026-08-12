@@ -365,6 +365,39 @@
   }
 }
 
+/* Phone portrait: final image crop and wrapper heights. Keep wrapper and image the same height so no placeholder gap can remain below. */
+@media (max-width: 600px) {
+  .embroidery > .brand-photo--embroidery {
+    height: clamp(250px, 64vw, 330px) !important;
+    min-height: 0 !important;
+    line-height: 0 !important;
+  }
+
+  .custom > .brand-photo--custom {
+    height: clamp(360px, 92vw, 480px) !important;
+    min-height: 0 !important;
+    line-height: 0 !important;
+  }
+
+  .brand-photo--embroidery .brand-photo__image,
+  .brand-photo--custom .brand-photo__image {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    vertical-align: top !important;
+    object-fit: cover !important;
+  }
+
+  .brand-photo--embroidery .brand-photo__image {
+    object-position: 0% 0% !important;
+  }
+
+  .brand-photo--custom .brand-photo__image {
+    object-position: 90% 0% !important;
+  }
+}
+
 /* Short landscape phones: keep full-width composition without making sections excessively tall. */
 @media (orientation: landscape) and (max-width: 900px) and (max-height: 520px) {
   .hero-copy,
