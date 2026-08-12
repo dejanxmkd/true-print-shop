@@ -1,0 +1,35 @@
+name: Remove homepage tags
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove eyebrow tags from homepage
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          p = Path('index.html')
+          html = p.read_text()
+          html = re.sub(r'<p class="eyebrow">.*?</p>', '', html)
+          p.write_text(html)
+          PY
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Remove homepage title tags" || exit 0
+          git push
+      - name: Remove one-time workflow
+        run: |
+          git pull --rebase
+          git rm .github/workflows/remove-home-tags.yml
+          git commit -m "Remove homepage tag workflow"
+          git push
