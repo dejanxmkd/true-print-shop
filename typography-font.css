@@ -153,15 +153,15 @@ html body .product-rail article{
     filter:none!important;
   }
 
-  /* Keep the tab rail aligned with the content gutter on the left, but let its
-     scroll viewport reach the actual phone edge on the right. The extra end
-     padding gives the 6px hard shadows room to become fully visible. */
+  /* Full-bleed mobile tab rail: the scroll viewport reaches the actual phone
+     edges while the first/last pills keep safe inset for their hard shadows.
+     Mandatory snap prevents the rail from resting with the focused pill chopped. */
   html body .tabs{
-    width:calc(100% + 16px)!important;
+    width:calc(100% + 32px)!important;
     max-width:none!important;
-    margin-left:0!important;
+    margin-left:-16px!important;
     margin-right:-16px!important;
-    padding:6px 24px 18px 4px!important;
+    padding:8px 32px 20px 16px!important;
     display:flex!important;
     flex-wrap:nowrap!important;
     align-items:center!important;
@@ -170,8 +170,8 @@ html body .product-rail article{
     overflow-y:hidden!important;
     scrollbar-width:none!important;
     -ms-overflow-style:none!important;
-    scroll-padding-inline:4px 24px!important;
-    scroll-snap-type:x proximity!important;
+    scroll-padding-inline:16px 32px!important;
+    scroll-snap-type:x mandatory!important;
     overscroll-behavior-inline:contain!important;
     -webkit-overflow-scrolling:touch;
     -webkit-mask-image:none!important;
@@ -189,6 +189,8 @@ html body .product-rail article{
     max-width:none!important;
     white-space:nowrap!important;
     scroll-snap-align:start!important;
+    scroll-snap-stop:always!important;
+    scroll-margin-inline:0 16px!important;
   }
 }
 
