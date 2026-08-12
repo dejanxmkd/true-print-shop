@@ -247,6 +247,7 @@ all('.products').forEach(section => {
     .filter-scroll h2::before,.filter-scroll h2::after{display:none!important;content:none!important}
     @media(min-width:1481px){
       .desktop-nav a,.desktop-nav a:hover{transition:none!important;transform:none!important}
+      .desktop-nav .dropdown-menu,.desktop-nav .dropdown-menu:hover{transition:none!important;transform:none!important}
       .desktop-nav .apparel-dropdown{position:relative!important}
       .desktop-nav .apparel-dropdown>.apparel-menu{top:calc(100% - 2px)!important;left:0!important;min-width:290px!important;width:auto!important;padding:18px!important;display:flex!important;flex-direction:column!important;gap:4px!important;background:var(--color-cream,#F5F1E8)!important;color:var(--color-ink,#111111)!important;border:2px solid var(--color-ink,#111111)!important;border-radius:20px!important;box-shadow:5px 5px 0 var(--color-ink,#111111)!important;opacity:0!important;visibility:hidden!important;pointer-events:none!important;transform:none!important;transition:none!important}
       .desktop-nav .apparel-dropdown:hover>.apparel-menu,.desktop-nav .apparel-dropdown:focus-within>.apparel-menu{opacity:1!important;visibility:visible!important;pointer-events:auto!important;transform:none!important}
