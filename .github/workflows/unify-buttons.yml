@@ -1,0 +1,183 @@
+name: Unify global buttons
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Make Shop Bundles CTA the canonical button system
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if ! grep -q "Canonical Shop Bundles button system" design-system.css; then
+            cat >> design-system.css <<'CSS'
+
+/* Canonical Shop Bundles button system
+   Every action button uses the same geometry and motion.
+   Two visual variants only:
+   - white: Warm White background, Near Black border/text
+   - blue: Electric Cobalt background, Near Black border, Warm White text
+*/
+:where(
+  .button,
+  .heading-row > a,
+  .section-button,
+  .mobile-primary,
+  .filter-toggle,
+  .sort-dropdown > button,
+  .share-copy,
+  .share-action,
+  .tabs button,
+  .size-options button
+){
+  min-height:var(--control-height)!important;
+  padding:0 22px!important;
+  border:2px solid var(--color-ink)!important;
+  border-radius:var(--radius-control)!important;
+  background:var(--color-cream)!important;
+  color:var(--color-ink)!important;
+  box-shadow:none!important;
+  transform:none!important;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  font-weight:700;
+  cursor:pointer;
+  transition:
+    transform var(--motion-fast),
+    background-color var(--motion-fast),
+    color var(--motion-fast),
+    border-color var(--motion-fast),
+    box-shadow var(--motion-fast)!important;
+}
+
+:where(
+  .button,
+  .heading-row > a,
+  .section-button,
+  .mobile-primary,
+  .filter-toggle,
+  .sort-dropdown > button,
+  .share-copy,
+  .share-action,
+  .tabs button,
+  .size-options button
+):hover{
+  box-shadow:4px 4px 0 var(--color-ink)!important;
+  transform:translate(-2px,-2px)!important;
+}
+
+:where(
+  .button,
+  .heading-row > a,
+  .section-button,
+  .mobile-primary,
+  .filter-toggle,
+  .sort-dropdown > button,
+  .share-copy,
+  .share-action,
+  .tabs button,
+  .size-options button
+):active{
+  box-shadow:1px 1px 0 var(--color-ink)!important;
+  transform:translate(1px,1px)!important;
+}
+
+/* White button variant. */
+.button.light,
+.button.white,
+.button.secondary,
+.share-action,
+.tabs button:not(.active),
+.size-options button:not(.active),
+.sort-dropdown > button{
+  background:var(--color-cream)!important;
+  border-color:var(--color-ink)!important;
+  color:var(--color-ink)!important;
+}
+
+/* Blue button variant. Legacy dark/primary classes are normalized to blue. */
+.button.primary,
+.button.dark,
+.button.blue,
+.heading-row > a,
+.section-button,
+.mobile-primary,
+.filter-toggle,
+.share-copy,
+.tabs button.active,
+.size-options button.active{
+  background:var(--color-blue)!important;
+  border-color:var(--color-ink)!important;
+  color:var(--color-cream)!important;
+}
+
+/* Colors never flip on hover/focus/press; only the brutalist shadow/motion changes. */
+.button.light:hover,.button.light:focus-visible,.button.light:active,
+.button.white:hover,.button.white:focus-visible,.button.white:active,
+.button.secondary:hover,.button.secondary:focus-visible,.button.secondary:active,
+.share-action:hover,.share-action:focus-visible,.share-action:active,
+.tabs button:not(.active):hover,.tabs button:not(.active):focus-visible,.tabs button:not(.active):active,
+.size-options button:not(.active):hover,.size-options button:not(.active):focus-visible,.size-options button:not(.active):active,
+.sort-dropdown > button:hover,.sort-dropdown > button:focus-visible,.sort-dropdown > button:active{
+  background:var(--color-cream)!important;
+  border-color:var(--color-ink)!important;
+  color:var(--color-ink)!important;
+}
+
+.button.primary:hover,.button.primary:focus-visible,.button.primary:active,
+.button.dark:hover,.button.dark:focus-visible,.button.dark:active,
+.button.blue:hover,.button.blue:focus-visible,.button.blue:active,
+.heading-row > a:hover,.heading-row > a:focus-visible,.heading-row > a:active,
+.section-button:hover,.section-button:focus-visible,.section-button:active,
+.mobile-primary:hover,.mobile-primary:focus-visible,.mobile-primary:active,
+.filter-toggle:hover,.filter-toggle:focus-visible,.filter-toggle:active,
+.share-copy:hover,.share-copy:focus-visible,.share-copy:active,
+.tabs button.active:hover,.tabs button.active:focus-visible,.tabs button.active:active,
+.size-options button.active:hover,.size-options button.active:focus-visible,.size-options button.active:active{
+  background:var(--color-blue)!important;
+  border-color:var(--color-ink)!important;
+  color:var(--color-cream)!important;
+}
+CSS
+          fi
+
+          if ! grep -q "Canonical button system" README.md; then
+            cat >> README.md <<'MD'
+
+## Canonical button system
+
+`Shop bundles` CTA на homepage е визуелниот и интерактивниот pattern за сите action buttons низ целиот сајт.
+
+- Сите action buttons користат ист `2px` Near Black border, pill radius, висина, padding, typography, hard-shadow hover и pressed animation.
+- Постојат две главни варијанти: **white** = Warm White background + Near Black border/text; **blue** = Electric Cobalt background + Near Black border + Warm White text.
+- Боите на копчето не се менуваат на hover/active; интеракцијата се покажува преку hard shadow и позиционирање.
+- Старите `dark`/black CTA варијанти не се користат како посебен button style; primary/dark actions се нормализираат во blue варијантата.
+- Нов action button не смее да добива сопствен page-specific CSS ако може да ја користи canonical button варијантата од `design-system.css`.
+MD
+          fi
+
+          rm -f .github/workflows/unify-buttons.yml
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+
+          git commit -m "Unify buttons across all pages"
+          git push origin HEAD:main
