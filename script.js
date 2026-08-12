@@ -1,3 +1,19 @@
+(function loadSharedPageTransition(){
+  if(!document.querySelector('link[data-page-transition]')){
+    const link=document.createElement('link');
+    link.rel='stylesheet';
+    link.href='page-transition.css';
+    link.dataset.pageTransition='';
+    document.head.appendChild(link);
+  }
+  if(!document.querySelector('script[data-page-transition]')){
+    const script=document.createElement('script');
+    script.src='page-transition.js';
+    script.dataset.pageTransition='';
+    document.head.appendChild(script);
+  }
+})();
+
 (function installSpaceGroteskTest(){
   if(!document.getElementById('space-grotesk-font')){
     const link=document.createElement('link');
