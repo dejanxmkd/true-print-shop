@@ -1,0 +1,25 @@
+name: Reorder homepage sections
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  reorder:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Put Custom Apparel before First Responders
+        run: |
+          python3 -c 'from pathlib import Path; p=Path("index.html"); s=p.read_text(); a=s.index("    <section class=\"content-section products responders reveal\" id=\"responders\">"); b=s.index("    <section class=\"custom reveal\" id=\"custom\">",a); c=s.index("\n\n    <div class=\"marquee\"",b); r=s[a:b].rstrip(); u=s[b:c].rstrip(); p.write_text(s[:a]+u+"\n\n"+r+s[c:]) if a < b else None'
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Move Custom Apparel before First Responders"
+          git push origin HEAD:main
