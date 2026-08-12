@@ -1,0 +1,39 @@
+# True Print Shop
+
+## Задолжително правило за дизајнот
+
+`index.html` (homepage) е единствениот визуелен извор на вистина за целиот веб-сајт.
+
+Секоја нова страница и компонента — вклучувајќи го product details page — мора директно да го наследува истиот стил од homepage:
+
+- исти типови, големини, радиуси и padding на копчињата;
+- исти hover, active, focus и micro-animation ефекти;
+- исти tabs, tags, cards, form controls и icon buttons;
+- исти Inter типографија, нормален letter-spacing и нормален текст без присилно uppercase;
+- само brand боите `#111111`, `#2457FF`, `#F5F1E8` и `#000000`;
+- исти Material Design Filled икони;
+- исти responsive правила и премин во tablet/mobile navigation;
+- без gradients и без воведување нов, паралелен UI стил.
+- никогаш да нема divider/separator линии меѓу секциите низ страниците; секциите се одвојуваат само со простор и промена на brand background боја.
+
+Пред да се креира нова компонента, прво треба да се провери дали истата или сродна компонента веќе постои на homepage и да се употреби постојната CSS класа. Ако е потребна нова варијанта, таа мора да биде изведена од постојната homepage компонента и да го задржи истиот визуелен и интерактивен behavior.
+
+## Структура на design system
+
+- `design-system.css` ги содржи глобалните tokens и shared components: buttons, tags, tabs, cards, icon controls, focus и motion states.
+- `styles.css` содржи само layout и homepage-specific правила.
+- `product.css` содржи само product-page layout; боите, controls и интеракциите ги наследува од `design-system.css`.
+- Нови hard-coded бои, радиуси, висини, shadows и motion вредности не се додаваат во page CSS. Се додаваат како variable во `design-system.css` и потоа се користат насекаде.
+- `catalog-data.js` е единствен извор за categories, brands и products.
+- `collection.html` е reusable template за сите category и brand listing pages.
+- `product.html` е reusable template за сите product detail pages.
+- `info.html` е reusable template за customer-care, company и policy pages.
+
+## Brutalist interaction language
+
+- Default controls се чисти flat shapes со `2px` Near Black border.
+- Primary actions се Electric Cobalt; dark actions се Near Black; secondary actions се Warm White.
+- Hover користи промена во brand боја, `4px` тврд Near Black shadow и мало движење нагоре/налево.
+- Pressed state го намалува shadow-от на `1px` и го поместува control-от надолу/надесно.
+- Tabs никогаш не стануваат црни на hover. Hover и active состојбите се Electric Cobalt со Warm White текст.
+- Не се користат gradients, blur shadows, случајни outlines или бои надвор од brand palette.

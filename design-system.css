@@ -1,0 +1,462 @@
+:root{
+  --color-ink:#111111;
+  --color-black:#000000;
+  --color-blue:#2457FF;
+  --color-cream:#F5F1E8;
+  --color-placeholder:#E6E0D6;
+  --color-muted:#69655E;
+  --font-family:Inter,Arial,sans-serif;
+  --text-body:16px;
+  --radius-card:28px;
+  --radius-control:999px;
+  --space-page:clamp(20px,4vw,64px);
+  --control-height:54px;
+  --motion-fast:200ms ease;
+  --shadow-action:4px 4px 0 var(--color-ink);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--color-cream);color:var(--color-ink);font:500 var(--text-body)/1.5 var(--font-family);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit;color:inherit}
+
+/* Shared buttons */
+:where(.button,.heading-row>a,.section-button,.mobile-primary){
+  min-height:var(--control-height);padding:0 24px;border:2px solid var(--color-ink);
+  border-radius:var(--radius-control);display:inline-flex;align-items:center;justify-content:center;
+  gap:12px;font-weight:700;cursor:pointer;transition:transform var(--motion-fast),background-color var(--motion-fast),color var(--motion-fast),border-color var(--motion-fast),box-shadow var(--motion-fast)
+}
+:where(.button,.heading-row>a,.section-button,.mobile-primary):hover{transform:translateY(-2px);box-shadow:var(--shadow-action)}
+:where(.button,.heading-row>a,.section-button,.mobile-primary):active{transform:scale(.97);box-shadow:2px 2px 0 var(--color-ink)}
+:where(button,a,input):focus,:where(button,a,input):focus-visible{outline:none}
+
+.button.dark,.section-button{background:var(--color-ink);color:var(--color-cream)}
+.heading-row>a{background:var(--color-blue);border-color:var(--color-blue);color:var(--color-cream)}
+.button.light{background:var(--color-cream);color:var(--color-ink);border-color:var(--color-cream)}
+.button.dark:hover,.section-button:hover{background:var(--color-cream);color:var(--color-ink)}
+.heading-row>a:hover{background:var(--color-ink);border-color:var(--color-ink);color:var(--color-cream)}
+.button.light:hover{background:var(--color-ink);border-color:var(--color-ink);color:var(--color-cream)}
+
+/* Shared tags and tabs */
+.eyebrow,.product-brand{display:inline-flex;width:max-content;min-height:36px;padding:0 14px;border-radius:var(--radius-control);align-items:center;background:var(--color-blue);color:var(--color-cream);font-size:var(--text-body);font-weight:700}
+.tabs button,.size-options button{border:2px solid var(--color-ink);border-radius:var(--radius-control);background:transparent;font-weight:700;cursor:pointer;transition:transform var(--motion-fast),background-color var(--motion-fast),color var(--motion-fast),box-shadow var(--motion-fast)}
+.tabs button:hover,.size-options button:hover{background:var(--color-ink);color:var(--color-cream)}
+.tabs button.active,.size-options button.active{background:var(--color-blue);border-color:var(--color-blue);color:var(--color-cream);box-shadow:var(--shadow-action)}
+
+/* Shared imagery and cards */
+.placeholder,.product-rail .placeholder,.category .placeholder,.main-image,.thumbnails span,.recommend-grid a>div,.love-rail a>div{background:var(--color-placeholder)}
+.hero>.placeholder,.embroidery>.placeholder,.custom>.placeholder{background:var(--color-blue)}
+.category,.product-rail article,.recommend-grid a,.love-rail a{transition:transform var(--motion-fast)}
+.category:hover,.is-product-link:hover,.recommend-grid a:hover,.love-rail a:hover{transform:translateY(-5px)}
+
+/* Shared round icon controls */
+.header-tools button,.main-image>button,.title-line button,.search-panel button{display:grid;place-items:center;border-radius:50%;cursor:pointer;transition:transform var(--motion-fast),background-color var(--motion-fast),color var(--motion-fast)}
+.header-tools button:hover,.main-image>button:hover,.title-line button:hover{background:var(--color-ink);color:var(--color-cream);transform:translateY(-2px)}
+
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* True Print brutalist UI — canonical component states */
+:is(.button,.heading-row>a,.section-button,.mobile-primary){
+  border:2px solid var(--color-ink);border-radius:var(--radius-control);
+  box-shadow:none;transform:none
+}
+:is(.button,.heading-row>a,.section-button,.mobile-primary):hover{
+  box-shadow:4px 4px 0 var(--color-ink);transform:translate(-2px,-2px)
+}
+:is(.button,.heading-row>a,.section-button,.mobile-primary):active{
+  box-shadow:1px 1px 0 var(--color-ink);transform:translate(1px,1px)
+}
+.button.dark,.mobile-primary.button.dark{background:var(--color-ink);border-color:var(--color-ink);color:var(--color-cream)}
+.button.dark:hover,.mobile-primary.button.dark:hover{background:var(--color-blue);border-color:var(--color-ink);color:var(--color-cream)}
+.button.light{background:var(--color-cream);border-color:var(--color-ink);color:var(--color-ink)}
+.button.light:hover{background:var(--color-blue);color:var(--color-cream)}
+.heading-row>a{background:var(--color-blue);border-color:var(--color-ink);color:var(--color-cream)}
+.heading-row>a:hover{background:var(--color-ink);border-color:var(--color-ink);color:var(--color-cream)}
+
+.tabs button,.size-options button{
+  background:var(--color-cream);border:2px solid var(--color-ink);color:var(--color-ink);
+  box-shadow:none;transform:none
+}
+.tabs button:not(.active):hover,.size-options button:not(.active):hover{
+  background:var(--color-blue);border-color:var(--color-ink);color:var(--color-cream);
+  box-shadow:3px 3px 0 var(--color-ink);transform:translate(-1px,-1px)
+}
+.tabs button.active,.tabs button.active:hover,.size-options button.active,.size-options button.active:hover{
+  background:var(--color-blue);border-color:var(--color-ink);color:var(--color-cream);
+  box-shadow:4px 4px 0 var(--color-ink);transform:none
+}
+.tabs button:active,.size-options button:active{box-shadow:1px 1px 0 var(--color-ink);transform:translate(1px,1px)}
+
+.eyebrow,.product-brand{background:var(--color-blue);border:0;color:var(--color-cream);box-shadow:none}
+.hero .eyebrow{background:var(--color-ink);color:var(--color-cream)}
+.header-tools button{background:var(--color-cream);border:2px solid var(--color-ink);box-shadow:none}
+.header-tools button:hover{background:var(--color-blue);border-color:var(--color-ink);color:var(--color-cream);box-shadow:3px 3px 0 var(--color-ink);transform:translate(-1px,-1px)}
+.header-tools button:active{box-shadow:none;transform:translate(1px,1px)}
+.header-tools .menu-tool{background:var(--color-cream)!important;border-color:var(--color-ink)!important;color:var(--color-ink)!important;box-shadow:none!important}
+.header-tools .menu-tool:hover{background:var(--color-blue)!important;border-color:var(--color-ink)!important;color:var(--color-cream)!important;box-shadow:3px 3px 0 var(--color-ink)!important}
+.header-tools .menu-tool[aria-expanded="true"]{
+  background:var(--color-cream)!important;border-color:var(--color-ink)!important;
+  color:var(--color-ink)!important;box-shadow:none!important;transform:none
+}
+.header-tools .menu-tool[aria-expanded="true"]:hover{
+  background:var(--color-blue)!important;border-color:var(--color-ink)!important;
+  color:var(--color-cream)!important;box-shadow:3px 3px 0 var(--color-ink)!important;
+  transform:translate(-1px,-1px)
+}
+@media(max-width:1480px){.search-panel form{padding-left:20px;padding-right:20px}}
+@media(max-width:600px){.search-panel form{padding-left:16px;padding-right:16px}}
+
+/* Shared asymmetric brutalist edges */
+.site-header::after,.hero::after,.embroidery::after,.custom::after{content:"";position:absolute;z-index:4;left:0;right:0;bottom:-1px;height:10px;background:var(--color-ink);clip-path:polygon(0 0,100% 72%,100% 100%,0 100%);pointer-events:none}
+.site-header{border-bottom:0}
+.site-header::after{bottom:0;clip-path:polygon(0 72%,50% 0,100% 72%,100% 100%,0 100%)}
+.hero,.embroidery,.custom{position:relative;z-index:1;box-shadow:none}
+.site-footer{position:relative;margin-top:10px}
+.site-footer::before{content:"";position:absolute;left:0;right:0;top:-10px;height:10px;background:var(--color-ink);clip-path:polygon(0 0,100% 72%,100% 100%,0 100%);pointer-events:none}
+
+/* Phone and chat keep their original text layout; only the icons are brutalist. */
+.header-help>a,.header-help>button{position:relative;min-height:0;padding:0!important;border:0!important;border-radius:0;background:transparent!important;color:var(--color-ink);box-shadow:none;transform:none}
+.header-help>a:hover,.header-help>button:hover{background:transparent!important;color:var(--color-ink);box-shadow:none;transform:none}
+.header-help small{position:absolute;z-index:30;top:calc(100% + 10px);left:50%;width:max-content;max-width:220px;padding:9px 12px;border:2px solid var(--color-ink);border-radius:8px;background:var(--color-cream);color:var(--color-ink)!important;font-size:12px;font-weight:700;line-height:1.25;box-shadow:4px 4px 0 var(--color-ink);opacity:0!important;visibility:hidden;pointer-events:none;transform:translate(-50%,-4px);transition:opacity var(--motion-fast),transform var(--motion-fast),visibility var(--motion-fast)}
+.header-help>a:hover small,.header-help>button:hover small,.header-help>a:focus-visible small,.header-help>button:focus-visible small{opacity:1!important;visibility:visible;transform:translate(-50%,0)}
+.header-help i{width:42px;height:42px;border:2px solid var(--color-ink);background:var(--color-blue);color:var(--color-cream);box-shadow:none;transition:background-color var(--motion-fast),color var(--motion-fast),box-shadow var(--motion-fast),transform var(--motion-fast)}
+.header-help>a:hover i,.header-help>button:hover i{background:var(--color-blue);color:var(--color-cream);box-shadow:3px 3px 0 var(--color-ink);transform:translate(-1px,-1px)}
+.header-help>a:active i,.header-help>button:active i{box-shadow:none;transform:translate(1px,1px)}
+
+/* Shared brutalist category and product cards */
+.category{padding:12px 12px 19px;border:2px solid var(--color-ink);font-size:19px;font-weight:800;box-shadow:6px 6px 0 var(--color-ink);transition:transform var(--motion-fast),box-shadow var(--motion-fast)}
+.category:hover{box-shadow:3px 3px 0 var(--color-ink);transform:translate(3px,3px)}
+.category:active{box-shadow:none;transform:translate(6px,6px)}
+
+/* Canonical circular icon button — blue is the default state everywhere. */
+:where(.header-tools button,.filter-close,.cart-close,.main-image>button,.title-line button){
+  border:2px solid var(--color-ink)!important;
+  background:var(--color-blue)!important;
+  color:var(--color-cream)!important;
+  box-shadow:6px 6px 0 var(--color-ink)!important;
+  transform:none!important;
+  transition:background-color var(--motion-fast),color var(--motion-fast),box-shadow var(--motion-fast),transform var(--motion-fast)!important;
+}
+:where(.header-tools button,.filter-close,.cart-close,.main-image>button,.title-line button):hover{
+  border-color:var(--color-ink)!important;
+  background:var(--color-blue)!important;
+  color:var(--color-cream)!important;
+  box-shadow:3px 3px 0 var(--color-ink)!important;
+  transform:translate(3px,3px)!important;
+}
+:where(.header-tools button,.filter-close,.cart-close,.main-image>button,.title-line button):active{
+  box-shadow:none!important;
+  transform:translate(6px,6px)!important;
+}
+.header-tools .menu-tool,.header-tools .menu-tool[aria-expanded="true"]{
+  border-color:var(--color-ink)!important;
+  background:var(--color-blue)!important;
+  color:var(--color-cream)!important;
+  box-shadow:6px 6px 0 var(--color-ink)!important;
+}
+.header-tools .menu-tool:hover,.header-tools .menu-tool[aria-expanded="true"]:hover{
+  border-color:var(--color-ink)!important;
+  background:var(--color-blue)!important;
+  color:var(--color-cream)!important;
+  box-shadow:3px 3px 0 var(--color-ink)!important;
+  transform:translate(3px,3px)!important;
+}
+.header-help i{
+  border:2px solid var(--color-ink)!important;
+  background:var(--color-blue)!important;
+  color:var(--color-cream)!important;
+  box-shadow:6px 6px 0 var(--color-ink)!important;
+  transform:none!important;
+  transition:background-color var(--motion-fast),color var(--motion-fast),box-shadow var(--motion-fast),transform var(--motion-fast)!important;
+}
+.header-help>a:hover i,.header-help>button:hover i{
+  border-color:var(--color-ink)!important;
+  background:var(--color-blue)!important;
+  color:var(--color-cream)!important;
+  box-shadow:3px 3px 0 var(--color-ink)!important;
+  transform:translate(3px,3px)!important;
+}
+.header-help>a:active i,.header-help>button:active i{
+  box-shadow:none!important;
+  transform:translate(6px,6px)!important;
+}
+.header-help{gap:24px}
+.header-help>a,.header-help>button{gap:14px}
+.header-help strong{font-size:16px;line-height:1.2}
+.category-grid{gap:24px}
+
+.product-rail article,.catalog-card,.recommend-grid a,.love-rail a{padding:10px 10px 18px;border:2px solid var(--color-ink);border-radius:var(--radius-card);background:var(--color-cream);box-shadow:6px 6px 0 var(--color-ink);transition:transform var(--motion-fast),box-shadow var(--motion-fast)}
+.product-rail article:hover,.catalog-card:hover,.recommend-grid a:hover,.love-rail a:hover{box-shadow:3px 3px 0 var(--color-ink);transform:translate(3px,3px)}
+.product-rail article:active,.catalog-card:active,.recommend-grid a:active,.love-rail a:active{box-shadow:none;transform:translate(6px,6px)}
+.product-rail .placeholder,.catalog-card .image,.recommend-grid a>div,.love-rail a>div{border-radius:calc(var(--radius-card) - 8px)}
+.catalog-card:hover .image,.recommend-grid a:hover>div,.love-rail a:hover>div{transform:none}
+.product-rail h3,.catalog-card h2,.recommend-grid h3,.love-rail h3{
+  font-size:19px;
+  line-height:1.3;
+  font-weight:800;
+}
+.product-rail strong,.catalog-card strong,.recommend-grid strong,.love-rail strong{
+  font-size:18px;
+  line-height:1.2;
+  font-weight:800;
+}
+.catalog-card small,.recommend-grid small,.love-rail small{font-size:14px}
+
+@media(max-width:600px){
+  .category{padding:10px 10px 16px;font-size:18px;line-height:1.25;box-shadow:5px 5px 0 var(--color-ink)}
+  .category-grid{gap:18px}
+  .product-rail article,.catalog-card,.recommend-grid a,.love-rail a{box-shadow:5px 5px 0 var(--color-ink)}
+  .product-rail h3,.catalog-card h2,.recommend-grid h3,.love-rail h3{font-size:18px}
+  .product-rail strong,.catalog-card strong,.recommend-grid strong,.love-rail strong{font-size:17px}
+}
+
+/* Embroidery content is composed directly on the cobalt block. */
+.embroidery-card{border:0;background:transparent;box-shadow:none;transition:none}
+.embroidery:hover .embroidery-card,.embroidery:active .embroidery-card{box-shadow:none;transform:none}
+.embroidery-card .eyebrow{background:var(--color-ink);color:var(--color-cream)}
+.embroidery-card>.button{min-height:var(--control-height);padding:0 24px;border-bottom:2px solid var(--color-ink)}
+.embroidery-card>.button.light:hover{background:var(--color-blue);border-color:var(--color-ink);color:var(--color-cream);box-shadow:2px 2px 0 var(--color-ink);transform:translate(2px,2px)}
+.embroidery-card>.button:active{box-shadow:none;transform:translate(4px,4px)}
+
+/* Shared brutalist shopping cart */
+body.cart-open{overflow:hidden}
+.cart-backdrop{position:fixed;z-index:90;inset:0;background:rgba(17,17,17,.64);opacity:0;visibility:hidden;transition:opacity var(--motion-fast),visibility var(--motion-fast)}
+.cart-backdrop.open{opacity:1;visibility:visible}
+.cart-drawer{position:fixed;z-index:100;top:0;right:0;width:min(500px,calc(100vw - 24px));height:100dvh;padding:24px;border-left:3px solid var(--color-ink);background:var(--color-cream);box-shadow:-8px 0 0 var(--color-ink);display:flex;flex-direction:column;transform:translateX(calc(100% + 14px));transition:transform .28s cubic-bezier(.2,.8,.2,1)}
+.cart-drawer.open{transform:none}
+.cart-head{padding-bottom:20px;border-bottom:0;display:flex;align-items:center;justify-content:space-between;gap:20px}.cart-head h2{margin:0;font-size:34px;line-height:1}.cart-close{width:48px;height:48px;flex:none;border:2px solid var(--color-ink);border-radius:50%;background:var(--color-blue);color:var(--color-cream);display:grid;place-items:center;cursor:pointer;transition:transform var(--motion-fast),box-shadow var(--motion-fast)}.cart-close:hover{box-shadow:4px 4px 0 var(--color-ink);transform:translate(-2px,-2px)}.cart-close:active{box-shadow:none;transform:translate(1px,1px)}
+.cart-items{min-height:0;padding:22px 6px 22px 0;display:grid;gap:18px;overflow-y:auto}.cart-item{position:relative;padding:10px;border:2px solid var(--color-ink);border-radius:20px;background:var(--color-cream);box-shadow:5px 5px 0 var(--color-ink);display:grid;grid-template-columns:92px 1fr;gap:12px}.cart-item-image{grid-row:1/3;aspect-ratio:1;background:var(--color-placeholder);border-radius:13px}.cart-item-copy small{font-weight:700;opacity:.55}.cart-item-copy h3{margin:3px 35px 3px 0;font-size:16px;line-height:1.25}.cart-item-copy p{margin:0 0 4px;font-size:13px;opacity:.65}.cart-item-copy strong{color:var(--color-blue)}.cart-remove{position:absolute;top:9px;right:9px;width:30px;height:30px;border:2px solid var(--color-ink);border-radius:50%;background:var(--color-cream);display:grid;place-items:center;cursor:pointer}.cart-remove i{font-size:17px}.cart-remove:hover{background:var(--color-blue);color:var(--color-cream)}.cart-qty{grid-column:2;justify-self:start;height:36px;border:2px solid var(--color-ink);border-radius:999px;display:flex;align-items:center;overflow:hidden}.cart-qty button{width:34px;height:100%;border:0;background:transparent;font-size:18px;cursor:pointer}.cart-qty button:hover{background:var(--color-blue);color:var(--color-cream)}.cart-qty span{min-width:26px;text-align:center;font-weight:800}
+.cart-empty{margin:auto;text-align:center}.cart-empty i{width:74px;height:74px;margin:auto;border:2px solid var(--color-ink);border-radius:50%;background:var(--color-blue);color:var(--color-cream);display:grid;place-items:center;font-size:34px;box-shadow:6px 6px 0 var(--color-ink)}.cart-empty h3{margin:25px 0 5px;font-size:25px}.cart-empty p{margin:0;opacity:.65}.cart-summary{margin-top:auto;padding-top:20px;border-top:3px solid var(--color-ink)}.cart-summary>div{margin-bottom:16px;display:flex;justify-content:space-between;font-size:19px}.cart-summary .cart-checkout{width:100%;justify-content:center}.cart-summary small{display:block;margin-top:12px;text-align:center;opacity:.6}
+[hidden]{display:none!important}
+@media(max-width:600px){.cart-drawer{top:auto;bottom:0;width:100%;height:min(88dvh,760px);padding:18px 16px 20px;border:3px solid var(--color-ink);border-bottom:0;border-radius:26px 26px 0 0;box-shadow:0 -8px 0 var(--color-ink);transform:translateY(calc(100% + 12px))}.cart-head h2{font-size:30px}.cart-item{grid-template-columns:78px 1fr}.cart-head{padding-bottom:16px}}
+
+/* Dark campaign blocks: homepage hero, embroidery promo and collection heroes. */
+.hero,.hero>.placeholder,.embroidery,.embroidery>.placeholder{
+  background:var(--color-ink)!important;
+}
+.catalog-hero{
+  background:var(--color-ink);
+}
+.button.primary{
+  background:var(--color-blue);
+  border-color:var(--color-ink);
+  color:var(--color-cream);
+}
+.button.primary:hover{background:var(--color-ink);color:var(--color-cream)}
+.hero .button.light{border-color:var(--color-ink)!important}
+.hero .button.light:hover{background:var(--color-blue)!important;color:var(--color-cream)!important}
+
+/* One interaction model for every pill button, independent of its colour variant. */
+:where(.button,.heading-row>a,.section-button,.mobile-primary){
+  border:2px solid var(--color-ink);
+  box-shadow:4px 4px 0 var(--color-ink);
+  transform:none;
+}
+:where(.button,.heading-row>a,.section-button,.mobile-primary):hover{
+  box-shadow:2px 2px 0 var(--color-ink)!important;
+  transform:translate(2px,2px)!important;
+}
+:where(.button,.heading-row>a,.section-button,.mobile-primary):active{
+  box-shadow:none!important;
+  transform:translate(4px,4px)!important;
+}
+.embroidery-card .eyebrow,.catalog-hero .eyebrow{
+  background:var(--color-blue)!important;
+  color:var(--color-cream)!important;
+}
+.hero .eyebrow{
+  background:var(--color-blue)!important;
+  color:var(--color-cream)!important;
+}
+
+/* Filter and cart drawers share exactly the same close control. */
+.filter-close,.cart-close{
+  width:48px!important;
+  height:48px!important;
+  padding:0!important;
+  border:2px solid var(--color-ink)!important;
+  border-radius:50%!important;
+  background:var(--color-blue)!important;
+  color:var(--color-cream)!important;
+  box-shadow:6px 6px 0 var(--color-ink)!important;
+  transform:none!important;
+}
+.filter-close:hover,.cart-close:hover{
+  background:var(--color-blue)!important;
+  color:var(--color-cream)!important;
+  box-shadow:3px 3px 0 var(--color-ink)!important;
+  transform:translate(3px,3px)!important;
+}
+.filter-close:active,.cart-close:active{
+  box-shadow:none!important;
+  transform:translate(6px,6px)!important;
+}
+
+/* Cart quantity is a neutral status badge, distinct from blue actions. */
+.header-tools .cart-tool b{
+  background:var(--color-ink)!important;
+  color:var(--color-cream)!important;
+  border:2px solid var(--color-cream)!important;
+  font-weight:800!important;
+}
+
+/* Navigation trails are intentionally omitted across the storefront. */
+.breadcrumbs{
+  display:none!important;
+}
+
+/* One interaction language for every pill, CTA, tab and filter control. */
+:is(
+  .button,
+  .heading-row>a,
+  .section-button,
+  .mobile-primary,
+  .tabs button,
+  .size-options button,
+  .filter-toggle,
+  #sort-trigger,
+  .sort-menu button,
+  .filter-scroll a,
+  .filter-scroll button
+){
+  border:2px solid var(--color-ink)!important;
+  box-shadow:7px 7px 0 var(--color-ink)!important;
+  transform:none!important;
+  transition:background-color var(--motion-fast),color var(--motion-fast),border-color var(--motion-fast),box-shadow var(--motion-fast),transform var(--motion-fast)!important;
+}
+:is(
+  .button,
+  .heading-row>a,
+  .section-button,
+  .mobile-primary,
+  .tabs button,
+  .size-options button,
+  .filter-toggle,
+  #sort-trigger,
+  .sort-menu button,
+  .filter-scroll a,
+  .filter-scroll button
+):hover{
+  border-color:var(--color-ink)!important;
+  box-shadow:3px 3px 0 var(--color-ink)!important;
+  transform:translate(3px,3px)!important;
+}
+:is(
+  .button,
+  .heading-row>a,
+  .section-button,
+  .mobile-primary,
+  .tabs button,
+  .size-options button,
+  .filter-toggle,
+  #sort-trigger,
+  .sort-menu button,
+  .filter-scroll a,
+  .filter-scroll button
+):active{
+  box-shadow:none!important;
+  transform:translate(6px,6px)!important;
+}
+
+/* Calm, centred tablet/mobile navigation — no dividers or directional clutter. */
+@media (max-width:1480px){
+  .mobile-menu{
+    padding:clamp(34px,6vh,70px) 24px 28px!important;
+    align-items:center;
+  }
+  .mobile-links{
+    width:min(100%,620px);
+    display:flex!important;
+    flex-direction:column;
+    align-items:center;
+    gap:8px!important;
+  }
+  .mobile-links a{
+    width:auto;
+    min-height:48px!important;
+    padding:6px 18px!important;
+    border:0!important;
+    border-radius:999px!important;
+    justify-content:center!important;
+    font-size:clamp(24px,3vw,34px)!important;
+    line-height:1.1;
+    text-align:center;
+    transition:color var(--motion-fast),background-color var(--motion-fast),transform var(--motion-fast)!important;
+  }
+  .mobile-links a:first-child,.mobile-links a:last-child{border:0!important}
+  .mobile-links a i{display:none!important}
+  .mobile-links a:hover{
+    background:var(--color-blue)!important;
+    color:var(--color-cream)!important;
+    transform:translateY(-2px);
+  }
+  .mobile-help{
+    width:min(100%,620px);
+    margin-top:28px!important;
+    border:0!important;
+    display:flex!important;
+    flex-direction:row!important;
+    justify-content:center;
+    gap:28px!important;
+  }
+  .mobile-help>a,.mobile-help>button{
+    width:auto;
+    min-height:56px!important;
+    padding:8px!important;
+    border:0!important;
+    background:transparent!important;
+    color:var(--color-ink)!important;
+  }
+  .mobile-help i{font-size:28px!important}
+  .mobile-help strong{font-size:16px!important}
+  .mobile-help small{display:none}
+  .mobile-primary{
+    width:min(100%,620px)!important;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .mobile-primary i{display:none!important}
+}
+@media (max-width:600px){
+  .mobile-menu{padding-top:30px!important}
+  .mobile-links{gap:5px!important}
+  .mobile-links a{min-height:45px!important;font-size:25px!important}
+  .mobile-help{gap:16px!important}
+}
+
+/* Product purchase action uses the canonical blue primary treatment. */
+.product-info .buy-row>.button.dark{
+  background:var(--color-blue)!important;
+  border-color:var(--color-ink)!important;
+  color:var(--color-cream)!important;
+}
+.product-info .buy-row>.button.dark:hover{
+  background:var(--color-blue)!important;
+  color:var(--color-cream)!important;
+}
+
+/* Brutalist quantity stepper, visually paired with the purchase action. */
+.product-info .buy-row>.qty{
+  border:2px solid var(--color-ink)!important;
+  background:var(--color-cream)!important;
+  box-shadow:7px 7px 0 var(--color-ink)!important;
+  overflow:hidden;
+}
+.product-info .buy-row>.qty button{
+  color:var(--color-ink);
+  transition:none;
+}
+.product-info .buy-row>.qty button:hover{
+  background:transparent!important;
+  color:var(--color-ink)!important;
+}
+.product-info .buy-row>.qty button:active{
+  transform:none;
+}
+
+/* Quantity controls stay neutral across product and cart surfaces. */
+.cart-qty button:hover{
+  background:transparent!important;
+  color:var(--color-ink)!important;
+}
