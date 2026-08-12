@@ -22,26 +22,25 @@ jobs:
 
           if ! grep -q "Global title-tag contrast rule" styles.css; then
             cat >> styles.css <<'CSS'
+          
+          /* Global title-tag contrast rule: on dark, blue, or image-led sections, title tags are always black with white text. */
+          :is(.hero,.embroidery,.custom,.catalog-hero,.brand-photo,[class*="hero"],[class*="banner"],[class*="masthead"]) .eyebrow,
+          :is(.hero,.embroidery,.custom,.catalog-hero,.brand-photo,[class*="hero"],[class*="banner"],[class*="masthead"]) .section-tag,
+          :is(.hero,.embroidery,.custom,.catalog-hero,.brand-photo,[class*="hero"],[class*="banner"],[class*="masthead"]) .kicker {
+            background: var(--ink) !important;
+            color: var(--cream) !important;
+            border-color: var(--ink) !important;
+          }
 
-/* Global title-tag contrast rule: on dark, blue, or image-led sections, title tags are always black with white text. */
-:is(.hero,.embroidery,.custom,.catalog-hero,.brand-photo,[class*="hero"],[class*="banner"],[class*="masthead"]):is(.hero,.embroidery,.custom,.catalog-hero,.brand-photo,[class*="hero"],[class*="banner"],[class*="masthead"]) .eyebrow,
-:is(.hero,.embroidery,.custom,.catalog-hero,.brand-photo,[class*="hero"],[class*="banner"],[class*="masthead"]) .section-tag,
-:is(.hero,.embroidery,.custom,.catalog-hero,.brand-photo,[class*="hero"],[class*="banner"],[class*="masthead"]) .kicker {
-  background: var(--ink) !important;
-  color: var(--cream) !important;
-  border-color: var(--ink) !important;
-}
-
-/* Explicit home-page colored/image sections. */
-.hero .eyebrow,
-.embroidery .eyebrow,
-.custom .eyebrow,
-.catalog-hero .eyebrow {
-  background: var(--ink) !important;
-  color: var(--cream) !important;
-  border-color: var(--ink) !important;
-}
-CSS
+          .hero .eyebrow,
+          .embroidery .eyebrow,
+          .custom .eyebrow,
+          .catalog-hero .eyebrow {
+            background: var(--ink) !important;
+            color: var(--cream) !important;
+            border-color: var(--ink) !important;
+          }
+          CSS
           fi
 
           rm -f .github/workflows/normalize-title-tags.yml
