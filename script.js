@@ -248,6 +248,8 @@ all('.products').forEach(section => {
     .site-footer .footer-bottom a{background:#2457FF!important;border-color:#2457FF!important;color:#F5F1E8!important}
     .site-footer .footer-bottom a i{color:#F5F1E8!important}
     .site-footer .footer-bottom a:hover{background:#2457FF!important;border-color:#2457FF!important;color:#F5F1E8!important}
+    .site-footer .footer-logo{background:transparent!important;-webkit-mask:none!important;mask:none!important;aspect-ratio:auto!important;height:auto!important}
+    .site-footer .footer-logo img{display:block!important;visibility:visible!important;width:100%!important;height:auto!important;filter:brightness(0) saturate(100%) invert(31%) sepia(99%) saturate(4454%) hue-rotate(225deg) brightness(101%) contrast(101%)!important}
 
     .filter-scroll h2{font-size:22px!important;line-height:1.2!important;letter-spacing:0!important;text-transform:none!important;border:0!important;text-decoration:none!important;padding-bottom:0!important}
     .filter-scroll h2::before,.filter-scroll h2::after{display:none!important;content:none!important}
