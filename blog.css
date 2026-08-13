@@ -12,6 +12,7 @@ body{background:#F5F1E8;color:#111}
 .blog-main-copy h2{margin:0 0 10px;font-size:clamp(31px,3.4vw,50px);line-height:.98;letter-spacing:-.045em;font-weight:900}
 .blog-main-copy p{margin:0 0 16px;max-width:760px;font-size:15px;line-height:1.5;font-weight:600}
 .blog-read{display:inline-flex;align-items:center;gap:7px;font-size:15px;font-weight:800;text-decoration:underline;text-underline-offset:5px}
+.blog-main-copy .blog-read{display:none!important}
 .blog-side-list{display:grid;grid-template-rows:repeat(3,minmax(0,1fr));gap:14px}
 .blog-side-list>.blog-side-card:nth-child(n+4){display:none}
 .blog-side-card{display:grid;grid-template-columns:138px minmax(0,1fr);gap:14px;align-items:stretch;padding:11px;border:2px solid #111;border-radius:20px;background:#F5F1E8;box-shadow:5px 5px 0 #111}
