@@ -14,6 +14,14 @@
   document.head.appendChild(script);
 })();
 
+(function loadSharedAccountModal(){
+  if(document.querySelector('script[data-account-modal]'))return;
+  const script=document.createElement('script');
+  script.src='account-modal.js';
+  script.dataset.accountModal='';
+  document.head.appendChild(script);
+})();
+
 (function installPageTransition(){
   const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
   const root=document.documentElement;
