@@ -1,4 +1,5 @@
 @import url('product-mobile.css');
+@import url('slider-bars.css');
 
 html::before{
   content:"";
