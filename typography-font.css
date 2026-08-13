@@ -70,41 +70,28 @@ p,span,strong,small,li,label{
   letter-spacing:normal!important;
 }
 
-/* Header logo uses the SVG only as a shape and the storefront cobalt as the
-   fill on every viewport, avoiding black/purple browser-dependent filters. */
-html body .site-header .brand-logo{
-  position:relative!important;
-  background:#2457FF!important;
-  -webkit-mask:url('assets/true-print-shop-logo.svg') center/contain no-repeat!important;
-  mask:url('assets/true-print-shop-logo.svg') center/contain no-repeat!important;
-  aspect-ratio:1299/503!important;
-}
-
-html body .site-header .brand-logo img{
-  opacity:0!important;
-  visibility:visible!important;
-  filter:none!important;
-}
-
-/* Footer logo uses the SVG only as a shape and the storefront cobalt as the
-   fill, avoiding browser-dependent filters that can shift toward pink/purple. */
+/* Logos are rendered as normal local SVG images so the handoff also works
+   when pages are opened directly from disk. The filter recolors the black
+   source artwork to the storefront cobalt without relying on SVG masks. */
+html body .site-header .brand-logo,
 html body .site-footer .footer-logo{
   position:relative!important;
   display:block!important;
-  background:#2457FF!important;
-  -webkit-mask:url('assets/true-print-shop-logo.svg') center/contain no-repeat!important;
-  mask:url('assets/true-print-shop-logo.svg') center/contain no-repeat!important;
+  background:transparent!important;
+  -webkit-mask:none!important;
+  mask:none!important;
   aspect-ratio:1299/503!important;
   height:auto!important;
 }
 
+html body .site-header .brand-logo img,
 html body .site-footer .footer-logo img{
   display:block!important;
   width:100%!important;
   height:auto!important;
-  opacity:0!important;
+  opacity:1!important;
   visibility:visible!important;
-  filter:none!important;
+  filter:brightness(0) saturate(100%) invert(31%) sepia(98%) saturate(4165%) hue-rotate(228deg) brightness(101%) contrast(105%)!important;
 }
 
 /* Navigation links stay completely static. Hover colour may change, but there
