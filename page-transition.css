@@ -1,5 +1,6 @@
 @import url('product-mobile.css');
 @import url('slider-bars.css');
+@import url('account-modal.css');
 
 html::before{
   content:"";
