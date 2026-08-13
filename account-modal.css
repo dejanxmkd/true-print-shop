@@ -63,7 +63,7 @@ body.account-open{overflow:hidden!important}
 @media(max-width:600px){
   .site-header{padding-left:12px!important;padding-right:12px!important;gap:10px!important}
   .site-header .brand-logo{width:min(118px,30vw)!important}
-  .header-tools{gap:5px!important}
+  .header-tools{gap:10px!important}
   .header-tools button{width:42px!important;height:42px!important}
   .account-modal{width:calc(100vw - 24px);max-height:calc(100dvh - 24px);padding:24px 18px 22px;border-radius:24px;box-shadow:7px 7px 0 #111111}
   .account-modal-head{margin-bottom:22px}
@@ -73,10 +73,16 @@ body.account-open{overflow:hidden!important}
   .account-benefits h3{font-size:19px}
 }
 
-@media(max-width:380px){
-  .site-header .brand-logo{width:104px!important}
-  .header-tools{gap:4px!important}
+@media(max-width:420px){
+  .site-header .brand-logo{width:min(108px,27vw)!important}
+  .header-tools{gap:8px!important}
   .header-tools button{width:40px!important;height:40px!important}
+}
+
+@media(max-width:380px){
+  .site-header .brand-logo{width:100px!important}
+  .header-tools{gap:7px!important}
+  .header-tools button{width:38px!important;height:38px!important}
 }
 
 @media(prefers-reduced-motion:reduce){.account-overlay,.account-modal{transition:none!important}}
