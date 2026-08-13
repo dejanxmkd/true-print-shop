@@ -1,6 +1,6 @@
 (function installCardSliderBars(){
   const mobileQuery=window.matchMedia('(max-width:600px)');
-  const selectors=['.product-rail','.love-rail','.recommend-grid','[data-card-slider]'];
+  const selectors=['.product-rail','.love-rail','.recommend-grid','.category-grid','[data-card-slider]'];
   const registry=new Map();
 
   const clamp=(value,min,max)=>Math.min(max,Math.max(min,value));
