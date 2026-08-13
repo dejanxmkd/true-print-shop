@@ -43,9 +43,17 @@ body.account-open{overflow:hidden!important}
 
 .account-form{display:grid;gap:12px}
 .account-field{display:grid;gap:7px}
-.account-field span{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.03em}
-.account-field input{width:100%;height:56px;padding:0 18px;border:2px solid #111111;border-radius:16px;background:#fff;color:#111111;outline:0;font-size:16px;font-weight:600}
-.account-field input:focus{box-shadow:0 0 0 3px #2457FF}
+.account-field>span,
+.account-field>label,
+.account-field label>span{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.03em}
+.account-field input,
+.account-field textarea{width:100%;padding:0 18px;border:2px solid #111111;border-radius:16px;background:#fff;color:#111111;outline:0;font-size:16px;font-weight:600;box-shadow:none;transition:box-shadow .16s ease,border-color .16s ease}
+.account-field input{height:56px}
+.account-field textarea{min-height:112px;padding-top:16px;padding-bottom:16px;resize:vertical}
+.account-field input:focus,
+.account-field textarea:focus{border-color:#111111;box-shadow:0 0 0 3px #2457FF}
+.account-field input::placeholder,
+.account-field textarea::placeholder{color:#8a867e;opacity:1}
 .account-submit{width:100%;min-height:56px;margin-top:4px;border:2px solid #111111!important;border-radius:999px!important;background:#2457FF!important;color:#F5F1E8!important;box-shadow:6px 6px 0 #111111!important;font-weight:800!important;cursor:pointer}
 .account-submit:hover,.account-submit:focus-visible{background:#2457FF!important;color:#F5F1E8!important;transform:translate(-2px,-2px)!important;box-shadow:8px 8px 0 #111111!important}
 .account-submit:active{transform:translate(3px,3px)!important;box-shadow:2px 2px 0 #111111!important}
