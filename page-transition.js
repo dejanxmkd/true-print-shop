@@ -1,7 +1,9 @@
-(function installSharedContactRoute(){
+(function installSharedInfoRoutes(){
   const apply=()=>{
     document.querySelectorAll('a').forEach(link=>{
-      if(link.textContent.trim().toLowerCase()==='contact us')link.setAttribute('href','contact.html');
+      const label=link.textContent.trim().toLowerCase();
+      if(label==='contact us')link.setAttribute('href','contact.html');
+      if(label==='blog')link.setAttribute('href','blog.html');
     });
   };
   apply();
