@@ -180,3 +180,53 @@ productGridStyle.textContent = `
 }
 `;
 document.head.appendChild(productGridStyle);
+
+(function installMobileStickyBuy(){
+  const mobile=window.matchMedia('(max-width:600px)');
+  const frequently=find('.product-page .frequently');
+  const originalQty=find('.product-page .buy-row .qty');
+  const originalQtyValue=find('.product-page .buy-row .qty span');
+  const originalAdd=find('.product-page .buy-row>.button');
+  if(!frequently||!originalQty||!originalQtyValue||!originalAdd)return;
+
+  const bar=document.createElement('div');
+  bar.className='mobile-sticky-buy';
+  bar.setAttribute('aria-hidden','true');
+  bar.innerHTML=`
+    <div class="sticky-qty" aria-label="Quantity">
+      <button type="button" data-sticky-qty="minus" aria-label="Decrease quantity">−</button>
+      <span>${originalQtyValue.textContent.trim()}</span>
+      <button type="button" data-sticky-qty="plus" aria-label="Increase quantity">+</button>
+    </div>
+    <button class="sticky-add" type="button">Add to cart</button>`;
+  document.body.appendChild(bar);
+
+  const stickyValue=bar.querySelector('.sticky-qty span');
+  const syncQuantity=()=>{stickyValue.textContent=originalQtyValue.textContent.trim()};
+  const setVisible=visible=>{
+    bar.classList.toggle('is-visible',visible);
+    bar.setAttribute('aria-hidden',String(!visible));
+  };
+
+  const updateVisibility=()=>{
+    if(!mobile.matches){setVisible(false);return}
+    const rect=frequently.getBoundingClientRect();
+    setVisible(rect.top<=window.innerHeight-20);
+  };
+
+  bar.addEventListener('click',event=>{
+    const qtyButton=event.target.closest('[data-sticky-qty]');
+    if(qtyButton){
+      originalQty.querySelector(`[data-qty="${qtyButton.dataset.stickyQty}"]`)?.click();
+      syncQuantity();
+      return;
+    }
+    if(event.target.closest('.sticky-add'))originalAdd.click();
+  });
+
+  new MutationObserver(syncQuantity).observe(originalQtyValue,{childList:true,characterData:true,subtree:true});
+  window.addEventListener('scroll',updateVisibility,{passive:true});
+  window.addEventListener('resize',updateVisibility,{passive:true});
+  mobile.addEventListener?.('change',updateVisibility);
+  updateVisibility();
+})();
