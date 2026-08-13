@@ -1,3 +1,14 @@
+(function installSharedContactRoute(){
+  const apply=()=>{
+    document.querySelectorAll('a').forEach(link=>{
+      if(link.textContent.trim().toLowerCase()==='contact us')link.setAttribute('href','contact.html');
+    });
+  };
+  apply();
+  const observer=new MutationObserver(apply);
+  observer.observe(document.documentElement,{childList:true,subtree:true});
+})();
+
 (function loadSharedMobileMenu(){
   if(document.querySelector('script[data-mobile-menu]'))return;
   const script=document.createElement('script');
