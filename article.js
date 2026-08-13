@@ -6,10 +6,16 @@
     'embroidery-caps':{category:'Embroidery',title:'Choosing the right cap for embroidery',deck:'Structure, panels and fabric all matter more than most people think.',meta:'4 min read'},
     'logo-sizing':{category:'Design tips',title:'Logo sizing that works on apparel',deck:'A practical guide to chest, sleeve and back placements.',meta:'5 min read'},
     'uniform-system':{category:'Workwear',title:'What makes a good uniform system',deck:'Keep teams consistent without making every piece feel identical.',meta:'5 min read'},
-    'blank-tshirt':{category:'Guides',title:'Picking the right blank T-shirt',deck:'Fit, weight, softness and printability explained without the jargon.',meta:'5 min read'}
+    'screen-print-vs-embroidery':{category:'Production',title:'Screen print vs embroidery',deck:'When each method makes sense and where the tradeoffs are.',meta:'5 min read'},
+    'blank-tshirt':{category:'Guides',title:'Picking the right blank T-shirt',deck:'Fit, weight, softness and printability explained without the jargon.',meta:'5 min read'},
+    'logo-colors':{category:'Branding',title:'How many logo colors do you really need?',deck:'Simple color systems often produce stronger, more flexible apparel.',meta:'4 min read'},
+    'station-apparel':{category:'First responders',title:'Building durable station apparel',deck:'Materials and decoration choices that hold up to real daily wear.',meta:'5 min read'},
+    'apparel-bundles':{category:'Bundles',title:'When bundled apparel saves time',deck:'A better way to order coordinated gear for teams, crews and events.',meta:'4 min read'},
+    'garment-care':{category:'Care',title:'Make prints and embroidery last longer',deck:'Simple washing and drying habits that protect decorated garments.',meta:'4 min read'},
+    'before-production':{category:'Behind the shop',title:'What happens before production starts',deck:'Artwork checks, placement, sizing and approvals before the first piece runs.',meta:'5 min read'}
   };
   const article=articles[slug]||articles['custom-apparel'];
-  article.body=article.body||[['p',article.deck],['h2','What to consider'],['p','The best choice depends on how the garment will be worn, how often it will be washed and how the artwork needs to perform.'],['h2','Keep the system simple'],['p','Consistent materials, sizing and decoration rules make future reorders easier and keep the final result looking intentional.']];
+  article.body=article.body||[['p',article.deck],['h2','What to consider'],['p','The best choice depends on how the garment will be worn, how often it will be washed and how the artwork needs to perform.'],['h2','Keep the system simple'],['p','Consistent materials, sizing and decoration rules make future reorders easier and keep the final result looking intentional.'],['callout','Good production decisions make the finished piece easier to wear, reorder and keep consistent over time.']];
   const set=(selector,text)=>{const el=document.querySelector(selector);if(el)el.textContent=text};
   set('[data-article-category]',article.category);set('[data-article-title]',article.title);set('[data-article-deck]',article.deck);set('[data-article-meta]',article.meta);
   document.title=`${article.title} | True Print Shop`;
