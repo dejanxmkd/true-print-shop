@@ -151,9 +151,11 @@
     style.id='tp-mobile-menu-style';
     style.textContent=`
       @media(max-width:1480px){
-        .site-header{position:sticky!important;top:0!important;z-index:20!important}
+        .site-header{position:sticky!important;top:0!important;z-index:10001!important}
         .mobile-menu[data-mobile-menu-enhanced="true"]{
           position:fixed!important;
+          z-index:10000!important;
+          isolation:isolate!important;
           top:var(--tp-mobile-menu-top,76px)!important;
           right:0!important;
           bottom:0!important;
@@ -163,15 +165,25 @@
           padding:0!important;
           display:block!important;
           background:#2457FF!important;
+          background-color:#2457FF!important;
           color:#F5F1E8!important;
+          opacity:1!important;
           overflow:hidden!important;
           border:0!important;
         }
+        .mobile-menu[data-mobile-menu-enhanced="true"]::before{
+          content:"";
+          position:absolute;
+          inset:0;
+          z-index:-1;
+          background:#2457FF;
+          pointer-events:none;
+        }
         .mobile-menu[data-mobile-menu-enhanced="true"] .mobile-help,.mobile-menu[data-mobile-menu-enhanced="true"] .mobile-primary{display:none!important}
-        .tp-mobile-menu-shell{position:relative;width:100%;height:100%;min-height:100%;overflow:hidden;background:#2457FF}
-        .tp-mobile-panel{position:absolute;inset:0;overflow-y:auto;overscroll-behavior:contain;opacity:0;visibility:hidden;pointer-events:none;transform:translate3d(100%,0,0);transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .18s ease,visibility .3s;will-change:transform}
+        .tp-mobile-menu-shell{position:relative;z-index:1;width:100%;height:100%;min-height:100%;overflow:hidden;background:#2457FF!important}
+        .tp-mobile-panel{position:absolute;inset:0;z-index:1;overflow-y:auto;overscroll-behavior:contain;opacity:0;visibility:hidden;pointer-events:none;transform:translate3d(100%,0,0);transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .18s ease,visibility .3s;will-change:transform;background:#2457FF!important}
         .tp-mobile-panel.is-current{opacity:1;visibility:visible;pointer-events:auto;transform:translate3d(0,0,0)}
-        .tp-mobile-panel-inner{width:min(100%,760px);min-height:100%;margin:0 auto;padding:clamp(30px,5vh,54px) 22px 42px;display:flex;flex-direction:column;align-items:stretch}
+        .tp-mobile-panel-inner{width:min(100%,760px);min-height:100%;margin:0 auto;padding:clamp(30px,5vh,54px) 22px 42px;display:flex;flex-direction:column;align-items:stretch;background:#2457FF!important}
         .tp-mobile-link,.tp-mobile-back{margin:0;border:0!important;border-radius:0!important;background:transparent!important;color:#F5F1E8!important;box-shadow:none!important;text-decoration:none!important;transform:none!important;transition:none!important}
         .tp-mobile-link{width:100%;min-height:68px;padding:14px 0;display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:14px;text-align:left;font-size:24px!important;line-height:1.05!important;font-weight:900!important;letter-spacing:-.03em!important;text-transform:uppercase!important;cursor:pointer}
         .tp-mobile-parent{justify-content:space-between!important}
