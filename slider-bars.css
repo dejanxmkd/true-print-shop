@@ -10,12 +10,13 @@
     margin-right:calc(50% - 50vw)!important;
     padding-left:16px!important;
     padding-right:16px!important;
+    padding-bottom:18px!important;
     box-sizing:border-box!important;
     display:flex!important;
     flex-wrap:nowrap!important;
     gap:12px!important;
     overflow-x:auto!important;
-    overflow-y:hidden!important;
+    overflow-y:visible!important;
     scroll-snap-type:x mandatory!important;
     scroll-padding-left:16px!important;
     scroll-padding-right:16px!important;
