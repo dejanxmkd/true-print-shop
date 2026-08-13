@@ -1,10 +1,17 @@
 (function installSharedInfoRoutes(){
+  const blogSlugs=['custom-apparel','embroidery-caps','logo-sizing','uniform-system','screen-print-vs-embroidery','blank-tshirt','logo-colors','station-apparel','apparel-bundles','garment-care','before-production'];
   const apply=()=>{
     document.querySelectorAll('a').forEach(link=>{
       const label=link.textContent.trim().toLowerCase();
       if(label==='contact us')link.setAttribute('href','contact.html');
       if(label==='blog')link.setAttribute('href','blog.html');
     });
+    if(document.querySelector('.blog-page')){
+      document.querySelectorAll('.blog-main-card,.blog-side-card,.blog-grid>.blog-card').forEach((link,index)=>{
+        const slug=blogSlugs[index];
+        if(slug)link.setAttribute('href',`article.html?slug=${slug}`);
+      });
+    }
   };
   apply();
   const observer=new MutationObserver(apply);
