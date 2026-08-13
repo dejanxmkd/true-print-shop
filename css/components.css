@@ -1,0 +1,136 @@
+/* Shared component rules extracted from legacy typography/override layers.
+   This file is not linked by the pages until the migration pass is complete. */
+
+.site-header .brand-logo,
+.site-footer .footer-logo {
+  position: relative;
+  display: block;
+  background: var(--color-blue);
+  -webkit-mask: url('../assets/true-print-shop-logo.svg') center / contain no-repeat;
+  mask: url('../assets/true-print-shop-logo.svg') center / contain no-repeat;
+  aspect-ratio: 1299 / 503;
+}
+
+.site-header .brand-logo img,
+.site-footer .footer-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  visibility: visible;
+  filter: none;
+}
+
+.desktop-nav a,
+.desktop-nav .dropdown-menu a,
+.desktop-nav .sub-dropdown-menu a,
+.mobile-menu .mobile-links a {
+  transition: none;
+  transform: none;
+}
+
+.desktop-nav a:hover,
+.desktop-nav a:focus-visible,
+.desktop-nav .dropdown-menu a:hover,
+.desktop-nav .dropdown-menu a:focus-visible,
+.desktop-nav .sub-dropdown-menu a:hover,
+.desktop-nav .sub-dropdown-menu a:focus-visible,
+.mobile-menu .mobile-links a:hover,
+.mobile-menu .mobile-links a:focus-visible {
+  color: var(--color-blue);
+  transform: none;
+}
+
+.site-footer .footer-grid a,
+.breadcrumbs a,
+.info-content a,
+.description a {
+  transition:
+    color var(--link-motion-duration) var(--link-motion-ease),
+    opacity var(--link-motion-duration) var(--link-motion-ease),
+    transform var(--link-motion-duration) var(--link-motion-ease);
+  transform: none;
+}
+
+.site-footer .footer-grid a:hover,
+.site-footer .footer-grid a:focus-visible,
+.breadcrumbs a:hover,
+.breadcrumbs a:focus-visible,
+.info-content a:hover,
+.info-content a:focus-visible,
+.description a:hover,
+.description a:focus-visible {
+  color: var(--color-blue);
+  transform: translateX(3px);
+}
+
+.category-grid,
+.product-rail,
+.catalog-grid,
+.recommend-grid,
+.love-rail {
+  gap: var(--card-gap);
+}
+
+.product-rail article {
+  flex-basis: calc((100% - (var(--card-gap) * 3)) / 4);
+}
+
+@media (max-width: 1480px) and (min-width: 601px) {
+  .product-rail article {
+    flex-basis: calc((100% - var(--card-gap)) / 2);
+  }
+}
+
+@media (max-width: 600px) {
+  .product-rail article {
+    flex-basis: 82vw;
+  }
+
+  .tabs {
+    width: calc(100% + 32px);
+    max-width: none;
+    margin-left: -16px;
+    margin-right: -16px;
+    padding: 8px 32px 20px 16px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-padding-inline: 16px 32px;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+    -webkit-mask-image: none;
+    mask-image: none;
+    clip-path: none;
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tabs button {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
+    white-space: nowrap;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    scroll-margin-inline: 0 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-footer .footer-grid a,
+  .breadcrumbs a,
+  .info-content a,
+  .description a {
+    transition: none;
+    transform: none;
+  }
+}
