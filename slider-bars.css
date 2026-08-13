@@ -2,27 +2,61 @@
   .product-rail,
   .love-rail,
   .recommend-grid,
+  .category-grid,
   [data-card-slider]{
+    width:100vw!important;
+    max-width:none!important;
+    margin-left:calc(50% - 50vw)!important;
+    margin-right:calc(50% - 50vw)!important;
+    padding-left:16px!important;
+    padding-right:16px!important;
+    box-sizing:border-box!important;
+    display:flex!important;
+    flex-wrap:nowrap!important;
+    gap:12px!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
     scroll-snap-type:x mandatory!important;
-    scroll-padding-left:0!important;
+    scroll-padding-left:16px!important;
+    scroll-padding-right:16px!important;
     overscroll-behavior-inline:contain!important;
+    -webkit-overflow-scrolling:touch!important;
+    scrollbar-width:none!important;
+    -ms-overflow-style:none!important;
+  }
+
+  .product-rail::-webkit-scrollbar,
+  .love-rail::-webkit-scrollbar,
+  .recommend-grid::-webkit-scrollbar,
+  .category-grid::-webkit-scrollbar,
+  [data-card-slider]::-webkit-scrollbar{
+    display:none!important;
   }
 
   .product-rail>* ,
   .love-rail>* ,
   .recommend-grid>* ,
+  .category-grid>* ,
   [data-card-slider]>*{
     scroll-snap-align:start!important;
     scroll-snap-stop:always!important;
+  }
+
+  .category-grid>.category{
+    flex:0 0 74%!important;
+    min-width:0!important;
   }
 
   .tp-slider-bar,
   .rail-scroll.tp-slider-bar{
     position:relative!important;
     display:block!important;
-    width:100%!important;
+    width:calc(100vw - 32px)!important;
+    max-width:none!important;
     height:6px!important;
     margin:24px 0 8px!important;
+    margin-left:calc(50% - 50vw + 16px)!important;
+    margin-right:16px!important;
     padding:0!important;
     border:0!important;
     border-radius:999px!important;
@@ -47,11 +81,6 @@
     border-radius:999px!important;
     background:#2457FF!important;
     transition:left 80ms linear!important;
-  }
-
-  .frequently>.tp-slider-bar{
-    width:calc(100% - 16px)!important;
-    margin-right:16px!important;
   }
 }
 
