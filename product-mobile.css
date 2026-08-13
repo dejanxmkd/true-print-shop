@@ -175,4 +175,103 @@
     scroll-snap-align:start!important;
     scroll-snap-stop:always!important;
   }
+
+  .mobile-sticky-buy{
+    position:fixed;
+    z-index:1100;
+    left:0;
+    right:0;
+    bottom:0;
+    display:grid;
+    grid-template-columns:minmax(122px,.72fr) minmax(0,1.58fr);
+    gap:10px;
+    align-items:center;
+    padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+    background:#F5F1E8;
+    border-top:2px solid #111111;
+    box-shadow:0 -10px 24px rgba(17,17,17,.12);
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transform:translate3d(0,110%,0);
+    transition:transform .24s cubic-bezier(.2,.8,.2,1),opacity .18s ease,visibility .24s;
+  }
+
+  .mobile-sticky-buy.is-visible{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+    transform:translate3d(0,0,0);
+  }
+
+  .mobile-sticky-buy .sticky-qty{
+    height:54px;
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    align-items:center;
+    border:2px solid #111111;
+    border-radius:999px;
+    background:#F5F1E8;
+    box-shadow:4px 5px 0 #111111;
+  }
+
+  .mobile-sticky-buy .sticky-qty button{
+    width:100%;
+    height:100%;
+    padding:0;
+    border:0;
+    background:transparent;
+    color:#111111;
+    display:grid;
+    place-items:center;
+    font-size:24px;
+    font-weight:800;
+    cursor:pointer;
+  }
+
+  .mobile-sticky-buy .sticky-qty span{
+    min-width:28px;
+    text-align:center;
+    font-size:18px;
+    font-weight:800;
+  }
+
+  .mobile-sticky-buy .sticky-add{
+    min-height:62px;
+    padding:0 24px;
+    border:2px solid #111111!important;
+    border-radius:999px!important;
+    background:#2457FF!important;
+    color:#F5F1E8!important;
+    box-shadow:5px 6px 0 #111111!important;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px!important;
+    font-weight:800!important;
+    cursor:pointer;
+  }
+
+  .mobile-sticky-buy .sticky-add:active{
+    transform:translate(2px,2px)!important;
+    box-shadow:2px 3px 0 #111111!important;
+  }
+
+  body.menu-open .mobile-sticky-buy,
+  body.cart-open .mobile-sticky-buy,
+  body.share-open .mobile-sticky-buy,
+  body.account-open .mobile-sticky-buy{
+    opacity:0!important;
+    visibility:hidden!important;
+    pointer-events:none!important;
+    transform:translate3d(0,110%,0)!important;
+  }
+}
+
+@media(min-width:601px){
+  .mobile-sticky-buy{display:none!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .mobile-sticky-buy{transition:none!important}
 }
