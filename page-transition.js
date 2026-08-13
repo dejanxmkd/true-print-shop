@@ -6,6 +6,14 @@
   document.head.appendChild(script);
 })();
 
+(function loadSharedSliderBars(){
+  if(document.querySelector('script[data-slider-bars]'))return;
+  const script=document.createElement('script');
+  script.src='slider-bars.js';
+  script.dataset.sliderBars='';
+  document.head.appendChild(script);
+})();
+
 (function installPageTransition(){
   const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
   const root=document.documentElement;
