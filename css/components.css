@@ -5,9 +5,9 @@
 .site-footer .footer-logo {
   position: relative;
   display: block;
-  background: var(--color-blue);
-  -webkit-mask: url('../assets/true-print-shop-logo.svg') center / contain no-repeat;
-  mask: url('../assets/true-print-shop-logo.svg') center / contain no-repeat;
+  background: transparent;
+  -webkit-mask: none;
+  mask: none;
   aspect-ratio: 1299 / 503;
 }
 
@@ -16,9 +16,9 @@
   display: block;
   width: 100%;
   height: auto;
-  opacity: 0;
+  opacity: 1;
   visibility: visible;
-  filter: none;
+  filter: brightness(0) saturate(100%) invert(31%) sepia(98%) saturate(4165%) hue-rotate(228deg) brightness(101%) contrast(105%);
 }
 
 .desktop-nav a,
