@@ -1,0 +1,39 @@
+@media(max-width:980px){
+  .product-page .product-layout{
+    display:flex!important;
+    flex-direction:column!important;
+    gap:0!important;
+  }
+
+  .product-page .product-info{
+    display:contents!important;
+  }
+
+  .product-page .product-brand{order:1!important;margin-top:0!important}
+  .product-page .title-line{order:2!important}
+  .product-page .product-price{order:3!important}
+  .product-page .gallery-sticky{order:4!important;margin:8px 0 34px!important;width:100%!important}
+  .product-page .option{order:5!important}
+  .product-page .stock{order:6!important}
+  .product-page .buy-row{order:7!important}
+  .product-page .description{order:8!important}
+  .product-page .frequently{order:9!important}
+
+  .product-page .gallery-sticky{
+    position:relative!important;
+    top:auto!important;
+    display:grid!important;
+    grid-template-columns:1fr!important;
+  }
+
+  .product-page .main-image{order:1!important}
+  .product-page .thumbnails{order:2!important}
+}
+
+@media(max-width:600px){
+  .product-page .product-brand{margin-bottom:18px!important}
+  .product-page .title-line{position:relative!important}
+  .product-page .title-line button[aria-label="Share product"]{top:0!important}
+  .product-page .product-price{margin:22px 0 26px!important}
+  .product-page .gallery-sticky{margin:4px 0 30px!important}
+}
