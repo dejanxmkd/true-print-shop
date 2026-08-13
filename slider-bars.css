@@ -1,4 +1,21 @@
 @media(max-width:600px){
+  .product-rail,
+  .love-rail,
+  .recommend-grid,
+  [data-card-slider]{
+    scroll-snap-type:x mandatory!important;
+    scroll-padding-left:0!important;
+    overscroll-behavior-inline:contain!important;
+  }
+
+  .product-rail>* ,
+  .love-rail>* ,
+  .recommend-grid>* ,
+  [data-card-slider]>*{
+    scroll-snap-align:start!important;
+    scroll-snap-stop:always!important;
+  }
+
   .tp-slider-bar,
   .rail-scroll.tp-slider-bar{
     position:relative!important;
