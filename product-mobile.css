@@ -257,6 +257,18 @@
     box-shadow:2px 3px 0 #111111!important;
   }
 
+  .toast{
+    z-index:1300!important;
+    width:max-content;
+    max-width:calc(100vw - 32px);
+    bottom:calc(16px + env(safe-area-inset-bottom))!important;
+    text-align:center;
+  }
+
+  body:has(.mobile-sticky-buy.is-visible) .toast{
+    bottom:calc(104px + env(safe-area-inset-bottom))!important;
+  }
+
   body.menu-open .mobile-sticky-buy,
   body.cart-open .mobile-sticky-buy,
   body.share-open .mobile-sticky-buy,
