@@ -1,3 +1,91 @@
+(function installStorefrontRefresh(){
+  const navItems=[
+    ['Hats','collection.html?category=hats'],
+    ['T-Shirts','collection.html?category=t-shirts'],
+    ['Sweats','collection.html?category=sweatshirts'],
+    ['Jackets','collection.html?category=jackets'],
+    ['Safety','collection.html?category=safety']
+  ];
+
+  const apply=()=>{
+    const desktopNav=document.querySelector('.desktop-nav');
+    if(desktopNav){
+      const expected=navItems.map(([label,href])=>`<div class="nav-item"><a href="${href}">${label}</a></div>`).join('');
+      if(desktopNav.dataset.storefrontRefresh!=='true'||desktopNav.innerHTML!==expected){
+        desktopNav.innerHTML=expected;
+        desktopNav.dataset.storefrontRefresh='true';
+      }
+    }
+
+    if(!document.getElementById('storefront-refresh-style')){
+      const style=document.createElement('style');
+      style.id='storefront-refresh-style';
+      style.textContent=`html body .site-header .brand-logo{background:#111111!important}`;
+      document.head.appendChild(style);
+    }
+
+    const heroButtons=document.querySelectorAll('.hero .button-row a');
+    heroButtons.forEach(link=>{
+      if(link.textContent.trim().toLowerCase()!=='start your design')link.remove();
+    });
+
+    const categoryGrid=document.querySelector('#categories .category-grid');
+    if(categoryGrid){
+      const wanted=[
+        ['hats','Hats'],
+        ['polos','Polos & Business Wear'],
+        ['sweatshirts','Sweatshirts'],
+        ['t-shirts','T-Shirts']
+      ];
+      const cards=[...categoryGrid.querySelectorAll('.category')];
+      const byCategory=new Map(cards.map(card=>{
+        const match=(card.getAttribute('href')||'').match(/[?&]category=([^&]+)/);
+        return [match?.[1]||'',card];
+      }));
+      cards.forEach(card=>card.remove());
+      wanted.forEach(([category,label])=>{
+        const card=byCategory.get(category);
+        if(!card)return;
+        const text=card.querySelector('span');
+        if(text)text.textContent=label;
+        categoryGrid.appendChild(card);
+      });
+    }
+
+    const hatsSection=document.querySelector('#bundles');
+    if(hatsSection){
+      const title=hatsSection.querySelector('.heading-row h2');
+      if(title)title.textContent='Shop Hats';
+      const tabs=hatsSection.querySelector('.tabs');
+      if(tabs&&tabs.dataset.storefrontRefresh!=='true'){
+        tabs.innerHTML='<button class="active" data-filter="hats">Hats</button>';
+        tabs.dataset.storefrontRefresh='true';
+      }
+      hatsSection.querySelectorAll('#bundle-products article').forEach(card=>card.hidden=card.dataset.category!=='hats');
+      hatsSection.querySelector('.heading-row>a')?.setAttribute('href','collection.html?category=hats');
+      hatsSection.querySelector('.section-button')?.setAttribute('href','collection.html?category=hats');
+    }
+
+    const teesSection=document.querySelector('#responders');
+    if(teesSection){
+      const title=teesSection.querySelector('.heading-row h2');
+      if(title)title.textContent='Shop T-Shirts';
+      const tabs=teesSection.querySelector('.tabs');
+      if(tabs&&tabs.dataset.storefrontRefresh!=='true'){
+        tabs.innerHTML='<button class="active" data-filter="tees">T-Shirts</button>';
+        tabs.dataset.storefrontRefresh='true';
+      }
+      teesSection.querySelectorAll('#responder-products article').forEach(card=>card.hidden=card.dataset.category!=='tees');
+      teesSection.querySelector('.heading-row>a')?.setAttribute('href','collection.html?category=t-shirts');
+      teesSection.querySelector('.section-button')?.setAttribute('href','collection.html?category=t-shirts');
+    }
+  };
+
+  apply();
+  const observer=new MutationObserver(apply);
+  observer.observe(document.documentElement,{childList:true,subtree:true});
+})();
+
 (function installSharedInfoRoutes(){
   const blogSlugs=['custom-apparel','embroidery-caps','logo-sizing','uniform-system','screen-print-vs-embroidery','blank-tshirt','logo-colors','station-apparel','apparel-bundles','garment-care','before-production'];
   const apply=()=>{
