@@ -24,13 +24,12 @@
       document.head.appendChild(style);
     }
 
-    const heroButtons=document.querySelectorAll('.hero .button-row a');
-    heroButtons.forEach(link=>{
+    document.querySelectorAll('.hero .button-row a').forEach(link=>{
       if(link.textContent.trim().toLowerCase()!=='start your design')link.remove();
     });
 
     const categoryGrid=document.querySelector('#categories .category-grid');
-    if(categoryGrid){
+    if(categoryGrid&&categoryGrid.dataset.storefrontRefresh!=='true'){
       const wanted=[
         ['hats','Hats'],
         ['polos','Polos & Business Wear'],
@@ -50,6 +49,7 @@
         if(text)text.textContent=label;
         categoryGrid.appendChild(card);
       });
+      categoryGrid.dataset.storefrontRefresh='true';
     }
 
     const hatsSection=document.querySelector('#bundles');
@@ -82,8 +82,8 @@
   };
 
   apply();
-  const observer=new MutationObserver(apply);
-  observer.observe(document.documentElement,{childList:true,subtree:true});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply,{once:true});
+  setTimeout(apply,120);
 })();
 
 (function installSharedInfoRoutes(){
