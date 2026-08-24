@@ -4,7 +4,8 @@
     ['T-Shirts','collection.html?category=t-shirts'],
     ['Sweats','collection.html?category=sweatshirts'],
     ['Jackets','collection.html?category=jackets'],
-    ['Safety','collection.html?category=safety']
+    ['Safety','collection.html?category=safety'],
+    ['Contact Us','contact.html']
   ];
 
   const apply=()=>{
