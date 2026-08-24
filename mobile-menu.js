@@ -9,7 +9,8 @@
     {label:'T-Shirts',href:'collection.html?category=t-shirts'},
     {label:'Sweats',href:'collection.html?category=sweatshirts'},
     {label:'Jackets',href:'collection.html?category=jackets'},
-    {label:'Safety',href:'collection.html?category=safety'}
+    {label:'Safety',href:'collection.html?category=safety'},
+    {label:'Contact Us',href:'contact.html'}
   ];
 
   const esc=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[char]));
