@@ -5,7 +5,7 @@
     ['Sweats','collection.html?category=sweatshirts'],
     ['Jackets','collection.html?category=jackets'],
     ['Safety','collection.html?category=safety'],
-    ['Contact Us','contact.html']
+    ['Contact us','contact.html']
   ];
 
   const apply=()=>{
@@ -57,11 +57,7 @@
     if(hatsSection){
       const title=hatsSection.querySelector('.heading-row h2');
       if(title)title.textContent='Shop Hats';
-      const tabs=hatsSection.querySelector('.tabs');
-      if(tabs&&tabs.dataset.storefrontRefresh!=='true'){
-        tabs.innerHTML='<button class="active" data-filter="hats">Hats</button>';
-        tabs.dataset.storefrontRefresh='true';
-      }
+      hatsSection.querySelector('.tabs')?.remove();
       hatsSection.querySelectorAll('#bundle-products article').forEach(card=>card.hidden=card.dataset.category!=='hats');
       hatsSection.querySelector('.heading-row>a')?.setAttribute('href','collection.html?category=hats');
       hatsSection.querySelector('.section-button')?.setAttribute('href','collection.html?category=hats');
@@ -71,11 +67,7 @@
     if(teesSection){
       const title=teesSection.querySelector('.heading-row h2');
       if(title)title.textContent='Shop T-Shirts';
-      const tabs=teesSection.querySelector('.tabs');
-      if(tabs&&tabs.dataset.storefrontRefresh!=='true'){
-        tabs.innerHTML='<button class="active" data-filter="tees">T-Shirts</button>';
-        tabs.dataset.storefrontRefresh='true';
-      }
+      teesSection.querySelector('.tabs')?.remove();
       teesSection.querySelectorAll('#responder-products article').forEach(card=>card.hidden=card.dataset.category!=='tees');
       teesSection.querySelector('.heading-row>a')?.setAttribute('href','collection.html?category=t-shirts');
       teesSection.querySelector('.section-button')?.setAttribute('href','collection.html?category=t-shirts');
